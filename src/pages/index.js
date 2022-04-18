@@ -1,3 +1,3 @@
-import { HeroArticle } from "./home";
+import { Hero } from "./home";
 
-export { HeroArticle };
+export { Hero };

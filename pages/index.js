@@ -19,8 +19,8 @@ import { SEO } from "../src/utils/constants.utils"; */
 
 /* const Index = () => <Page pageConfig={homeConfig} headers={Headers} />; */
 
-import { HeroArticle } from "../src/pages";
+import { Hero } from "../src/pages";
 
-const Index = () => <HeroArticle />;
+const Index = () => <Hero />;
 
 export default Index;
