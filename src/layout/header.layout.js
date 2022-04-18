@@ -9,9 +9,11 @@ const Header = styled(Grid)`
 `;
 
 const HeaderLayout = ({ children }) => (
-  <Header container spacing={3}>
+  <Header container>
     {Children.map(children, (child) => (
-      <Grid item>{child}</Grid>
+      <Grid item paddingLeft={3} paddingRight={3}>
+        {child}
+      </Grid>
     ))}
   </Header>
 );

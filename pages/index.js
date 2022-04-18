@@ -18,11 +18,13 @@ import { SEO } from "../src/utils/constants.utils"; */
 ); */
 
 /* const Index = () => <Page pageConfig={homeConfig} headers={Headers} />; */
+import { Fragment } from "react";
+
 import { HeaderLayout } from "../src/layout";
 import { HeroArticle } from "../src/pages";
 
 const Index = () => (
-  <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
+  <Fragment>
     <HeaderLayout>
       <div>Icon</div>
       <div>Icon</div>
@@ -30,7 +32,7 @@ const Index = () => (
       <div>Icon</div>
     </HeaderLayout>
     <HeroArticle />
-  </div>
+  </Fragment>
 );
 
 export default Index;

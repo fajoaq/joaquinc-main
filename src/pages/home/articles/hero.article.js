@@ -1,42 +1,95 @@
 import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-const Hero = styled(Grid)`
-  background-color: green;
-  height: 100%;
-  max-height: 532px;
+const ContentContainer = styled(Box)`
+  display: grid;
 `;
 
-const HeroCopy = styled(Grid)`
+const HeroArticleContainer = styled(Grid)`
+  grid-column: 1;
+  grid-row: 1;
+  overflow: hidden;
+`;
+
+const HeroCopyContainer = styled(Grid)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
   padding: 3.5em 2.5em;
   background-color: gold;
-  height: 100%;
 `;
-const HeroPresentation = styled(Grid)`
-  overflow: hidden;
+
+const HeroPresentationContainer = styled(Grid)``;
+
+const HeroArticleOverLay = styled(Grid)`
+  grid-column: 1;
+  grid-row: 1;
+
+  & :hover {
+    font-size: 9.5rem;
+  }
+`;
+
+const StyledAnchor = styled("a")`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  cursor: pointer;
+  height: 100%;
   width: 100%;
-  height: 100%;
+  margin: 0;
+  font-size: 7rem;
+
+  & span {
+    display: inline-block;
+    line-height: 0;
+    height: 7.5rem;
+    padding: 2.9rem 2.5rem;
+    background-color: rgba(255, 0, 0, 0.8);
+    transition: font-size 250ms ease-in-out;
+  }
 `;
 
-const HeroArticle = () => (
-  <Hero container>
-    <HeroCopy item xs={7.5} rowSpacing={3}>
-      <Typography variant="h1" marginBottom={3}>
-        Francis Joaquin
-      </Typography>
-      <Typography component="h2" variant="h3">
-        Developing Web Developer
-      </Typography>
-    </HeroCopy>
+const HeroArticleCopy = (props) => (
+  <HeroCopyContainer {...props}>
+    <Typography variant="h1" marginBottom={3}>
+      Francis Joaquin
+    </Typography>
+    <Typography component="h2" variant="h3">
+      Developing Web Developer
+    </Typography>
+  </HeroCopyContainer>
+);
 
-    <HeroPresentation item xs={4.5}>
-      <img src="/static/fj.png" width="100%" alt="Francis Joaquin" />
-    </HeroPresentation>
-  </Hero>
+const HeroArticlePresentation = (props) => (
+  <HeroPresentationContainer {...props}>
+    <img
+      src="/static/fj.png"
+      width="100%"
+      height="auto"
+      alt="Francis Joaquin"
+    />
+  </HeroPresentationContainer>
+);
+
+const HeroArticle = (props) => (
+  <ContentContainer maxHeight={532} {...props}>
+    <HeroArticleContainer container>
+      <HeroArticleCopy item xs={7.5} rowSpacing={3} />
+      <HeroArticlePresentation item xs={4.5} />
+    </HeroArticleContainer>
+
+    <HeroArticleContainer container justifyContent="end">
+      <HeroArticleOverLay item xs={4.5}>
+        <StyledAnchor>
+          <span>&#8250;</span>
+        </StyledAnchor>
+      </HeroArticleOverLay>
+    </HeroArticleContainer>
+  </ContentContainer>
 );
 
 export { HeroArticle };
