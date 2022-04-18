@@ -17,7 +17,8 @@ const HeroCopy = styled(Grid)`
   height: 100%;
 `;
 const HeroPresentation = styled(Grid)`
-  background-color: blue;
+  overflow: hidden;
+  width: 100%;
   height: 100%;
 `;
 
@@ -33,7 +34,7 @@ const HeroArticle = () => (
     </HeroCopy>
 
     <HeroPresentation item xs={4.5}>
-      Image
+      <img src="/static/fj.png" width="100%" alt="Francis Joaquin" />
     </HeroPresentation>
   </Hero>
 );
