@@ -4,7 +4,7 @@ import Head from "next/head";
 import { responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
-import { AppLayout } from "../src/layout/app.layout";
+import { AppLayout } from "../src/layout";
 //import { StoreContextProvider } from "../src/context/store.context";
 import GlobalStyles from "@mui/material/GlobalStyles";
 //import { SEO } from "../src/utils/constants.utils";

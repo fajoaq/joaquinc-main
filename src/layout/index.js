@@ -1,3 +1,4 @@
-import { Header } from "./header.layout";
+import { AppLayout } from "./app.layout";
+import { HeaderLayout } from "./header.layout";
 
-export { Header };
+export { AppLayout, HeaderLayout };

@@ -1,11 +1,3 @@
-import { styled } from "@mui/material/styles";
+import { HeroArticle } from "./articles/hero.article";
 
-const HeroArticle = styled("div")`
-  background-color: green;
-  height: 100%;
-  max-height: 532px;
-`;
-
-const Hero = () => <HeroArticle>This is hero</HeroArticle>;
-
-export { Hero };
+export { HeroArticle };
