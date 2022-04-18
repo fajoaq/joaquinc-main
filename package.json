@@ -1,0 +1,49 @@
+{
+  "name": "portfolio2022",
+  "version": "1.0.0",
+  "description": "Francis Joaquin dev portfolio 2022",
+  "author": "Francis Joaquin",
+  "private": true,
+  "license": "ISC",
+  "scripts": {
+    "analyze": "cross-env ANALYZE=true next build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.8.2",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.2",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
+    "axios": "^0.21.4",
+    "dotenv": "^16.0.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^4.1.17",
+    "next": "^12.1.0",
+    "npm": "^8.5.5",
+    "prop-types": "^15.8.1",
+    "qs": "^6.10.1",
+    "react": "17.0.2",
+    "react-cool-inview": "^2.0.8",
+    "react-dom": "17.0.2",
+    "react-keyed-flatten-children": "^1.3.0",
+    "react-responsive-carousel": "^3.2.21",
+    "react-tracked": "^1.7.8",
+    "sharp": "^0.30.3",
+    "uuidv4": "^6.2.13",
+    "validator": "^13.7.0",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.3.2",
+    "@next/bundle-analyzer": "^12.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.11.0",
+    "eslint-config-next": "^12.1.4"
+  }
+}
