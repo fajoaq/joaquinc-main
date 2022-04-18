@@ -18,13 +18,13 @@ import { SEO } from "../src/utils/constants.utils"; */
 ); */
 
 /* const Index = () => <Page pageConfig={homeConfig} headers={Headers} />; */
-
 import { Header } from "../src/layout";
 import { Hero } from "../src/pages";
 
 const Index = () => (
   <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
     <Header>
+      <div>Test</div>
       <div>Test</div>
       <div>Test</div>
       <div>Test</div>
