@@ -1,4 +1,4 @@
 import { AppLayout } from "./app.layout";
-import { HeaderLayout } from "./header.layout";
+import { NavHeaderLayout } from "./nav-header.layout";
 
-export { AppLayout, HeaderLayout };
+export { AppLayout, NavHeaderLayout };

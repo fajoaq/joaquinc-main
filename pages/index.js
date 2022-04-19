@@ -1,52 +1,82 @@
-/* import Head from "next/head";
-import { default as homeConfig } from "../src/pages/home/config/home.config";
-import { Page } from "../src/pages/";
-import { SEO } from "../src/utils/constants.utils"; */
-
-/* --------------------------- */
-// "Homepage" custom components
-// www.website.com/
-
-/* const Headers = () => (
-  <Head>
-    <meta property="description" content={SEO.SITE_DESCRIPTION} />
-    <meta name="description" content={SEO.SITE_DESCRIPTION} />
-    <meta property="image" content={SEO.SITE_IMAGE} />
-    <meta property="title" content={SEO.SITE_TITLE} />
-    <title>For {SEO.SITE_TITLE} Count On PagePrimer</title>
-  </Head>
-); */
-
-/* const Index = () => <Page pageConfig={homeConfig} headers={Headers} />; */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import FolderIcon from "@mui/icons-material/Folder";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-import { HeaderLayout } from "../src/layout";
-import { HeroArticle } from "../src/pages";
+import { NavHeaderLayout } from "../src/layout";
+import { HeroArticle, WorkArticle } from "../src/pages";
 
-const Index = () => (
-  <Fragment>
-    <HeaderLayout fontSize="4rem" color="text.main">
-      <a>
-        <HomeIcon fontSize="inherit" />
-      </a>
+const Articles = [HeroArticle, WorkArticle];
+const navButtons = [
+  {
+    Icon: HomeIcon,
+  },
+  {
+    Icon: FolderIcon,
+  },
+  {
+    Icon: EmailIcon,
+  },
+  {
+    Icon: GitHubIcon,
+  },
+];
 
-      <a>
-        <FolderIcon fontSize="inherit" />
-      </a>
-      <a>
-        <EmailIcon fontSize="inherit" />
-      </a>
-      <a>
-        <GitHubIcon fontSize="inherit" />
-      </a>
-    </HeaderLayout>
-    <HeroArticle />
-  </Fragment>
-);
+const StyledFlexColumn = styled("div")`
+  display: grid;
+  flex-direction: column;
+`;
+
+const removeFunc = () => {
+  const els = document.querySelectorAll(".active-child");
+
+  for (let i = 0; i < els.length; i++) {
+    els[i].classList.remove("active-child", "transition");
+  }
+};
+
+const Index = () => {
+  const [activeNavIndex, setActiveNavIndex] = useState(0);
+
+  const handleNavClick = (index) => {
+    if (index === activeNavIndex) return;
+
+    const transitionParent = document.querySelector(
+      ".active-child.main-transition"
+    );
+    const handleTransitionEnd = () => {
+      transitionParent.removeEventListener(
+        "transitionend",
+        handleTransitionEnd
+      );
+      setActiveNavIndex(index);
+    };
+
+    transitionParent.addEventListener("transitionend", handleTransitionEnd);
+    removeFunc();
+  };
+  return (
+    <Fragment>
+      <NavHeaderLayout
+        navButtons={navButtons}
+        activeNavIndex={activeNavIndex}
+        handleClick={handleNavClick}
+        fontSize="4rem"
+        color="text.main"
+      />
+
+      <StyledFlexColumn>
+        {Articles.map((Article, index) => (
+          <Article
+            key={`main-article-${index}`}
+            id={index == activeNavIndex ? "active" : ""}
+          />
+        ))}
+      </StyledFlexColumn>
+    </Fragment>
+  );
+};
 
 export default Index;
