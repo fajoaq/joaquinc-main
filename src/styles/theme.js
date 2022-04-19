@@ -2,6 +2,8 @@ import { createTheme } from "@mui/material/styles";
 import {
   transparent,
   white,
+  limeGreen,
+  bloogOrange,
   golden,
   carbon,
   linkBlue,
@@ -32,12 +34,13 @@ const palette = {
   },
   primary: {
     main: golden,
-    light: "#5ABCDE",
   },
+
   secondary: {
-    main: linkBlue,
-    light: slateGray,
-    dark: nightGrey,
+    main: limeGreen,
+  },
+  tertiary: {
+    main: bloogOrange,
   },
   error: {
     main: errorRed,

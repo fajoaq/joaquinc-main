@@ -26,6 +26,11 @@ const globalStyles = `
     color: ${theme.palette.text.main}; 
     background: conic-gradient(from 270deg, transparent 0%, #ffffff 25%, transparent 50%, #f1f1f1 75%, transparent 100%) no-repeat,
     linear-gradient(175deg, #ffffff 36%, rgba(246, 246, 246, 1) 80%, #f1f1f1 100%) no-repeat;
+  }
+
+  & a {
+    cursor: pointer;
+  }
 `;
 
 export { globalStyles };

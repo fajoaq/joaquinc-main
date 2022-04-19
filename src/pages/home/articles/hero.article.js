@@ -19,7 +19,7 @@ const HeroCopyContainer = styled(Grid)`
   justify-content: center;
   height: 100%;
   padding: 3.5em 2.5em;
-  background-color: gold;
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 const HeroPresentationContainer = styled(Grid)``;
@@ -27,6 +27,7 @@ const HeroPresentationContainer = styled(Grid)``;
 const HeroArticleOverLay = styled(Grid)`
   grid-column: 1;
   grid-row: 1;
+  z-index: 10;
 
   & :hover {
     font-size: 9.5rem;
@@ -48,7 +49,7 @@ const StyledAnchor = styled("a")`
     line-height: 0;
     height: 7.5rem;
     padding: 2.9rem 2.5rem;
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: rgba(167, 255, 0, 0.88);
     transition: font-size 250ms ease-in-out;
   }
 `;
@@ -67,7 +68,7 @@ const HeroArticleCopy = (props) => (
 const HeroArticlePresentation = (props) => (
   <HeroPresentationContainer {...props}>
     <img
-      src="/static/fj.png"
+      src="/static/fj-orange.png"
       width="100%"
       height="auto"
       alt="Francis Joaquin"
