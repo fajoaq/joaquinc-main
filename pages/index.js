@@ -30,8 +30,9 @@ const StyledFlexColumn = styled("div")`
 `;
 
 const removeFunc = () => {
+  // get all active elements
   const els = document.querySelectorAll(".active-child");
-
+  //remove class names from active elements
   for (let i = 0; i < els.length; i++) {
     els[i].classList.remove("active-child", "transition");
   }
@@ -41,11 +42,13 @@ const Index = () => {
   const [activeNavIndex, setActiveNavIndex] = useState(0);
 
   const handleNavClick = (index) => {
+    // if the same nav icon was clicked
     if (index === activeNavIndex) return;
-
+    // get the element with longes running transition
     const transitionParent = document.querySelector(
       ".active-child.main-transition"
     );
+    // remove event listener, change active index
     const handleTransitionEnd = () => {
       transitionParent.removeEventListener(
         "transitionend",
@@ -53,8 +56,9 @@ const Index = () => {
       );
       setActiveNavIndex(index);
     };
-
+    // start listener
     transitionParent.addEventListener("transitionend", handleTransitionEnd);
+    // remove previous active element class
     removeFunc();
   };
   return (
