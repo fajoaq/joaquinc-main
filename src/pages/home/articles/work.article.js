@@ -18,7 +18,6 @@ const ContentContainer = styled(Box)`
 
   && .article-copy.active-child > div,
   .article-presentation.active-child {
-    max-height: 100%;
     transform: translateY(0%);
   }
 `;
@@ -40,9 +39,8 @@ const HeroCopyContainer = styled(Grid)`
     padding: 3.5em 2.5em;
     background-color: ${({ theme }) => theme.palette.primary.main};
     z-index: 10;
-    max-height: 0%;
     transform: translateY(-100%);
-    transition: max-height, transform, 500ms ease-in-out;
+    transition: transform 500ms ease-in-out;
   }
 
   && div h1,
@@ -83,7 +81,7 @@ const HeroArticleCopy = (props) => (
 );
 
 const WorkArticle = ({ id, ...rest }) => (
-  <ContentContainer id={id} component="main" minHeight={532} {...rest}>
+  <ContentContainer id={id} component="main" {...rest}>
     <HeroArticleContainer className="article-content" container>
       <HeroArticleCopy
         className={`article-copy ${id}-child main-transition`}

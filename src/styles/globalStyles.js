@@ -1,12 +1,13 @@
 import { theme } from "./theme";
 
+/* 
+
+
+
+*/
+
 const globalStyles = `
   html {
-    min-height: 100vh;
-    scrollbar-width: thin;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    overflow-y: overlay;
     box-sizing: border-box;
   }
 
@@ -19,7 +20,8 @@ const globalStyles = `
   }
 
   body {
-    min-height: 100vh;
+    scrollbar-width: thin;
+    overflow-y: scroll;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,6 +33,34 @@ const globalStyles = `
   & a {
     cursor: pointer;
   }
+
+  && #__next {
+    height: 100%;
+  }
+
+  && main {
+    position: relative;
+    min-height: ${theme.constants.minContainerHeight}px;
+    max-height: ${theme.constants.minContainerHeight}px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0px 2px 0px 0px rgb(0 0 0 / 25%);
+    transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
+  }
+
+  && main article {
+    height: max-content;
+
+    transition: opacity 600ms ease-in-out;
+  }
+
+  && main article.active {
+  
+  }
 `;
 
 export { globalStyles };
+/* 
+
+*/

@@ -5,11 +5,19 @@ const StyledMaxContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4em 0;
+  tranisition: opacity 1s ease-in-out;
 `;
 
-const AppLayout = ({ children }) => (
-  <StyledMaxContainer maxWidth="lg" disableGutters>
+const AppLayout = ({ children, ...rest }) => (
+  <StyledMaxContainer
+    id="max-width-container"
+    maxWidth="lg"
+    disableGutters
+    {...rest}
+  >
     {children}
   </StyledMaxContainer>
 );

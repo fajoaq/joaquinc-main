@@ -29,7 +29,7 @@ const Header = styled(Grid)`
 
   & a.active:after {
     border-bottom: ${({ theme }) => `30px solid ${theme.palette.primary.main}`};
-    transition: border-bottom 200ms ease-in-out;
+    transition: border-bottom 350ms ease-in-out;
   }
 `;
 
@@ -41,7 +41,7 @@ const NavHeaderLayout = ({
   ...rest
 }) => {
   return (
-    <Header container {...rest}>
+    <Header container component="nav" {...rest}>
       {navButtons.map((button, index) => (
         <Grid
           onClick={() => handleClick(index)}

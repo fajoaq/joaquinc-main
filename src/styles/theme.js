@@ -16,6 +16,10 @@ import {
   twitterBlue,
 } from "./colors";
 
+const constants = {
+  minContainerHeight: 532,
+};
+
 const breakpoints = {
   values: {
     xs: 0,
@@ -98,6 +102,7 @@ const components = {
 // The material ui theme
 const theme = createTheme({
   spacing: 6,
+  constants,
   palette: palette,
   typography: typography,
   components: components,
