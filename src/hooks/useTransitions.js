@@ -48,6 +48,7 @@ const useTransitions = () => {
   //
   const handleNavClick = (index) => {
     console.log("handleNavClick");
+    if (index === activeArticleIndex) return;
     previousActive.current = childList.current[newIndex.current].current;
     previousActive.current.addEventListener("transitionend", handleChildExited);
 
