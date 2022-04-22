@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 
-const backgroundMain2 = `radial-gradient(at 100% 100%, rgba(255,215,0,1) 0%, transparent 70%, transparent 100%) no-repeat 100% 100%/50% 50%,            radial-gradient(rgba(255,87,0,1) 0%, transparent 70%) no-repeat 50% 100%/90% 90%`;
+const backgroundMain2 = `radial-gradient(at 100% 100%, rgba(255,215,0,1) 0%, transparent 70%, transparent 100%) no-repeat 100% 100%/50% 50%,
+  radial-gradient(rgba(255,87,0,1) 0%, transparent 70%) no-repeat 50% 100%/90% 90%`;
 
 const StyledDiv = styled("div")`
   position: absolute;

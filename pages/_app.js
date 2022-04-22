@@ -15,6 +15,8 @@ import { theme } from "../src/styles/theme";
 const clientSideEmotionCache = createEmotionCache();
 const responsiveTheme = responsiveFontSizes(theme);
 
+import { Noise } from "../src/components/noise.component";
+
 // Client-side cache, shared for the whole session of the user in the browser.
 
 export default function MyApp(props) {
@@ -36,7 +38,10 @@ export default function MyApp(props) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <GlobalStyles styles={globalStyles} />
-        <Component {...pageProps} />
+        <div style={{ position: "relative" }}>
+          <Component {...pageProps} />
+          <Noise />
+        </div>
       </ThemeProvider>
     </CacheProvider>
   );

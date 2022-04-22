@@ -9,13 +9,26 @@ const StyledMaxContainer = styled(Container)`
   min-height: 100vh;
   padding: 4em 0;
   tranisition: opacity 1s ease-in-out;
+
+  && .transition-enter-done {
+    min-height: ${({ theme, dimensions }) =>
+      dimensions == undefined
+        ? theme.constants.mainContainerHeight
+        : dimensions}px;
+
+    max-height: ${({ theme, dimensions }) =>
+      dimensions == undefined
+        ? theme.constants.mainContainerHeight
+        : dimensions}px;
+  }
 `;
 
-const AppLayout = ({ children, ...rest }) => (
+const AppLayout = ({ children, dimensions, ...rest }) => (
   <StyledMaxContainer
     id="max-width-container"
     maxWidth="lg"
     disableGutters
+    dimensions={dimensions}
     {...rest}
   >
     {children}

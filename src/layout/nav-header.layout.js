@@ -34,7 +34,7 @@ const Header = styled(Grid)`
 `;
 
 const NavHeaderLayout = ({
-  navButtons,
+  articlesData,
   activeArticleIndex,
   setNavIndex,
   handleClick,
@@ -42,7 +42,7 @@ const NavHeaderLayout = ({
 }) => {
   return (
     <Header container component="nav" {...rest}>
-      {navButtons.map((button, index) => (
+      {articlesData.map((article, index) => (
         <Grid
           onClick={() => handleClick(index)}
           className={index == activeArticleIndex ? "active" : null}
@@ -52,7 +52,7 @@ const NavHeaderLayout = ({
           position="relative"
           padding={3}
         >
-          <button.Icon fontSize="inherit" />
+          <article.Icon fontSize="inherit" />
         </Grid>
       ))}
     </Header>
