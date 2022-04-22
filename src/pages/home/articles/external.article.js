@@ -35,11 +35,14 @@ const StyledArticle = styled(Grid)`
   transition: opacity, visibility, 500ms ease-in-out;
 `;
 
-const WorkArticle = forwardRef(({ children, ...rest }, ref) => (
+const ExternalArticle = forwardRef(({ children, ...rest }, ref) => (
   <ContentContainer>
     <StyledArticle container {...rest} ref={ref}>
       <div>
-        <p>Work {text}</p>
+        <p>External link {text}</p>
+        <p>{text}</p>
+        <p>{text}</p>
+        <p>{text}</p>
         <p>{text}</p>
         <p>{text}</p>
         <p>{text}</p>
@@ -48,4 +51,4 @@ const WorkArticle = forwardRef(({ children, ...rest }, ref) => (
   </ContentContainer>
 ));
 
-export { WorkArticle };
+export { ExternalArticle };

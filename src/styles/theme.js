@@ -16,6 +16,9 @@ import {
   twitterBlue,
 } from "./colors";
 
+const backgroundMain = `conic-gradient(from 270deg, transparent 0%, #ffffff 25%, transparent 50%, #f1f1f1 75%, transparent 100%) no-repeat,
+linear-gradient(175deg, #ffffff 36%, rgba(245,245,245,1) 80%, #f1f1f1 100%) no-repeat;`;
+
 const constants = {
   minContainerHeight: 532,
 };
@@ -50,8 +53,8 @@ const palette = {
     main: errorRed,
   },
   background: {
-    main: almostWhite,
-    light: lighterGrey,
+    main: backgroundMain,
+    light: almostWhite,
     fallback: white,
     fade: transparent,
   },

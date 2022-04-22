@@ -35,7 +35,7 @@ const Header = styled(Grid)`
 
 const NavHeaderLayout = ({
   navButtons,
-  activeNavIndex,
+  activeArticleIndex,
   setNavIndex,
   handleClick,
   ...rest
@@ -45,7 +45,7 @@ const NavHeaderLayout = ({
       {navButtons.map((button, index) => (
         <Grid
           onClick={() => handleClick(index)}
-          className={index == activeNavIndex ? "active" : null}
+          className={index == activeArticleIndex ? "active" : null}
           key={`nav-item-${index}`}
           item
           component="a"

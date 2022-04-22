@@ -8,69 +8,69 @@ import { contentGridSharedStyles } from "../common/common.styles";
 
 const ContentContainer = styled("div")`
   ${contentGridSharedStyles}
-`;
-
-const StyledArticleOne = styled(Grid)`
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  width: 100%;
-
-  && * {
-    max-height: ${({ theme }) => theme.constants.minContainerHeight}px;
-  }
 
   && header {
     display: flex;
     flex-direction: column;
-    jutify-content: center;
+    justify-content: center;
     padding: 3.5em 2.5em 2.5em 2.5em;
     background-color: ${({ theme }) => theme.palette.primary.main};
     transform: translateX(-100%);
+    transition: transform 500ms ease-in-out;
   }
 
-  && img {
+  && .image {
     transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
   }
 
-  && header[data-transition="true"] {
+  && .active-enter-done {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  && .active-enter-done header {
     transform: translateX(0%);
   }
-
-  && img[data-transition="true"] {
+  && .active-enter-done .image {
     transform: translateX(0%);
   }
 `;
 
-const HeroArticle = forwardRef(({ children, transition, ...rest }, ref) => (
+const StyledArticle = styled(Grid)`
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  visibility: hidden;
+  min-height: ${({ theme }) => theme.constants.minContainerHeight}px;
+  max-height: ${({ theme }) => theme.constants.minContainerHeight}px;
+  opacity: 0;
+  transition: opacity, visibility, 500ms ease-in-out;
+`;
+
+const HeroArticle = forwardRef(({ children, ...rest }, ref) => (
   <ContentContainer>
-    <StyledArticleOne container {...rest} ref={ref}>
+    <StyledArticle container {...rest} ref={ref}>
       {children ? (
         children
       ) : (
         <Fragment>
-          <Grid
-            item
-            component="header"
-            xs={7}
-            data-transition={transition.toString()}
-          >
+          <Grid item component="header" xs={8}>
             <h1>Francis Joaquin</h1>
             <p>Developing Web Developer</p>
           </Grid>
 
-          <Grid item xs={5}>
+          <Grid item xs={4} className="image">
             <img
               src="/static/fj-orange.png"
-              width="100%"
-              height="auto"
+              height="532px"
+              width="auto"
               alt="Francis Joaquin"
-              data-transition={transition.toString()}
             />
           </Grid>
         </Fragment>
       )}
-    </StyledArticleOne>
+    </StyledArticle>
   </ContentContainer>
 ));
 
