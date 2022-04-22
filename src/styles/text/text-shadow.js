@@ -9,7 +9,7 @@ text-shadow: 0 ${size}em rgba(${color},${alpha}),
 
 `;
 
-const textDropShadow = (size = 0.07, color = `255,255,255`, alpha = 0.44) => `
+const textDropShadow = (size = 0.09, color = `255,255,255`, alpha = 1) => `
 text-shadow: 0 ${size}em rgba(${color},${alpha * 0.1}),
     -${size}em 0 rgba(${color},${alpha * 0.2}),
     0 -${size}em rgba(${color},${alpha * 0.3}),

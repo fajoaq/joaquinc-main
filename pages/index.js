@@ -34,17 +34,11 @@ const navButtons = [
   },
 ];
 
-const StyledFlexColumn = styled(Box)`
+const StyledGridBox = styled(Box)`
   display: grid;
-  flex-direction: column;
 `;
 
 const StyledAppLayout = styled(AppLayout)`
-  && .transition-enter {
-    min-height: ${({ theme }) => theme.constants.mainContainerHeight}px;
-    max-height: ${({ theme }) => theme.constants.mainContainerHeight}px;
-  }
-
   && .transition-enter-done {
     min-height: ${({ theme, dimensions }) =>
       dimensions == undefined
@@ -139,7 +133,7 @@ const Index = () => {
           timeout={260}
           classNames="transition"
         >
-          <StyledFlexColumn component="main" ref={mainRef}>
+          <StyledGridBox component="main" ref={mainRef}>
             {Articles.map((Article, index) => {
               const id = index === 0 ? "initial" : null;
               childList.current[index] = useRef();
@@ -162,7 +156,7 @@ const Index = () => {
                 </CSSTransition>
               );
             })}
-          </StyledFlexColumn>
+          </StyledGridBox>
         </CSSTransition>
       </StyledAppLayout>
       <Noise />

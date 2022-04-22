@@ -14,6 +14,6 @@ const StyledDiv = styled("div")`
   filter: contrast(170%) brightness(170%);
 `;
 
-const Noise = () => <StyledDiv id="noise" />;
+const Noise = () => <StyledDiv id="noiseFilter" />;
 
 export { Noise };
