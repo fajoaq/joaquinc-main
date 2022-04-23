@@ -16,7 +16,7 @@ export const redditOrange = "#FF5700";
 
 export const transparent = "#00000000";
 
-export const bloogOrange = "#FF5700";
+export const chartreuse = "#7FFF00";
 export const black = "#000";
 export const white = "#fff";
 export const golden = "#ffd700";

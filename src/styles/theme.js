@@ -3,7 +3,8 @@ import {
   transparent,
   white,
   goldBar,
-  bloogOrange,
+  chartreuse,
+  redditOrange,
   golden,
   carbon,
   linkBlue,
@@ -39,10 +40,10 @@ const palette = {
   },
 
   secondary: {
-    main: goldBar,
+    main: redditOrange,
   },
   tertiary: {
-    main: bloogOrange,
+    main: chartreuse,
   },
   error: {
     main: errorRed,

@@ -9,6 +9,10 @@ const Header = styled(Grid)`
     color: ${({ theme }) => theme.palette.tertiary.main};
     transition: color 200ms ease-in-out;
   }
+  & a:active:hover {
+    color: ${({ theme }) => theme.palette.secondary.main};
+    transition: color 200ms ease-in-out;
+  }
 
   & a:after {
     content: "";
@@ -34,7 +38,7 @@ const Header = styled(Grid)`
   }
 
   & a.active.icon-0 {
-    color: ${({ theme }) => theme.palette.secondary.main};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
   & a.active.icon-0:after {
     border-bottom: ${({ theme }) => `30px solid ${theme.palette.primary.main}`};
