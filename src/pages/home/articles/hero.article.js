@@ -8,7 +8,7 @@ import { contentGridSharedStyles } from "../common/common.styles";
 
 const imageSizes = {
   small: 368,
-  medium: 499,
+  medium: 533,
 };
 
 const ContentContainer = styled("div")`
@@ -103,7 +103,13 @@ const HeroArticle = forwardRef(({ children, ...rest }, ref) => (
         justifyContent={{ xs: "center", lg: "end" }}
         bgcolor={{ xs: "primary.main", lg: "#e5e4e3" }}
       >
-        <Box className="img-mask">
+        <Box
+          className="img-mask"
+          height={{
+            xs: imageSizes.small + "px",
+            lg: imageSizes.medium + "px",
+          }}
+        >
           <Box
             component="img"
             src="/static/fj-orange.png"

@@ -15,7 +15,7 @@ const ContentContainer = styled("div")`
 
   && article > div {
     padding: 3.5em 2.5em 2.5em 2.5em;
-    background-color: ${({ theme }) => theme.palette.background.light};
+    background-color: ${({ theme }) => theme.palette.background.main};
   }
 
   && .active-enter-done {

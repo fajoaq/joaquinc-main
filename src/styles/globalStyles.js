@@ -19,8 +19,9 @@ const globalStyles = `
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: ${theme.palette.text.main}; 
-    background: ${theme.palette.background.main}, url(/static/bg-turbulence.svg);
+    color: ${theme.palette.text.main};
+    background-color: #FAD961;
+    background-image: linear-gradient( 359.8deg,  rgba(252,255,222,1) 2.2%, rgba(182,241,171,1) 99.3% );
   }
 
   & a {
@@ -38,7 +39,7 @@ const globalStyles = `
     width: 100%;
     overflow: hidden;
     background-color: rgba(255,255,255,0.9);
-    box-shadow: 0px 2px 0px 0px rgb(0 0 0 / 25%);
+    box-shadow:  0 4px 3px -3px rgb(0 0 0 / 25%);
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
   }
 `;
