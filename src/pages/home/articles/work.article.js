@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, createRef, forwardRef } from "react";
+import { forwardRef } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -10,14 +10,14 @@ import {
 } from "../common/common.styles";
 
 const text = `
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+  Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
 `;
 
 const ContentContainer = styled("div")`
   ${contentGridSharedStyles}
 
   && article > div {
-    padding: 3.5em 2.5em 2.5em 2.5em;
+    padding: 3.5em 2.5em 3.5em 2.5em;
     background-color: ${({ theme }) => theme.palette.background.main};
   }
 
@@ -39,15 +39,47 @@ const StyledArticle = styled(Grid)`
   ${articleSharedStyles}
 `;
 
+const CaseStudyContainer = styled(Grid)`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+const CaseStudy = (props) => (
+  <Box
+    component="a"
+    bgcolor="background.main"
+    width={{ xs: "100%", md: "50%", lg: "33%" }}
+    {...props}
+  >
+    <Box padding={3}>
+      <img src="static/case-study.png" width="100%" alt="case study" />
+    </Box>
+  </Box>
+);
+
 const WorkArticle = forwardRef(({ children, ...rest }, ref) => (
   <ContentContainer>
     <StyledArticle container {...rest} ref={ref}>
-      <div>
-        <p>Work {text}</p>
-        <p>{text}</p>
-        <p>{text}</p>
-        <p>{text}</p>
-      </div>
+      <Grid container>
+        <Grid item marginRight={3} marginLeft={3}>
+          <Typography component="h2" variant="h3">
+            Work
+          </Typography>
+          <br />
+        </Grid>
+        <Grid item marginRight={3} marginLeft={3}>
+          <Typography variant="body1">{text}</Typography>
+          <br />
+        </Grid>
+
+        <CaseStudyContainer item>
+          <CaseStudy />
+          <CaseStudy />
+          <CaseStudy />
+          <CaseStudy />
+        </CaseStudyContainer>
+      </Grid>
     </StyledArticle>
   </ContentContainer>
 ));
