@@ -24,10 +24,19 @@ const Header = styled(Grid)`
   }
 
   & a.active {
-    color: ${({ theme }) => theme.palette.secondary.main};
+    color: ${({ theme }) => theme.palette.background.light};
   }
 
   & a.active:after {
+    border-bottom: ${({ theme }) =>
+      `30px solid ${theme.palette.background.main}`};
+    transition: border-bottom 350ms ease-in-out;
+  }
+
+  & a.active.icon-0 {
+    color: ${({ theme }) => theme.palette.secondary.main};
+  }
+  & a.active.icon-0:after {
     border-bottom: ${({ theme }) => `30px solid ${theme.palette.primary.main}`};
     transition: border-bottom 350ms ease-in-out;
   }
@@ -45,7 +54,9 @@ const NavHeaderLayout = ({
       {articlesData.map((article, index) => (
         <Grid
           onClick={() => handleClick(index)}
-          className={index == activeArticleIndex ? "active" : null}
+          className={
+            index == activeArticleIndex ? `active icon-${index}` : null
+          }
           key={`nav-item-${index}`}
           item
           component="a"

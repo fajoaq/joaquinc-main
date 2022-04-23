@@ -124,5 +124,6 @@ const HeroArticle = forwardRef(({ children, ...rest }, ref) => (
     </StyledArticle>
   </ContentContainer>
 ));
+HeroArticle.displayName = "HeroArticle";
 
 export { HeroArticle };

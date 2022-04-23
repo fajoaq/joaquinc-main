@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 import {
   transparent,
   white,
-  limeGreen,
+  goldBar,
   bloogOrange,
   golden,
   carbon,
@@ -39,7 +39,7 @@ const palette = {
   },
 
   secondary: {
-    main: limeGreen,
+    main: goldBar,
   },
   tertiary: {
     main: bloogOrange,

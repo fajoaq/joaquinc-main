@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { createRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -17,10 +17,22 @@ import {
 } from "../src/pages";
 
 const articlesData = [
-  { Article: HeroArticle, Icon: navButtons[navConstants.home] },
-  { Article: WorkArticle, Icon: navButtons[navConstants.work] },
-  { Article: ContactArticle, Icon: navButtons[navConstants.contact] },
-  { Article: ExternalArticle, Icon: navButtons[navConstants.external] },
+  {
+    Article: HeroArticle,
+    Icon: navButtons[navConstants.home],
+  },
+  {
+    Article: WorkArticle,
+    Icon: navButtons[navConstants.work],
+  },
+  {
+    Article: ContactArticle,
+    Icon: navButtons[navConstants.contact],
+  },
+  {
+    Article: ExternalArticle,
+    Icon: navButtons[navConstants.external],
+  },
 ];
 
 const StyledGridBox = styled(Box)`
@@ -58,7 +70,7 @@ const Index = () => {
         <StyledGridBox component="main" ref={mainRef}>
           {articlesData.map(({ Article }, index) => {
             const id = index === 0 ? "initial" : null;
-            childList.current[index] = useRef();
+            childList.current[index] = createRef();
 
             return (
               <CSSTransition

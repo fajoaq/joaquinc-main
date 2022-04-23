@@ -2,6 +2,8 @@ import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 
 const StyledMaxContainer = styled(Container)`
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;

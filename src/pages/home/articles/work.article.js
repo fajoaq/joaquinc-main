@@ -51,5 +51,6 @@ const WorkArticle = forwardRef(({ children, ...rest }, ref) => (
     </StyledArticle>
   </ContentContainer>
 ));
+WorkArticle.displayName = "WorkArticle";
 
 export { WorkArticle };

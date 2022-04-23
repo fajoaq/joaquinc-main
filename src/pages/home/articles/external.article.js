@@ -50,5 +50,6 @@ const ExternalArticle = forwardRef(({ children, ...rest }, ref) => (
     </StyledArticle>
   </ContentContainer>
 ));
+ExternalArticle.displayName = "ExternalArticle";
 
 export { ExternalArticle };

@@ -15,11 +15,12 @@ export const youTubeRed = "#ff0000";
 export const redditOrange = "#FF5700";
 
 export const transparent = "#00000000";
-export const limeGreen = "#A7FF00";
+
 export const bloogOrange = "#FF5700";
 export const black = "#000";
 export const white = "#fff";
 export const golden = "#ffd700";
+export const goldBar = "#e5c100";
 export const carbon = "#333";
 export const linkBlue = "#0083b0";
 export const almostWhite = "#f9f9f9";

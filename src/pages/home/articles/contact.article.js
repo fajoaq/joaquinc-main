@@ -50,5 +50,6 @@ const ContactArticle = forwardRef(({ children, ...rest }, ref) => (
     </StyledArticle>
   </ContentContainer>
 ));
+ContactArticle.displayName = "ContactArticle";
 
 export { ContactArticle };
