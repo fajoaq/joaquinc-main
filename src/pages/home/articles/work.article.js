@@ -34,7 +34,7 @@ const CaseStudy = (props) => (
     width={{ xs: "100%", md: "50%", lg: "33%" }}
     {...props}
   >
-    <Box padding={3}>
+    <Box paddingRight={{ xs: 0, md: 3 }} paddingBottom={2.3}>
       <img src="static/case-study.png" width="100%" alt="case study" />
     </Box>
   </Box>
@@ -44,13 +44,13 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
   <StyledContentContainer {...rest} className={sharedClass}>
     <StyledArticle container component="article" ref={ref}>
       <Grid container>
-        <Grid item marginRight={3} marginLeft={3}>
+        <Grid item>
           <Typography component="h2" variant="h3">
             Work
           </Typography>
           <br />
         </Grid>
-        <Grid item marginRight={3} marginLeft={3}>
+        <Grid item>
           <Typography variant="body1">{text}</Typography>
           <br />
         </Grid>
