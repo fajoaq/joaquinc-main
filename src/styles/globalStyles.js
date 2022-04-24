@@ -41,6 +41,11 @@ const globalStyles = `
     box-shadow:  0 4px 3px -3px rgb(0 0 0 / 25%);
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
   }
+
+  && section.active {
+    pointer-events: all;
+    visibility: visible;
+  }
 `;
 
 export { globalStyles };

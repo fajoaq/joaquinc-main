@@ -4,16 +4,14 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { contentGridSharedStyles } from "../common/common.styles";
+import { ContentContainer, StyledArticle } from "../common/common.component";
 
 const imageSizes = {
   small: 368,
   medium: 533,
 };
 
-const ContentContainer = styled("div")`
-  ${contentGridSharedStyles}
-
+const StyledContentContainer = styled(ContentContainer)`
   && header {
     display: flex;
     flex-direction: column;
@@ -55,7 +53,6 @@ const ContentContainer = styled("div")`
   }
 
   && .active-enter-done {
-    visibility: visible;
     opacity: 1;
   }
 
@@ -67,19 +64,9 @@ const ContentContainer = styled("div")`
   }
 `;
 
-const StyledArticle = styled(Grid)`
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  visibility: hidden;
-  height: max-content;
-  opacity: 0;
-  transition: opacity, visibility, 500ms ease-in-out;
-`;
-
-const HeroArticle = forwardRef(({ children, ...rest }, ref) => (
-  <ContentContainer>
-    <StyledArticle container {...rest} ref={ref}>
+const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
+  <StyledContentContainer {...rest} className={sharedClass}>
+    <StyledArticle container component="article" ref={ref}>
       <Grid
         item
         component="header"
@@ -122,7 +109,7 @@ const HeroArticle = forwardRef(({ children, ...rest }, ref) => (
         </Box>
       </Grid>
     </StyledArticle>
-  </ContentContainer>
+  </StyledContentContainer>
 ));
 HeroArticle.displayName = "HeroArticle";
 
