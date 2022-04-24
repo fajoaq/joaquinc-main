@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { ContentContainer, StyledArticle } from "../common/common.component";
+import { ContentContainer, Article } from "../common/common.component";
 
 const text = `
   Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
@@ -13,10 +13,6 @@ const text = `
 const StyledContentContainer = styled(ContentContainer)`
   && article > div {
     background-color: ${({ theme }) => theme.palette.background.main};
-  }
-
-  && .active-enter-done {
-    opacity: 1;
   }
 `;
 
@@ -42,7 +38,7 @@ const CaseStudy = (props) => (
 
 const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
   <StyledContentContainer {...rest} className={sharedClass}>
-    <StyledArticle container component="article" ref={ref}>
+    <Article container component="article" ref={ref}>
       <Grid container>
         <Grid item>
           <Typography component="h2" variant="h3">
@@ -66,7 +62,7 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           <CaseStudy />
         </CaseStudyContainer>
       </Grid>
-    </StyledArticle>
+    </Article>
   </StyledContentContainer>
 ));
 WorkArticle.displayName = "WorkArticle";

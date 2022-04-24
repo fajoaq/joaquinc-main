@@ -13,7 +13,7 @@ const ContentContainer = styled("section")`
 `;
 
 // receives classname from csstransition with ref
-const StyledArticle = styled(Grid)`
+const Article = styled(Grid)`
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -22,4 +22,4 @@ const StyledArticle = styled(Grid)`
   transition: opacity 500ms ease-in-out;
 `;
 
-export { ContentContainer, StyledArticle };
+export { ContentContainer, Article };

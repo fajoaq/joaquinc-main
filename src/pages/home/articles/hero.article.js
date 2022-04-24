@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { ContentContainer, StyledArticle } from "../common/common.component";
+import { ContentContainer, Article } from "../common/common.component";
 
 const imageSizes = {
   small: 368,
@@ -56,10 +56,6 @@ const StyledContentContainer = styled(ContentContainer)`
     }
   }
 
-  && .active-enter-done {
-    opacity: 1;
-  }
-
   && .active-enter-done header {
     transform: translateX(0%);
   }
@@ -70,7 +66,7 @@ const StyledContentContainer = styled(ContentContainer)`
 
 const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
   <StyledContentContainer {...rest} className={sharedClass}>
-    <StyledArticle container component="article" ref={ref}>
+    <Article container component="article" ref={ref}>
       <Grid
         item
         component="header"
@@ -112,7 +108,7 @@ const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           />
         </Box>
       </Grid>
-    </StyledArticle>
+    </Article>
   </StyledContentContainer>
 ));
 HeroArticle.displayName = "HeroArticle";

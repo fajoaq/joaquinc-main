@@ -57,6 +57,10 @@ const globalStyles = `
     pointer-events: all;
     visibility: visible;
   }
+
+  && article.active-enter-done {
+    opacity: 1;
+  }
 `;
 
 export { globalStyles };
