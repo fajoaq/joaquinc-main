@@ -12,7 +12,6 @@ const text = `
 
 const StyledContentContainer = styled(ContentContainer)`
   && article > div {
-    padding: 3.5em 2.5em 3.5em 2.5em;
     background-color: ${({ theme }) => theme.palette.background.main};
   }
 
@@ -30,6 +29,7 @@ const CaseStudyContainer = styled(Grid)`
 const CaseStudy = (props) => (
   <Box
     component="a"
+    href="/"
     bgcolor="background.main"
     width={{ xs: "100%", md: "50%", lg: "33%" }}
     {...props}
@@ -49,9 +49,13 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             Work
           </Typography>
           <br />
+          <br />
         </Grid>
         <Grid item>
-          <Typography variant="body1">{text}</Typography>
+          <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
+            {text}
+          </Typography>
+          <br />
           <br />
         </Grid>
 

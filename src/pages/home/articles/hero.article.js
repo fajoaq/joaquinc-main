@@ -22,6 +22,10 @@ const StyledContentContainer = styled(ContentContainer)`
     transition: transform 500ms ease-in-out;
   }
 
+  && article > div {
+    padding: 0;
+  }
+
   && .img-container {
     display: grid;
     transform: translateX(100%);

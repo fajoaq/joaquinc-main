@@ -28,10 +28,13 @@ const globalStyles = `
   }
 
   && #__next {
+    display: grid;
+    position: relative;
     height: 100%;
   }
 
   && main {
+    display: grid;
     position: relative;
     min-height: 0;
     max-height: 0;
@@ -40,6 +43,14 @@ const globalStyles = `
     background-color: rgba(255,255,255,0.9);
     box-shadow:  0 4px 3px -3px rgb(0 0 0 / 25%);
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
+  }
+
+  && section > article > div {
+    padding: 3.5em 2.5em 3.5em 2.5em;
+
+    ${theme.breakpoints.down("sm")} {
+      padding: 2.5em 1.5em 2.5em 1.5em;
+    }
   }
 
   && section.active {

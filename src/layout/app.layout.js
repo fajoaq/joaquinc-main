@@ -1,7 +1,12 @@
-import Container from "@mui/material/Container";
+import { createRef } from "react";
+import { CSSTransition } from "react-transition-group";
 import { styled } from "@mui/material/styles";
+import Container from "@mui/material/Container";
 
-const StyledMaxContainer = styled(Container)`
+import { NavHeaderLayout } from "./nav-header.layout";
+import { useTransitions } from "../hooks/useTransitions";
+
+const DimensionsContainer = styled(Container)`
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -24,22 +29,79 @@ const StyledMaxContainer = styled(Container)`
         : dimensions}px;
   }
 
+  ${({ theme }) => theme.breakpoints.down("lg")} {
+    padding-left: 12px;
+    padding-right: 12px;
+    justify-content: space-evenly;
+  }
+
   ${({ theme }) => theme.breakpoints.down("sm")} {
-    padding: 0.2em 0;
+    padding-top: 0.2em;
     justify-content: space-evenly;
   }
 `;
 
-const AppLayout = ({ children, dimensions, ...rest }) => (
-  <StyledMaxContainer
-    id="max-width-container"
-    maxWidth="lg"
-    disableGutters
-    dimensions={dimensions}
-    {...rest}
-  >
-    {children}
-  </StyledMaxContainer>
-);
+const AppLayout = ({ articlesData, ...rest }) => {
+  const [
+    childTransition,
+    handleNavClick,
+    mainRef,
+    childList,
+    activeArticleIndex,
+    mainContainerHeight,
+    transition,
+  ] = useTransitions();
+
+  return (
+    <DimensionsContainer
+      id="max-width-container"
+      maxWidth="lg"
+      disableGutters
+      dimensions={mainContainerHeight}
+      {...rest}
+    >
+      <NavHeaderLayout
+        articlesData={articlesData}
+        activeArticleIndex={childTransition ? activeArticleIndex : null}
+        handleClick={handleNavClick}
+        fontSize={{ xs: "3rem", md: "4rem" }}
+        color="text.main"
+      />
+      <CSSTransition
+        nodeRef={mainRef}
+        in={transition}
+        timeout={260}
+        classNames="transition"
+      >
+        <main ref={mainRef}>
+          {articlesData.map(({ Article }, index) => {
+            const id = index === 0 ? "initial" : null;
+            childList.current[index] = createRef();
+
+            return (
+              <CSSTransition
+                key={`main-article-${index}`}
+                nodeRef={childList.current[index]}
+                in={childTransition}
+                timeout={260}
+                classNames={
+                  index === activeArticleIndex ? "active" : "inactive"
+                }
+              >
+                <Article
+                  ref={childList.current[index]}
+                  sharedClass={
+                    index === activeArticleIndex ? "active" : "inactive"
+                  }
+                  id={id}
+                />
+              </CSSTransition>
+            );
+          })}
+        </main>
+      </CSSTransition>
+    </DimensionsContainer>
+  );
+};
 
 export { AppLayout };

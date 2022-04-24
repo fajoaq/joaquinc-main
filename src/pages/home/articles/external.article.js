@@ -12,7 +12,6 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 
 const StyledContentContainer = styled(ContentContainer)`
   && article > div {
-    padding: 3.5em 2.5em 2.5em 2.5em;
     background-color: ${({ theme }) => theme.palette.background.main};
   }
 
