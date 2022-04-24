@@ -1,5 +1,8 @@
-import { useEffect, useState, createRef, useRef, Fragment } from "react";
+import { useEffect, useState, createRef, useRef } from "react";
 
+import { timing } from "../constants/timing";
+
+const reactRoot = createRef(undefined);
 const mainRef = createRef(undefined);
 const previouslyActive = createRef(undefined);
 const newIndex = createRef(0);
@@ -27,6 +30,10 @@ const useTransitions = () => {
 
     setActiveArticleIndex(newIndex.current);
     setChildTransition(true);
+
+    setTimeout(() => {
+      reactRoot.current.classList.toggle("transition");
+    }, timing.navTimeout);
   };
   //
   const handleResize = () => {
@@ -49,6 +56,8 @@ const useTransitions = () => {
   const handleNavClick = (index) => {
     console.log("handleNavClick");
     if (index === activeArticleIndex) return;
+
+    reactRoot.current.classList.toggle("transition");
     previouslyActive.current = childList.current[newIndex.current].current;
     previouslyActive.current.addEventListener(
       "transitionend",
@@ -61,11 +70,13 @@ const useTransitions = () => {
   //
   // initial setup
   useEffect(() => {
+    reactRoot.current = document.getElementById("__next");
     mainRef.current.addEventListener("transitionend", handleResizeDone);
     previouslyActive.current = childList.current[0].current;
     const { offsetHeight } = previouslyActive.current;
     newIndex.current = 0;
 
+    reactRoot.current.classList.toggle("transition");
     setMainHeight(offsetHeight);
     setTransition(true);
   }, []);

@@ -31,6 +31,11 @@ const globalStyles = `
     display: grid;
     position: relative;
     height: 100%;
+    pointer-events: all;
+  }
+
+  && #__next.transition { 
+    pointer-events: none;
   }
 
   && main {

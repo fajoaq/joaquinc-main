@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 
 import { NavHeaderLayout } from "./nav-header.layout";
 import { useTransitions } from "../hooks/useTransitions";
+import { timing } from "../constants/timing";
 
 const DimensionsContainer = styled(Container)`
   grid-column: 1;
@@ -54,7 +55,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
 
   return (
     <DimensionsContainer
-      id="max-width-container"
+      id="dimensions-container"
       maxWidth="lg"
       disableGutters
       dimensions={mainContainerHeight}
@@ -70,7 +71,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
       <CSSTransition
         nodeRef={mainRef}
         in={transition}
-        timeout={260}
+        timeout={timing.navTimeout}
         classNames="transition"
       >
         <main ref={mainRef}>
@@ -83,7 +84,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
                 key={`main-article-${index}`}
                 nodeRef={childList.current[index]}
                 in={childTransition}
-                timeout={260}
+                timeout={timing.navTimeout}
                 classNames={
                   index === activeArticleIndex ? "active" : "inactive"
                 }
