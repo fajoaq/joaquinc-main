@@ -6,10 +6,10 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 import { nightGrey } from "../../styles/colors";
-import { textShadow } from "../../styles/text/text-shadow";
+import { textDropShadow } from "../../styles/text/text-shadow";
 
 const StyledButton = styled(Button)`
-  ${textShadow(0.08, `0,0,0`, 0.16)}
+  ${textDropShadow(0.08, `0,0,0`, 0.3)}
 `;
 
 const SubmissionContainer = styled(Grid)`
@@ -63,7 +63,7 @@ const ZohoFormComponent = ({
         <Form onFocus={handleFormActivation} {...rest}>
           <Grid container direction="column" rowSpacing={1}>
             {/* first and last name */}
-            <Grid item container rowSpacing={1}>
+            <Grid item container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <StyledTextField
                   className="border-top-radius__none"
@@ -130,8 +130,9 @@ const ZohoFormComponent = ({
                 error={formik.touched.message && Boolean(formik.errors.message)}
                 helperText={formik.touched.message && formik.errors.message}
                 minRows={5}
+                maxRows={6}
                 placeholder="What would you like to accomplish?"
-                charLimit={366}
+                charLimit={466}
                 style={{
                   minHeight: 145,
                   width: "100%",
@@ -141,7 +142,7 @@ const ZohoFormComponent = ({
                 aria-label="project information"
               />
             </Grid>
-            <SubmissionContainer container item justifyContent="flex-end">
+            <SubmissionContainer container item justifyContent="start">
               <StyledButton
                 color="secondary"
                 variant="contained"

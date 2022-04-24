@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState, createRef, forwardRef } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import { ContentContainer, Article } from "../common/common.component";
@@ -17,21 +17,30 @@ const StyledContentContainer = styled(ContentContainer)`
   }
 `;
 
+const StyledArticle = styled(Article)`
+  background-color: ${({ theme }) => theme.palette.background.main};
+
+  && .contact-article-form {
+    min-height: 386px;
+  }
+`;
+
 const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
   <StyledContentContainer {...rest} className={sharedClass}>
-    <Article container component="article" ref={ref}>
-      <div>
+    <StyledArticle container component="article" ref={ref}>
+      <Container maxWidth="md">
         <Typography component="h2" variant="h3">
           Contact Me
         </Typography>
         <br />
         <ZohoLeadForm
-          idBase="hero-article-form"
+          idBase="contact-article-form"
+          className="contact-article-form"
           successMessage="Thank You!"
           confirmEmailMessage="I will be in touch soon."
         />
-      </div>
-    </Article>
+      </Container>
+    </StyledArticle>
   </StyledContentContainer>
 ));
 ContactArticle.displayName = "ContactArticle";

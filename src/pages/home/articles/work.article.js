@@ -45,13 +45,11 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             Work
           </Typography>
           <br />
-          <br />
         </Grid>
         <Grid item>
           <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
             {text}
           </Typography>
-          <br />
           <br />
         </Grid>
 
