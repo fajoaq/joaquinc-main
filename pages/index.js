@@ -58,7 +58,7 @@ const Index = () => {
         articlesData={articlesData}
         activeArticleIndex={childTransition ? activeArticleIndex : null}
         handleClick={handleNavClick}
-        fontSize="4rem"
+        fontSize={{ xs: "3rem", md: "4rem" }}
         color="text.main"
       />
       <CSSTransition

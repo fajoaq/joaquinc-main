@@ -23,6 +23,11 @@ const StyledMaxContainer = styled(Container)`
         ? theme.constants.mainContainerHeight
         : dimensions}px;
   }
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    padding: 0.2em 0;
+    justify-content: space-evenly;
+  }
 `;
 
 const AppLayout = ({ children, dimensions, ...rest }) => (

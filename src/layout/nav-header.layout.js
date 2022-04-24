@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 
 const Header = styled(Grid)`
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
 
   & a:hover {
