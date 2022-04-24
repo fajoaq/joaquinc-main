@@ -1,7 +1,7 @@
 import { useEffect, useState, createRef, useRef, Fragment } from "react";
 
 const mainRef = createRef(undefined);
-const previousActive = createRef(undefined);
+const previouslyActive = createRef(undefined);
 const newIndex = createRef(0);
 
 const useTransitions = () => {
@@ -14,7 +14,7 @@ const useTransitions = () => {
   const removeAllListeners = () => {
     // remove listeners
     mainRef.current.removeEventListener("transitionend", handleResizeDone);
-    previousActive.current.removeEventListener(
+    previouslyActive.current.removeEventListener(
       "transitionend",
       handleChildExited
     );
@@ -49,8 +49,11 @@ const useTransitions = () => {
   const handleNavClick = (index) => {
     console.log("handleNavClick");
     if (index === activeArticleIndex) return;
-    previousActive.current = childList.current[newIndex.current].current;
-    previousActive.current.addEventListener("transitionend", handleChildExited);
+    previouslyActive.current = childList.current[newIndex.current].current;
+    previouslyActive.current.addEventListener(
+      "transitionend",
+      handleChildExited
+    );
 
     newIndex.current = index;
     setChildTransition(false);
@@ -59,8 +62,8 @@ const useTransitions = () => {
   // initial setup
   useEffect(() => {
     mainRef.current.addEventListener("transitionend", handleResizeDone);
-    previousActive.current = childList.current[0].current;
-    const { offsetHeight } = previousActive.current;
+    previouslyActive.current = childList.current[0].current;
+    const { offsetHeight } = previouslyActive.current;
     newIndex.current = 0;
 
     setMainHeight(offsetHeight);
