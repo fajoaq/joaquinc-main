@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 
 import { NavHeaderLayout } from "./nav-header.layout";
 import { useTransitions } from "../hooks/useTransitions";
-import { timing } from "../constants/timing";
+import { constants } from "../styles/theme";
 
 const DimensionsContainer = styled(Container)`
   grid-column: 1;
@@ -71,7 +71,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
       <CSSTransition
         nodeRef={mainRef}
         in={transition}
-        timeout={timing.navTimeout}
+        timeout={constants.navTimeout.navTimeout}
         classNames="transition"
       >
         <main ref={mainRef}>
@@ -84,7 +84,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
                 key={`main-article-${index}`}
                 nodeRef={childList.current[index]}
                 in={childTransition}
-                timeout={timing.navTimeout}
+                timeout={constants.navTimeout.navTimeout}
                 classNames={
                   index === activeArticleIndex ? "active" : "inactive"
                 }

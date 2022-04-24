@@ -1,6 +1,6 @@
 import { useEffect, useState, createRef, useRef } from "react";
 
-import { timing } from "../constants/timing";
+import { constants } from "../styles/theme";
 
 const reactRoot = createRef(undefined);
 const mainRef = createRef(undefined);
@@ -33,7 +33,7 @@ const useTransitions = () => {
 
     setTimeout(() => {
       reactRoot.current.classList.toggle("transition");
-    }, timing.navTimeout);
+    }, constants.navTimeout);
   };
   //
   const handleResize = () => {

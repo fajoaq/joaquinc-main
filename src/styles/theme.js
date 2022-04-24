@@ -2,7 +2,6 @@ import { createTheme } from "@mui/material/styles";
 import {
   transparent,
   white,
-  goldBar,
   chartreuse,
   redditOrange,
   golden,
@@ -17,6 +16,7 @@ import {
 
 const constants = {
   minContainerHeight: 532,
+  navTimeout: 260,
 };
 
 const breakpoints = {
@@ -109,4 +109,4 @@ const theme = createTheme({
   breakpoints: breakpoints,
 });
 
-export { theme };
+export { theme, constants };
