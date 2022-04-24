@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Header = styled(Grid)`
   display: flex;
@@ -77,6 +78,16 @@ const NavHeaderLayout = ({
           <article.Icon fontSize="inherit" />
         </Grid>
       ))}
+      <Grid
+        item
+        component="a"
+        href="https://github.com/fajoaq"
+        target="_blank"
+        position="relative"
+        padding={3}
+      >
+        <GitHubIcon fontSize="inherit" />
+      </Grid>
     </Header>
   );
 };

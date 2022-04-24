@@ -3,12 +3,7 @@ import {
   navButtons,
   navConstants,
 } from "../src/components/nav-buttons.component";
-import {
-  HeroArticle,
-  WorkArticle,
-  ContactArticle,
-  ExternalArticle,
-} from "../src/pages";
+import { HeroArticle, WorkArticle, ContactArticle } from "../src/pages";
 
 const articlesData = [
   {
@@ -22,10 +17,6 @@ const articlesData = [
   {
     Article: ContactArticle,
     Icon: navButtons[navConstants.contact],
-  },
-  {
-    Article: ExternalArticle,
-    Icon: navButtons[navConstants.external],
   },
 ];
 

@@ -25,6 +25,7 @@ const globalStyles = `
 
   & a {
     cursor: pointer;
+    color:  ${theme.palette.text.main};
   }
 
   && #__next {
