@@ -45,6 +45,12 @@ const Header = styled(Grid)`
     border-bottom: ${({ theme }) => `30px solid ${theme.palette.primary.main}`};
     transition: border-bottom 350ms ease-in-out;
   }
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    && a:after {
+      left: 15%;
+    }
+  }
 `;
 
 const NavHeaderLayout = ({

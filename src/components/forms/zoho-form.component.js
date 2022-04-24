@@ -9,7 +9,11 @@ import { nightGrey } from "../../styles/colors";
 import { textDropShadow } from "../../styles/text/text-shadow";
 
 const StyledButton = styled(Button)`
-  ${textDropShadow(0.08, `0,0,0`, 0.3)}
+  && {
+    ${textDropShadow(0.08, `120,120,120`, 0.3)}
+    color: ${({ theme }) => theme.palette.text.deselected};
+    margin-top: 10px;
+  }
 `;
 
 const SubmissionContainer = styled(Grid)`
@@ -61,7 +65,7 @@ const ZohoFormComponent = ({
     >
       {(formik) => (
         <Form onFocus={handleFormActivation} {...rest}>
-          <Grid container direction="column" rowSpacing={1}>
+          <Grid container direction="column" rowSpacing={3}>
             {/* first and last name */}
             <Grid item container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -131,8 +135,8 @@ const ZohoFormComponent = ({
                 helperText={formik.touched.message && formik.errors.message}
                 minRows={5}
                 maxRows={6}
-                placeholder="What would you like to accomplish?"
-                charLimit={466}
+                placeholder="Message"
+                charLimit={566}
                 style={{
                   minHeight: 145,
                   width: "100%",
@@ -144,10 +148,10 @@ const ZohoFormComponent = ({
             </Grid>
             <SubmissionContainer container item justifyContent="start">
               <StyledButton
-                color="secondary"
+                color="text"
                 variant="contained"
+                size="large"
                 type="submit"
-                style={{ marginTop: 10 }}
               >
                 SEND MESSAGE
               </StyledButton>

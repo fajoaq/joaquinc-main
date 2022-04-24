@@ -22,7 +22,7 @@ const createFormValidation = async (idBase) => {
       .required("Email is required"),
     message: yup
       .string("What would you like to accomplish?")
-      .max(366)
+      .max(566)
       .required("Please enter some details"),
   });
 };

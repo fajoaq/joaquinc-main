@@ -71,7 +71,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
       <CSSTransition
         nodeRef={mainRef}
         in={transition}
-        timeout={constants.navTimeout.navTimeout}
+        timeout={constants.navTimeout}
         classNames="transition"
       >
         <main ref={mainRef}>
@@ -84,7 +84,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
                 key={`main-article-${index}`}
                 nodeRef={childList.current[index]}
                 in={childTransition}
-                timeout={constants.navTimeout.navTimeout}
+                timeout={constants.navTimeout}
                 classNames={
                   index === activeArticleIndex ? "active" : "inactive"
                 }
