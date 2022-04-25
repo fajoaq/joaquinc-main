@@ -90,6 +90,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
                 }
               >
                 {/* pass onclick funtion to hero (index 0) article  */}
+                {/* with next index in array (index 1) */}
                 <Article
                   ref={childList.current[index]}
                   onClick={index === 0 ? () => handleNavClick(1) : null}
