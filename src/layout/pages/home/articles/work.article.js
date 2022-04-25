@@ -30,7 +30,6 @@ const CaseStudyContainer = styled(Grid)`
 
   && .case-study {
     display: grid;
-    align-items: end;
   }
 
   && .case-study.wip {
@@ -38,6 +37,7 @@ const CaseStudyContainer = styled(Grid)`
   }
 
   && .case-study.wip .external-link-container {
+    align-items: center;
     border: solid 1px black;
   }
 
@@ -46,7 +46,6 @@ const CaseStudyContainer = styled(Grid)`
     grid-row: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 260px;
   }
 
@@ -60,6 +59,7 @@ const CaseStudyContainer = styled(Grid)`
     grid-row: 1;
     height: 3rem;
     z-index: 999;
+    margin-top: auto;
     padding-left: 1rem;
     text-decoration: none;
     line-height: 3rem;
@@ -99,7 +99,7 @@ const InternalLink = ({ internalLink, ...rest }) => (
     href={internalLink}
     className="internal-link"
     marginBottom={panelGap}
-    marginRight={panelGap}
+    marginRight={{ xs: 0, md: panelGap }}
     {...rest}
   />
 );
@@ -140,7 +140,10 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
         </Grid>
 
         <CaseStudyContainer item>
-          <CaseStudy imgSource="static/case-study.png">
+          <CaseStudy
+            imgSource="static/case-study.png"
+            externalLink="https://pageprimer.com"
+          >
             <ForumIcon /> Building PagePrimer
           </CaseStudy>
           <CaseStudy>Coming Soon: Building a Blog</CaseStudy>
