@@ -3,6 +3,6 @@ import {
   WorkArticle,
   ContactArticle,
   ExternalArticle,
-} from "./home/";
+} from "./home";
 
 export { HeroArticle, WorkArticle, ContactArticle, ExternalArticle };

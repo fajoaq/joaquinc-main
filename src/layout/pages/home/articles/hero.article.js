@@ -4,7 +4,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { ContentContainer, Article } from "../common/common.component";
+import {
+  ContentContainer,
+  Article,
+} from "../../../../components/common.component";
 
 const imageSizes = {
   small: 368,

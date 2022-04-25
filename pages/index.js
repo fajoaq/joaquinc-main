@@ -3,7 +3,7 @@ import {
   navButtons,
   navConstants,
 } from "../src/components/nav-buttons.component";
-import { HeroArticle, WorkArticle, ContactArticle } from "../src/pages";
+import { HeroArticle, WorkArticle, ContactArticle } from "../src/layout/pages";
 
 const articlesData = [
   {

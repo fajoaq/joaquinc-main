@@ -47,7 +47,7 @@ const globalStyles = `
     width: 100%;
     overflow: hidden;
     background-color: rgba(255,255,255,0.9);
-    box-shadow:  0 4px 3px -3px rgb(0 0 0 / 25%);
+    box-shadow:  0 10px 6px -6px rgb(0 0 0 / 35%);
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
   }
 

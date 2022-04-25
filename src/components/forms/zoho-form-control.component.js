@@ -14,7 +14,7 @@ const defaultSuccessMessage = "success";
 const defaultConfirmMessage = "Please confirm your email";
 
 // removed company from form but zoho
-// still requires it on for leads creation
+// still requires it for leads creation
 /*  company: "", */
 
 const disabledStyled = {
@@ -115,7 +115,7 @@ const ZohoLeadForm = forwardRef(
         const { sanitizeForm } = await import("./utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
 
-        axios
+        /*         axios
           .post("/api/create-lead", {
             ...sanitizedValues,
             consultation_optin: consultation_optin,
@@ -123,7 +123,9 @@ const ZohoLeadForm = forwardRef(
           .then((response) => {
             setSubmitted(true);
           })
-          .catch((error) => {});
+          .catch((error) => {}); */
+
+        setSubmitted(true);
 
         if (onSubmit) onSubmit();
         else {

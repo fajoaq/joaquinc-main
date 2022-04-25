@@ -4,7 +4,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { ContentContainer, Article } from "../common/common.component";
+import {
+  ContentContainer,
+  Article,
+} from "../../../../components/common.component";
 
 const text = `
   Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
