@@ -89,8 +89,10 @@ const AppLayout = ({ articlesData, ...rest }) => {
                   index === activeArticleIndex ? "active" : "inactive"
                 }
               >
+                {/* pass onclick funtion to hero (index 0) article  */}
                 <Article
                   ref={childList.current[index]}
+                  onClick={index === 0 ? () => handleNavClick(1) : null}
                   sharedClass={
                     index === activeArticleIndex ? "active" : "inactive"
                   }

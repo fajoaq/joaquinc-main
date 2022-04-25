@@ -62,9 +62,34 @@ const StyledContentContainer = styled(ContentContainer)`
   && .active-enter-done .img-container {
     transform: translateX(0%);
   }
+
+  && .hero-next {
+    display: flex;
+    width: 100%;
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    z-index: 999;
+  }
+
+  && .hero-next a {
+    font-size: 7rem;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: ${({ theme }) => theme.palette.primary.main}52;
+    transition: max-width, color, 260ms ease-in-out;
+  }
+
+  && .hero-next a:hover {
+    color: ${({ theme }) => theme.palette.secondary.main};
+    background-color: ${({ theme }) => theme.palette.primary.main}D9;
+    max-width: 7rem;
+    border-radius: 0;
+  }
 `;
 
-const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
+const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
   <StyledContentContainer {...rest} className={sharedClass}>
     <Article container component="article" ref={ref}>
       <Grid
@@ -92,6 +117,7 @@ const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
       >
         <Box
           className="img-mask"
+          display="grid"
           height={{
             xs: imageSizes.small + "px",
             lg: imageSizes.medium + "px",
@@ -100,12 +126,30 @@ const HeroArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           <Box
             component="img"
             src="/static/fj-orange.png"
+            gridColumn={1}
+            gridRow={1}
             height={{
               xs: imageSizes.small + "px",
               lg: imageSizes.medium + "px",
             }}
             alt="Francis Joaquin Website Author"
           />
+
+          <Box
+            className="hero-next"
+            justifyContent={{ xs: "center", lg: "end" }}
+          >
+            <Box
+              component="a"
+              onClick={onClick}
+              maxWidth={{ xs: "4rem", md: "6rem" }}
+              maxHeight={{ xs: "4rem", md: "6rem" }}
+              lineHeight={{ xs: "2rem", md: "4rem" }}
+              borderRadius={{ xs: "100%", lg: 0 }}
+            >
+              &#8250;
+            </Box>
+          </Box>
         </Box>
       </Grid>
     </Article>
