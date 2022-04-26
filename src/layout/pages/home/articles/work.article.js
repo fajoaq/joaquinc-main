@@ -51,8 +51,12 @@ const CaseStudyContainer = styled(Grid)`
     color: ${fadedBlack};
   }
 
+  && .external-link-container img {
+    filter: brightness(96%);
+  }
+
   && .external-link-container img:hover {
-    filter: brightness(70%);
+    filter: brightness(66%);
     transition: filter 360ms ease-in-out;
   }
 
@@ -143,7 +147,7 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
 
         <CaseStudyContainer item>
           <CaseStudy
-            imgSource="static/case-study.png"
+            imgSource="static/pageprimer-thumb.png"
             externalLink="https://pageprimer.com"
           >
             <ForumIcon /> Building PagePrimer
