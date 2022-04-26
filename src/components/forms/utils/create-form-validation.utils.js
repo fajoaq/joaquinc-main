@@ -1,4 +1,8 @@
-const createFormValidation = async (idBase) => {
+// removed company from form but zoho
+// still requires it for leads creation
+// company: yup.string("Enter your company name if available").max(31),
+
+const createFormValidation = async () => {
   const yup = await import("yup");
 
   return yup.object({
@@ -28,7 +32,3 @@ const createFormValidation = async (idBase) => {
 };
 
 export { createFormValidation };
-
-/* 
-  company: yup.string("Enter your company name if available").max(31),
-*/

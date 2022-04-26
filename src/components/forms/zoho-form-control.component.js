@@ -72,7 +72,6 @@ const ZohoLeadForm = forwardRef(
     ref
   ) => {
     const [formActivated, setFormActivated] = useState(false);
-    const [consultation_optin, setContulsationOptIn] = useState(undefined);
     const [validationSchema, setValidationSchema] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
@@ -102,7 +101,6 @@ const ZohoLeadForm = forwardRef(
       }
     };
 
-    // disable form submission in development branch
     const handleSubmit = async (values) => {
       if (submitted === true) return;
 
@@ -115,17 +113,12 @@ const ZohoLeadForm = forwardRef(
         const { sanitizeForm } = await import("./utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
 
-        /*         axios
-          .post("/api/create-lead", {
-            ...sanitizedValues,
-            consultation_optin: consultation_optin,
-          })
+        axios
+          .post("/api/create-lead", sanitizedValues)
           .then((response) => {
             setSubmitted(true);
           })
-          .catch((error) => {}); */
-
-        setSubmitted(true);
+          .catch((error) => {});
 
         if (onSubmit) onSubmit();
         else {

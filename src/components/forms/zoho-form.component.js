@@ -164,19 +164,3 @@ const ZohoFormComponent = ({
 };
 
 export { ZohoFormComponent };
-
-/* 
-
-<Grid item>
-<StyledTextField
-  id={`${idBase}-${company}`}
-  name="company"
-  label="Company"
-  value={formik.values.company}
-  onChange={formik.handleChange}
-  error={formik.touched.company && Boolean(formik.errors.company)}
-  helperText={formik.touched.company && formik.errors.company}
-  charLimit={31}
-/>
-</Grid>
-*/

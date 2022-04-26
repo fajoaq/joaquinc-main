@@ -39,7 +39,7 @@ const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           idBase="contact-article-form"
           className="contact-article-form"
           successMessage="Thank You for Your Message"
-          confirmEmailMessage="I will be in touch soon."
+          confirmEmailMessage="I will be in contact shortly."
         />
       </Container>
     </StyledArticle>

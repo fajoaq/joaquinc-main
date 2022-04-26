@@ -11,7 +11,8 @@ import {
   Article,
 } from "../../../../components/common.component";
 
-const panelGap = 3.5;
+const panelGap = 5;
+const fadedBlack = "rgba(0,0,0,0.5)";
 
 const text = `
   Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
@@ -47,6 +48,7 @@ const CaseStudyContainer = styled(Grid)`
     display: flex;
     justify-content: center;
     min-height: 260px;
+    color: ${fadedBlack};
   }
 
   && .external-link-container img:hover {
@@ -64,7 +66,7 @@ const CaseStudyContainer = styled(Grid)`
     text-decoration: none;
     line-height: 3rem;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${fadedBlack};
   }
 
   & .internal-link:hover {
@@ -147,8 +149,8 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             <ForumIcon /> Building PagePrimer
           </CaseStudy>
           <CaseStudy>Coming Soon: Building a Blog</CaseStudy>
-          <CaseStudy>Coming Soon</CaseStudy>
-          <CaseStudy>Coming Soon</CaseStudy>
+          <CaseStudy>Coming Soon: Persisting with Prisma</CaseStudy>
+          <CaseStudy>Coming Soon: Learning Portuguese</CaseStudy>
         </CaseStudyContainer>
       </Grid>
     </Article>
