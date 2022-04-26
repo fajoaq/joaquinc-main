@@ -7,6 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   optimizeFonts: false,
+  experimental: { images: { layoutRaw: true } },
   images: {
     formats: ["image/avif", "image/webp"],
   },

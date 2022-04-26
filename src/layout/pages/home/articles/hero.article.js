@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -39,6 +40,7 @@ const StyledContentContainer = styled(ContentContainer)`
     mask-image: none;
     grid-column: 1;
     grid-row: 1;
+    aspect-ratio: 4 / 5;
 
     ${({ theme }) => `${theme.breakpoints.down("lg")}`} {
       transform: translateY(4%);
@@ -51,7 +53,9 @@ const StyledContentContainer = styled(ContentContainer)`
     }
   }
 
-  && img {
+  && .image-nextjs {
+    grid-column: 1;
+    grid-row: 1;
     transform: translateY(0%);
 
     ${({ theme }) => `${theme.breakpoints.down("lg")}`} {
@@ -109,6 +113,7 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
         </Typography>
       </Grid>
 
+      {/* image positioning container */}
       <Grid
         className="img-container"
         item
@@ -118,30 +123,29 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
         justifyContent={{ xs: "center", lg: "end" }}
         bgcolor={{ xs: "primary.main", lg: "#e5e4e3" }}
       >
+        {/* image mask/height container */}
         <Box
           className="img-mask"
           display="grid"
+          position="relative"
           height={{
             xs: imageSizes.small + "px",
             lg: imageSizes.medium + "px",
           }}
         >
-          <Box
-            component="img"
+          {/* nextjs image component */}
+          <Image
+            className="image-nextjs"
             src="/static/fj-orange.png"
-            gridColumn={1}
-            gridRow={1}
-            height={{
-              xs: imageSizes.small + "px",
-              lg: imageSizes.medium + "px",
-            }}
+            layout="fill"
             alt="Francis Joaquin Website Author"
           />
-
+          {/* go next button container */}
           <Box
             className="hero-next"
             justifyContent={{ xs: "center", lg: "end" }}
           >
+            {/* go to next article button */}
             <Box
               component="a"
               onClick={onClick}

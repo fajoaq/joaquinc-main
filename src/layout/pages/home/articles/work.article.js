@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -45,7 +46,9 @@ const CaseStudyContainer = styled(Grid)`
   && .external-link-container {
     grid-column: 1;
     grid-row: 1;
+    position: relative;
     display: flex;
+    aspect-ratio: 4 / 3;
     justify-content: center;
     min-height: 260px;
     color: ${fadedBlack};
@@ -66,11 +69,15 @@ const CaseStudyContainer = styled(Grid)`
     height: 3rem;
     z-index: 999;
     margin-top: auto;
-    padding-left: 1rem;
+    padding-left: 0.6rem;
     text-decoration: none;
     line-height: 3rem;
     color: white;
     background-color: ${fadedBlack};
+  }
+
+  && .internal-link__icon {
+    margin-right: 0.6rem;
   }
 
   & .internal-link:hover {
@@ -79,7 +86,7 @@ const CaseStudyContainer = styled(Grid)`
   }
 `;
 
-const ExternalLink = ({ externalLink, imgSource, ...rest }) => (
+const ExternalLink = ({ externalLink, imgSource, alt, ...rest }) => (
   <Box
     component="a"
     href={externalLink}
@@ -94,7 +101,7 @@ const ExternalLink = ({ externalLink, imgSource, ...rest }) => (
         <BuildIcon fontSize="large" />
       </span>
     ) : (
-      <img src={imgSource} width="100%" alt="case study" />
+      <Image src={imgSource} layout="fill" alt={alt} />
     )}
   </Box>
 );
@@ -113,6 +120,7 @@ const InternalLink = ({ internalLink, ...rest }) => (
 const CaseStudy = ({
   externalLink = "https://google.com",
   internalLink = "/",
+  alt = "case study",
   imgSource,
   children,
   ...rest
@@ -123,7 +131,7 @@ const CaseStudy = ({
     width={{ xs: "100%", md: "50%", lg: "33%" }}
     {...rest}
   >
-    <ExternalLink imgSource={imgSource} externalLink={externalLink} />
+    <ExternalLink imgSource={imgSource} externalLink={externalLink} alt={alt} />
     <InternalLink internalLink={internalLink}>{children}</InternalLink>
   </Box>
 );
@@ -147,14 +155,16 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
 
         <CaseStudyContainer item>
           <CaseStudy
-            imgSource="static/pageprimer-thumb.png"
+            imgSource="/static/pageprimer-thumb.png"
             externalLink="https://pageprimer.com"
+            alt="PagePrimer Web Design Site."
           >
-            <ForumIcon /> Building PagePrimer
+            <ForumIcon className="internal-link__icon" />
+            Coming Soon: Building PagePrimer
           </CaseStudy>
           <CaseStudy>Coming Soon: Building a Blog</CaseStudy>
-          <CaseStudy>Coming Soon: Persisting with Prisma</CaseStudy>
-          <CaseStudy>Coming Soon: Learning Portuguese</CaseStudy>
+          <CaseStudy>Coming Soon: Building a Database</CaseStudy>
+          <CaseStudy>Coming Soon: Data Fetching w/ Prisma</CaseStudy>
         </CaseStudyContainer>
       </Grid>
     </Article>
