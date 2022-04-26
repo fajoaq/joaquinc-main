@@ -33,12 +33,11 @@ const DimensionsContainer = styled(Container)`
   ${({ theme }) => theme.breakpoints.down("lg")} {
     padding-left: 12px;
     padding-right: 12px;
-    justify-content: space-evenly;
+    justify-content: start;
   }
 
   ${({ theme }) => theme.breakpoints.down("sm")} {
     padding-top: 0.2em;
-    justify-content: space-evenly;
   }
 `;
 

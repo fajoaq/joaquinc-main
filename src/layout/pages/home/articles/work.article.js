@@ -50,7 +50,6 @@ const CaseStudyContainer = styled(Grid)`
     display: flex;
     aspect-ratio: 4 / 3;
     justify-content: center;
-    min-height: 260px;
     color: ${fadedBlack};
   }
 
@@ -66,18 +65,16 @@ const CaseStudyContainer = styled(Grid)`
   && .internal-link {
     grid-column: 1;
     grid-row: 1;
-    height: 3rem;
     z-index: 999;
     margin-top: auto;
-    padding-left: 0.6rem;
     text-decoration: none;
-    line-height: 3rem;
+    line-height: 2.5em;
     color: white;
     background-color: ${fadedBlack};
   }
 
   && .internal-link__icon {
-    margin-right: 0.6rem;
+    margin: 0.6em 0.2em 0 0.2em;
   }
 
   & .internal-link:hover {
