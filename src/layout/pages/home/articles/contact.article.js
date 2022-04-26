@@ -23,7 +23,11 @@ const StyledArticle = styled(Article)`
   background-color: ${({ theme }) => theme.palette.background.main};
 
   && .contact-article-form {
-    min-height: 386px;
+    min-height: 478px;
+  }
+
+  ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
+    min-height: 542px;
   }
 `;
 

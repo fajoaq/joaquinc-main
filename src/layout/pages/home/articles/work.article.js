@@ -162,9 +162,18 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Building PagePrimer
           </CaseStudy>
-          <CaseStudy>Coming Soon: Building a Blog</CaseStudy>
-          <CaseStudy>Coming Soon: Building a Database</CaseStudy>
-          <CaseStudy>Coming Soon: Data Fetching w/ Prisma</CaseStudy>
+          <CaseStudy>
+            <ForumIcon className="internal-link__icon" />
+            Coming Soon: Building a Blog
+          </CaseStudy>
+          <CaseStudy>
+            <ForumIcon className="internal-link__icon" />
+            Coming Soon: Building a Database
+          </CaseStudy>
+          <CaseStudy>
+            <ForumIcon className="internal-link__icon" />
+            Coming Soon: Fetching w/ Prisma
+          </CaseStudy>
         </CaseStudyContainer>
       </Grid>
     </Article>

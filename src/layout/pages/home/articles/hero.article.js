@@ -60,7 +60,7 @@ const StyledContentContainer = styled(ContentContainer)`
     transform: translateY(0%);
 
     ${({ theme }) => `${theme.breakpoints.down("lg")}`} {
-      transform: translateY(12%);
+      transform: translateY(12%) translateX(-2%);
     }
   }
 
