@@ -32,6 +32,7 @@ const breakpoints = {
 const palette = {
   text: {
     main: carbon,
+    light: white,
     link: linkBlue,
     deselected: white,
   },

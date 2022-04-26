@@ -11,7 +11,7 @@ import { textDropShadow } from "../../styles/text/text-shadow";
 const StyledButton = styled(Button)`
   && {
     ${textDropShadow(0.08, `120,120,120`, 0.3)}
-    color: ${({ theme }) => theme.palette.text.deselected};
+    color: ${({ theme }) => theme.palette.text.light};
     margin-top: 10px;
   }
 `;
@@ -21,6 +21,10 @@ const SubmissionContainer = styled(Grid)`
     ${(props) => props.theme.breakpoints.down(`lg`)} {
       jutify-content: center;
     }
+  }
+
+  && button:hover {
+    color: ${({ theme }) => theme.palette.tertiary.main};
   }
 `;
 

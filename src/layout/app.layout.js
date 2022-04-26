@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 
 import { NavHeaderLayout } from "./nav-header.layout";
+import { Footer } from "../components/footer.component";
 import { useTransitions } from "../hooks/useTransitions";
 import { constants } from "../styles/theme";
 
@@ -103,6 +104,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
           })}
         </main>
       </CSSTransition>
+      <Footer />
     </DimensionsContainer>
   );
 };
