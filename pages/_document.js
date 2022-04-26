@@ -20,7 +20,7 @@ const generateCsp = () => {
   csp += `default-src 'self';`;
   csp += `base-uri 'self';`;
   csp += `img-src 'self' data:;`;
-  csp += `style-src https://fonts.googleapis.com 'unsafe-inline';`; // NextJS requires 'unsafe-inline'
+  csp += `style-src 'unsafe-inline';`; // NextJS requires 'unsafe-inline'
   csp += `script-src 'nonce-${nonce}' 'self' ${
     production ? "" : "'unsafe-eval'"
   };`; // NextJS requires 'self' and 'unsafe-eval' in dev (faster source maps)

@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
+import { ImgWithFallback } from "../../../../components/img-with-fallback.component";
 import {
   ContentContainer,
   Article,
@@ -134,9 +135,10 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
           }}
         >
           {/* nextjs image component */}
-          <Image
+          <ImgWithFallback
             className="image-nextjs"
-            src="/static/fj-orange.png"
+            src="/static/fj-orange.avif"
+            fallback="/static/fj-orange.webp"
             priority="true"
             layout="fill"
             alt="Francis Joaquin Website Author"

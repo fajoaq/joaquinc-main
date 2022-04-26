@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -7,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
 import BuildIcon from "@mui/icons-material/Build";
 
+import { ImgWithFallback } from "../../../../components/img-with-fallback.component";
 import {
   ContentContainer,
   Article,
@@ -86,7 +86,7 @@ const CaseStudyContainer = styled(Grid)`
   }
 `;
 
-const ExternalLink = ({ externalLink, imgSource, alt, ...rest }) => (
+const ExternalLink = ({ externalLink, imgSource, fallback, alt, ...rest }) => (
   <Box
     component="a"
     href={externalLink}
@@ -99,7 +99,12 @@ const ExternalLink = ({ externalLink, imgSource, alt, ...rest }) => (
         <BuildIcon fontSize="large" />
       </span>
     ) : (
-      <Image src={imgSource} layout="fill" alt={alt} />
+      <ImgWithFallback
+        src={imgSource}
+        fallback={fallback}
+        layout="fill"
+        alt={alt}
+      />
     )}
   </Box>
 );
@@ -113,6 +118,7 @@ const CaseStudy = ({
   internalLink = "/",
   alt = "case study",
   imgSource,
+  fallback,
   children,
   ...rest
 }) => (
@@ -122,7 +128,12 @@ const CaseStudy = ({
     width={{ xs: "100%", md: "48%", lg: "31%" }}
     {...rest}
   >
-    <ExternalLink imgSource={imgSource} externalLink={externalLink} alt={alt} />
+    <ExternalLink
+      imgSource={imgSource}
+      fallback={fallback}
+      externalLink={externalLink}
+      alt={alt}
+    />
     <InternalLink internalLink={internalLink}>{children}</InternalLink>
   </Box>
 );
@@ -146,7 +157,8 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
 
         <CaseStudyContainer item gap={panelGap}>
           <CaseStudy
-            imgSource="/static/pageprimer-thumb.png"
+            imgSource="/static/pageprimer-thumb.avif"
+            fallback="/static/pageprimer-thumb.webp"
             externalLink="https://pageprimer.com"
             alt="PagePrimer Web Design Site."
           >
