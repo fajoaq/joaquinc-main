@@ -92,8 +92,6 @@ const ExternalLink = ({ externalLink, imgSource, alt, ...rest }) => (
     href={externalLink}
     target="_blank"
     className={`external-link-container `}
-    marginRight={{ xs: 0, md: panelGap }}
-    marginBottom={panelGap}
     {...rest}
   >
     {imgSource == undefined ? (
@@ -107,14 +105,7 @@ const ExternalLink = ({ externalLink, imgSource, alt, ...rest }) => (
 );
 
 const InternalLink = ({ internalLink, ...rest }) => (
-  <Box
-    component="a"
-    href={internalLink}
-    className="internal-link"
-    marginBottom={panelGap}
-    marginRight={{ xs: 0, md: panelGap }}
-    {...rest}
-  />
+  <Box component="a" href={internalLink} className="internal-link" {...rest} />
 );
 
 const CaseStudy = ({
@@ -128,7 +119,7 @@ const CaseStudy = ({
   <Box
     className={`case-study  ${imgSource ? "" : "wip"}`}
     bgcolor="background.main"
-    width={{ xs: "100%", md: "50%", lg: "33%" }}
+    width={{ xs: "100%", md: "48%", lg: "31%" }}
     {...rest}
   >
     <ExternalLink imgSource={imgSource} externalLink={externalLink} alt={alt} />
@@ -153,7 +144,7 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           <br />
         </Grid>
 
-        <CaseStudyContainer item>
+        <CaseStudyContainer item gap={panelGap}>
           <CaseStudy
             imgSource="/static/pageprimer-thumb.png"
             externalLink="https://pageprimer.com"

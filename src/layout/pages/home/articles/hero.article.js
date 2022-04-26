@@ -137,6 +137,7 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
           <Image
             className="image-nextjs"
             src="/static/fj-orange.png"
+            priority="true"
             layout="fill"
             alt="Francis Joaquin Website Author"
           />
