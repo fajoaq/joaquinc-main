@@ -13,8 +13,8 @@ const formEnabled = createRef(false);
 const defaultSuccessMessage = "success";
 const defaultConfirmMessage = "Please confirm your email";
 
-// removed company from form but zoho
-// still requires it for leads creation
+// removed company from form but api
+// still requires it
 /*  company: "", */
 
 const disabledStyled = {
@@ -32,15 +32,15 @@ const enabledStyle = {
 const StyledContainer = styled("div")`
   display: grid;
 
-  & .zoho-disable-on-submit.submitted {
+  & .form-disable-on-submit.submitted {
     ${disabledStyled}
   }
 
-  & .zoho-enable-on-submit {
+  & .form-enable-on-submit {
     ${disabledStyled}
   }
 
-  & .zoho-enable-on-submit.submitted {
+  & .form-enable-on-submit.submitted {
     ${enabledStyle}
     ${textDropShadow(0.09, `255,255,255`, 0.9)}
   }
@@ -113,7 +113,7 @@ const ContactLeadForm = forwardRef(
         const { sanitizeForm } = await import("./utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
 
-        post("/api/create-lead", sanitizedValues)
+        post("/api/send-message", sanitizedValues)
           .then((response) => {
             setSubmitted(true);
           })
@@ -121,12 +121,12 @@ const ContactLeadForm = forwardRef(
 
         if (onSubmit) onSubmit();
         else {
-          // hide all zoho form inputs on page
+          // hide all form form inputs on page
           const elmsToDisable = document.querySelectorAll(
-            ".zoho-disable-on-submit"
+            ".form-disable-on-submit"
           );
           const elmsToEnable = document.querySelectorAll(
-            ".zoho-enable-on-submit"
+            ".form-enable-on-submit"
           );
 
           for (let i = 0; i < elmsToDisable.length; i++) {
@@ -143,7 +143,7 @@ const ContactLeadForm = forwardRef(
 
     return (
       <StyledContainer {...rest} ref={ref}>
-        <StyledContainerItem className="zoho-lead-form__input zoho-disable-on-submit">
+        <StyledContainerItem className="form-lead-form__input form-disable-on-submit">
           <ContactFormComponent
             handleFormActivation={handleFormActivation}
             initialValues={initialValues}
@@ -153,7 +153,7 @@ const ContactLeadForm = forwardRef(
           />
         </StyledContainerItem>
 
-        <StyledContainerItem className="zoho-enable-on-submit">
+        <StyledContainerItem className="form-enable-on-submit">
           <Typography variant="h5" component="h3">
             {successMessage ? successMessage : defaultSuccessMessage}
           </Typography>

@@ -74,6 +74,8 @@ const NavHeaderLayout = ({
           component="a"
           position="relative"
           padding={3}
+          role="button"
+          aria-label={article.ariaLabel}
         >
           <article.Icon fontSize="inherit" />
         </Grid>
@@ -85,6 +87,8 @@ const NavHeaderLayout = ({
         target="_blank"
         position="relative"
         padding={3}
+        role="button"
+        aria-label="Github Profile"
       >
         <GitHubIcon fontSize="inherit" />
       </Grid>

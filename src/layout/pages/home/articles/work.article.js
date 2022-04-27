@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
 import BuildIcon from "@mui/icons-material/Build";
 
+import { textDropShadow } from "../../../../styles/utils/text-shadow";
 import { ImgWithFallback } from "../../../../components/img-with-fallback.component";
 import {
   ContentContainer,
@@ -21,6 +22,8 @@ const text = `
 
 const StyledContentContainer = styled(ContentContainer)`
   && article > div {
+    ${textDropShadow(0.08, `255,255,255`, 0.3)}
+
     background-color: ${({ theme }) => theme.palette.background.main};
   }
 `;

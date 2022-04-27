@@ -88,6 +88,7 @@ const StyledContentContainer = styled(ContentContainer)`
 
     ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
       max-width: 64px;
+      background-color: rgba(0,0,0,0.65);
     }
   }
 
@@ -110,7 +111,7 @@ const StyledContentContainer = styled(ContentContainer)`
     transition: background-color 260ms ease-in-out;
 
     ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
-      background-color: ${({ theme }) => theme.palette.text.main}E6;
+      background-color: ${({ theme }) => theme.palette.text.light}E6;
     }
   }
 
@@ -177,6 +178,8 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
               maxWidth={{ xs: "4rem", md: "6rem" }}
               maxHeight={{ xs: "4rem", md: "6rem" }}
               borderRadius={{ xs: "100%", lg: 0 }}
+              role="button"
+              aria-label={"Portfilio"}
             >
               <div className="hero-next-image" />
             </Box>

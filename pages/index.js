@@ -13,14 +13,17 @@ const articlesData = [
   {
     Article: HeroArticle,
     Icon: navButtons[navConstants.home],
+    ariaLabel: "Home",
   },
   {
     Article: WorkArticle,
     Icon: navButtons[navConstants.work],
+    ariaLabel: "Portfolio",
   },
   {
     Article: ContactArticle,
     Icon: navButtons[navConstants.contact],
+    ariaLabel: "Contact me",
   },
 ];
 
