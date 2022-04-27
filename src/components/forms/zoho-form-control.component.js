@@ -89,10 +89,10 @@ const ZohoLeadForm = forwardRef(
       }, thymeCount);
 
       try {
-        const { createFormValidation } = await import(
-          "./utils/create-form-validation.utils"
+        const { createFormSchema } = await import(
+          "./utils/create-form-schema.utils"
         );
-        const validation = await createFormValidation();
+        const validation = await createFormSchema();
 
         setValidationSchema(validation);
         setFormActivated(true);
@@ -109,12 +109,11 @@ const ZohoLeadForm = forwardRef(
 
         clearTimeout(thymeRef.current);
 
-        const axios = await (await import("axios")).default;
+        const { post } = await (await import("axios")).default;
         const { sanitizeForm } = await import("./utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
 
-        axios
-          .post("/api/create-lead", sanitizedValues)
+        post("/api/create-lead", sanitizedValues)
           .then((response) => {
             setSubmitted(true);
           })
