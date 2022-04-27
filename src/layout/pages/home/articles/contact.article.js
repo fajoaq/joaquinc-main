@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-import { ContactLeadForm } from "../../../../components/forms/contact-form-control.component";
+import { ContactForm } from "../../../../components/forms/contact/contact-form-control.component";
 import {
   ContentContainer,
   Article,
@@ -27,7 +27,7 @@ const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           Contact Me
         </Typography>
         <br />
-        <ContactLeadForm
+        <ContactForm
           idBase="contact-article-form"
           className="contact-article-form"
           successMessage="Thank You for Your Message"

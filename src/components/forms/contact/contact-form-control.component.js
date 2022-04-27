@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 import { ContactFormComponent } from "./contact-form.component";
-import { textDropShadow } from "../../styles/utils/text-shadow";
+import { textDropShadow } from "../../../styles/utils/text-shadow";
 
 // form timer and toggle ref, for spam bots
 const thymeCount = 10000; // 10 seconds after focus
@@ -59,7 +59,7 @@ const initialValues = {
   source: "Website Lead Form",
 };
 
-const ContactLeadForm = forwardRef(
+const ContactForm = forwardRef(
   (
     {
       onLoad,
@@ -90,7 +90,7 @@ const ContactLeadForm = forwardRef(
 
       try {
         const { createFormSchema } = await import(
-          "./utils/create-form-schema.utils"
+          "../utils/create-form-schema.utils"
         );
         const validation = await createFormSchema();
 
@@ -110,7 +110,7 @@ const ContactLeadForm = forwardRef(
         clearTimeout(thymeRef.current);
 
         const { post } = await (await import("axios")).default;
-        const { sanitizeForm } = await import("./utils/sanitize-form.utils");
+        const { sanitizeForm } = await import("../utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
 
         post("/api/send-message", sanitizedValues)
@@ -165,6 +165,6 @@ const ContactLeadForm = forwardRef(
     );
   }
 );
-ContactLeadForm.displayName = "ContactLeadForm";
+ContactForm.displayName = "ContactForm";
 
-export { ContactLeadForm };
+export { ContactForm };

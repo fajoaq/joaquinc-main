@@ -1,5 +1,3 @@
-// Contact form schema using Yup library
-
 const createFormSchema = async () => {
   const { object, string } = await import("yup");
 

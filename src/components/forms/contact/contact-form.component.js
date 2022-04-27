@@ -5,8 +5,8 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-import { nightGrey } from "../../styles/colors";
-import { textDropShadow } from "../../styles/utils/text-shadow";
+import { nightGrey } from "../../../styles/colors";
+import { textDropShadow } from "../../../styles/utils/text-shadow";
 
 const StyledButton = styled(Button)`
   && {
@@ -130,13 +130,18 @@ const ContactFormComponent = ({
                 multiline
                 color="secondary"
                 variant="standard"
-                id={`${idBase}-message`}
-                name="message"
-                value={formik.values[`${idBase}-message`]}
+                id={`${idBase}-description`}
+                name="description"
+                value={formik.values[`${idBase}-description`]}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={formik.touched.message && Boolean(formik.errors.message)}
-                helperText={formik.touched.message && formik.errors.message}
+                error={
+                  formik.touched.description &&
+                  Boolean(formik.errors.description)
+                }
+                helperText={
+                  formik.touched.description && formik.errors.description
+                }
                 minRows={5}
                 maxRows={6}
                 placeholder="Message"
