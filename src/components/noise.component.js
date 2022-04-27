@@ -1,5 +1,7 @@
 import { styled } from "@mui/material/styles";
 
+// The component uses a PNG and a SVG layered on top
+// the SVG has turbulence that targets #noiseFilter, and filter accentuates this effect
 const StyledDiv = styled("div")`
   grid-column: 1;
   grid-row: 1;

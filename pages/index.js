@@ -30,6 +30,7 @@ const articlesData = [
 const Index = () => {
   return (
     <Fragment>
+      {/* route specific meta data */}
       <Head>
         <meta property="description" content={SEO.SITE_DESCRIPTION} />
         <meta name="description" content={SEO.SITE_DESCRIPTION} />

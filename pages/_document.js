@@ -5,6 +5,7 @@ import createEmotionServer from "@emotion/server/create-instance";
 import { v4 } from "uuid";
 
 import { SEO } from "../src/seo/seo";
+import { theme } from "../src/styles/theme";
 import { createEmotionCache } from "../src/styles/createEmotionCache";
 
 const generateCsp = () => {
@@ -41,11 +42,6 @@ const generateCsp = () => {
           <meta name="twitter:title" content={SEO.SITE_TITLE} />
           <meta name="twitter:description" content={SEO.SITE_DESCRIPTION} />
           <meta property="twitter:image" content={SEO.SITE_IMAGE} />
-
-          <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
-
-          <meta name="theme-color" content={theme.palette.primary.main} />
 */
 
 export default class MyDocument extends Document {
@@ -59,6 +55,9 @@ export default class MyDocument extends Document {
           <meta property="csp-nonce" content={nonce} />
           <meta httpEquiv="Content-Security-Policy" content={csp} />
           <meta name="author" content={SEO.SITE_AUTHOR} />
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link rel="shortcut icon" href="/static/fjfavicon.ico" />
+          <link rel="icon" href="/static/fjfavicon.ico" type="image/x-icon" />
           {/* social */}
 
           {/* PWA primary color */}

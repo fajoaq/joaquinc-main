@@ -15,19 +15,24 @@ const imageSizes = {
   medium: 533,
 };
 
+//  We can pass a prop to the whole template literal
+// by destructuring it at the top and returning another
+// template literal
 const StyledContentContainer = styled(ContentContainer)`
+  ${({ theme }) => `
+
+  && article > div {
+    padding: 0;
+  }
+
   && header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 2.5em 2.5em 2.5em;
-    background-color: ${({ theme }) => theme.palette.primary.main};
+    background-color: ${theme.palette.primary.main};
     transform: translateX(-100%);
     transition: transform 500ms ease-in-out;
-  }
-
-  && article > div {
-    padding: 0;
   }
 
   && .img-container {
@@ -42,7 +47,7 @@ const StyledContentContainer = styled(ContentContainer)`
     grid-row: 1;
     aspect-ratio: 4 / 5;
 
-    ${({ theme }) => `${theme.breakpoints.down("lg")}`} {
+    ${theme.breakpoints.down("lg")} {
       transform: translateY(4%);
       mask-image: radial-gradient(
         circle,
@@ -58,7 +63,7 @@ const StyledContentContainer = styled(ContentContainer)`
     grid-row: 1;
     transform: translateY(0%);
 
-    ${({ theme }) => `${theme.breakpoints.down("lg")}`} {
+    ${theme.breakpoints.down("lg")} {
       transform: translateY(12%) translateX(-2%);
     }
   }
@@ -86,7 +91,7 @@ const StyledContentContainer = styled(ContentContainer)`
     background-color: rgba(0,0,0,0.75);
     transition: max-width 260ms ease-in-out;
 
-    ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
+    ${theme.breakpoints.down("sm")} {
       max-width: 64px;
       background-color: rgba(0,0,0,0.65);
     }
@@ -97,27 +102,28 @@ const StyledContentContainer = styled(ContentContainer)`
   }
 
   && .hero-next a:active:hover {
-    background-color: ${({ theme }) => theme.palette.secondary.main}33;
+    background-color: ${theme.palette.secondary.main}33;
   }
 
   && .hero-next-image {
     height: 100%;
     width: 100%;
-    background-color: ${({ theme }) => theme.palette.text.light}B3;
+    background-color: ${theme.palette.text.light}B3;
     mask-image: url("/static/go-next.svg");
     mask-size: 50% 50%;
     mask-position: center;
     mask-repeat: no-repeat;
     transition: background-color 260ms ease-in-out;
 
-    ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
-      background-color: ${({ theme }) => theme.palette.text.light}E6;
+    ${theme.breakpoints.down("sm")} {
+      background-color: ${theme.palette.text.light}E6;
     }
   }
 
   && .hero-next-image:hover {
-    background-color: ${({ theme }) => theme.palette.tertiary.main}B3;
+    background-color: ${theme.palette.tertiary.main}B3;
   }
+`}
 `;
 
 const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (

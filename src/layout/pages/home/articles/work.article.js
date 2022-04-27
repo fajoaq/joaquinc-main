@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
 import BuildIcon from "@mui/icons-material/Build";
 
-import { textDropShadow } from "../../../../styles/utils/text-shadow";
 import { ImgWithFallback } from "../../../../components/img-with-fallback.component";
 import {
   ContentContainer,
@@ -20,21 +19,19 @@ const text = `
   Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
 `;
 
-const StyledContentContainer = styled(ContentContainer)`
-  && article > div {
-    ${textDropShadow(0.08, `255,255,255`, 0.3)}
-
-    background-color: ${({ theme }) => theme.palette.background.main};
-  }
-`;
-
+//  We can pass a prop to the whole template literal
+// by destructuring it at the top and returning another
+// template literal
 const CaseStudyContainer = styled(Grid)`
+  ${({ theme }) => `
+  
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 
   && .case-study {
     display: grid;
+    background-color: ${theme.palette.background.light};
   }
 
   && .case-study.wip {
@@ -43,7 +40,7 @@ const CaseStudyContainer = styled(Grid)`
 
   && .case-study.wip .external-link-container {
     align-items: center;
-    border: solid 1px black;
+    border: solid 1px lightgray;
   }
 
   && .external-link-container {
@@ -57,12 +54,12 @@ const CaseStudyContainer = styled(Grid)`
   }
 
   && .external-link-container img {
-    filter: brightness(96%);
+    filter: brightness(110%);
   }
 
   && .external-link-container img:hover {
-    filter: brightness(66%);
-    transition: filter 360ms ease-in-out;
+    filter: brightness(86%);
+    transition: filter 260ms ease-in-out;
   }
 
   && .internal-link {
@@ -81,13 +78,14 @@ const CaseStudyContainer = styled(Grid)`
   }
 
   & .internal-link:hover {
-    color: ${({ theme }) => theme.palette.tertiary.main};
+    color: ${theme.palette.tertiary.main};
     transition: color 360ms ease-in-out;
   }
 
   && .internal-link:active:hover {
-    color: ${({ theme }) => theme.palette.secondary.main};
+    color: ${theme.palette.secondary.main};
   }
+`}
 `;
 
 const ExternalLink = ({ externalLink, imgSource, fallback, alt, ...rest }) => (
@@ -128,7 +126,6 @@ const CaseStudy = ({
 }) => (
   <Box
     className={`case-study  ${imgSource ? "" : "wip"}`}
-    bgcolor="background.main"
     width={{ xs: "100%", md: "48%", lg: "31%" }}
     {...rest}
   >
@@ -143,16 +140,16 @@ const CaseStudy = ({
 );
 
 const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
-  <StyledContentContainer {...rest} className={sharedClass}>
+  <ContentContainer {...rest} className={sharedClass}>
     <Article container component="article" ref={ref}>
       <Grid container>
-        <Grid item>
+        <Grid item className="article-title">
           <Typography component="h2" variant="h3">
             Work
           </Typography>
           <br />
         </Grid>
-        <Grid item>
+        <Grid item className="article-text">
           <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
             {text}
           </Typography>
@@ -187,7 +184,7 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
         </CaseStudyContainer>
       </Grid>
     </Article>
-  </StyledContentContainer>
+  </ContentContainer>
 ));
 WorkArticle.displayName = "WorkArticle";
 

@@ -3,21 +3,13 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
+import { ContactLeadForm } from "../../../../components/forms/contact-form-control.component";
 import {
   ContentContainer,
   Article,
 } from "../../../../components/containers.component";
-import { ContactLeadForm } from "../../../../components/forms/contact-form-control.component";
-
-const StyledContentContainer = styled(ContentContainer)`
-  && article > div {
-    background-color: ${({ theme }) => theme.palette.background.main};
-  }
-`;
 
 const StyledArticle = styled(Article)`
-  background-color: ${({ theme }) => theme.palette.background.main};
-
   && .contact-article-form {
     min-height: 478px;
   }
@@ -28,10 +20,10 @@ const StyledArticle = styled(Article)`
 `;
 
 const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
-  <StyledContentContainer {...rest} className={sharedClass}>
+  <ContentContainer {...rest} className={sharedClass}>
     <StyledArticle container component="article" ref={ref}>
       <Container maxWidth="md">
-        <Typography component="h2" variant="h3">
+        <Typography component="h2" variant="h3" className="article-title">
           Contact Me
         </Typography>
         <br />
@@ -43,7 +35,7 @@ const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
         />
       </Container>
     </StyledArticle>
-  </StyledContentContainer>
+  </ContentContainer>
 ));
 ContactArticle.displayName = "ContactArticle";
 

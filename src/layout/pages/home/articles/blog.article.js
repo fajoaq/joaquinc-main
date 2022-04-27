@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import { styled } from "@mui/material/styles";
 
 import {
   ContentContainer,
@@ -10,14 +9,8 @@ const text = `
   Currenly only for testing. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.
 `;
 
-const StyledContentContainer = styled(ContentContainer)`
-  && article > div {
-    background-color: ${({ theme }) => theme.palette.background.main};
-  }
-`;
-
 const BlogArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
-  <StyledContentContainer {...rest} className={sharedClass}>
+  <ContentContainer {...rest} className={sharedClass}>
     <Article container component="article" ref={ref}>
       <div>
         <p>Blog</p>
@@ -29,7 +22,7 @@ const BlogArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
         <p>{text}</p>
       </div>
     </Article>
-  </StyledContentContainer>
+  </ContentContainer>
 ));
 BlogArticle.displayName = "BlogArticle";
 

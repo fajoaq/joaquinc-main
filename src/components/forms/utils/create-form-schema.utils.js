@@ -1,3 +1,5 @@
+// Contact form schema using Yup library
+
 const createFormSchema = async () => {
   const { object, string } = await import("yup");
 
@@ -25,6 +27,6 @@ const createFormSchema = async () => {
 
 export { createFormSchema };
 
-/* 
+/*  removed company input on frontent, but contact form api still requires it on the backend
   company: yup.string("Enter your company name if available").max(31),
 */

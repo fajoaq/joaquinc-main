@@ -1,5 +1,7 @@
 import { theme } from "./theme";
 
+import { textDropShadow } from "./utils/text-shadow";
+
 const globalStyles = `
   html {
     box-sizing: border-box;
@@ -46,7 +48,7 @@ const globalStyles = `
     max-height: 0;
     width: 100%;
     overflow: hidden;
-    background-color: rgba(255,255,255,0.9);
+    background-color: ${theme.palette.background.main};
     box-shadow:  0 10px 6px -6px rgb(0 0 0 / 35%);
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
   }
@@ -66,6 +68,10 @@ const globalStyles = `
 
   && article.active-enter-done {
     opacity: 1;
+  }
+
+  && .article-title, .artitle-text {
+    ${textDropShadow(0.07, `255,255,255`, 1)}
   }
 `;
 

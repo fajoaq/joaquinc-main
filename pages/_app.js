@@ -13,6 +13,7 @@ import { theme } from "../src/styles/theme";
 const clientSideEmotionCache = createEmotionCache();
 const responsiveTheme = responsiveFontSizes(theme);
 
+// Bg Noise Component
 import { Noise } from "../src/components/noise.component";
 
 // Client-side cache, shared for the whole session of the user in the browser.

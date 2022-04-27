@@ -10,4 +10,6 @@ const handler = (req, res) => {
   return res.status(500).end();
 };
 
+// The validate middleware can take in an object, or a function
+// that returns a promise, for its first argument
 export default validate(createFormSchema, handler);
