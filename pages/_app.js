@@ -5,9 +5,7 @@ import { responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 
-//import { StoreContextProvider } from "../src/context/store.context";
 import GlobalStyles from "@mui/material/GlobalStyles";
-//import { SEO } from "../src/utils/constants.utils";
 import { SEO } from "../src/seo/seo";
 import { globalStyles } from "../src/styles/globalStyles";
 import { createEmotionCache } from "../src/styles/createEmotionCache";
@@ -19,7 +17,7 @@ import { Noise } from "../src/components/noise.component";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 
-export default function MyApp(props) {
+export default function WebApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
@@ -45,7 +43,7 @@ export default function MyApp(props) {
   );
 }
 
-MyApp.propTypes = {
+WebApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,

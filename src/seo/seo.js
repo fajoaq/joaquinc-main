@@ -1,8 +1,9 @@
 const SEO = {
-  SITE_NAME: "Francis Joaquin Portfolio",
+  SITE_NAME: "Francis Joaquin's Portfolio",
   SITE_TITLE: "Cutting Edge Web Tech",
-  SITE_DESCRIPTION: "I craft websites.",
-  SITE_IMAGE: "/static/marketing-service.png",
+  SITE_DESCRIPTION:
+    "Francis Joaquin crafts modern web applications that delight users.",
+  SITE_IMAGE: "/static/site-image.png",
   SITE_AUTHOR: "Francis Joaquin",
 };
 

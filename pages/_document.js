@@ -2,7 +2,6 @@ import crypto from "crypto";
 import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
-//import { theme } from "../styles/theme";
 import { v4 } from "uuid";
 
 import { SEO } from "../src/seo/seo";
@@ -30,7 +29,8 @@ const generateCsp = () => {
   return [csp, nonce];
 };
 
-/* 
+/*  social media tags
+
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={SEO.SITE_NAME} />
           <meta property="og:title" content={SEO.SITE_TITLE} />
@@ -41,18 +41,12 @@ const generateCsp = () => {
           <meta name="twitter:title" content={SEO.SITE_TITLE} />
           <meta name="twitter:description" content={SEO.SITE_DESCRIPTION} />
           <meta property="twitter:image" content={SEO.SITE_IMAGE} />
-*/
 
-/* 
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
-*/
 
-/* 
           <meta name="theme-color" content={theme.palette.primary.main} />
 */
-
-// change robot meta tag in production
 
 export default class MyDocument extends Document {
   render() {

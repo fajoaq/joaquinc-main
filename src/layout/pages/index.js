@@ -1,8 +1,3 @@
-import {
-  HeroArticle,
-  WorkArticle,
-  ContactArticle,
-  ExternalArticle,
-} from "./home";
+import { HeroArticle, WorkArticle, ContactArticle, BlogArticle } from "./home";
 
-export { HeroArticle, WorkArticle, ContactArticle, ExternalArticle };
+export { HeroArticle, WorkArticle, ContactArticle, BlogArticle };

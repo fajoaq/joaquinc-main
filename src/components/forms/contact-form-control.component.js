@@ -2,8 +2,8 @@ import { forwardRef, useState, useEffect, createRef } from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
-import { ZohoFormComponent } from "./zoho-form.component";
-import { textDropShadow } from "../../styles/text/text-shadow";
+import { ContactFormComponent } from "./contact-form.component";
+import { textDropShadow } from "../../styles/utils/text-shadow";
 
 // form timer and toggle ref, for spam bots
 const thymeCount = 10000; // 10 seconds after focus
@@ -59,7 +59,7 @@ const initialValues = {
   source: "Website Lead Form",
 };
 
-const ZohoLeadForm = forwardRef(
+const ContactLeadForm = forwardRef(
   (
     {
       onLoad,
@@ -144,7 +144,7 @@ const ZohoLeadForm = forwardRef(
     return (
       <StyledContainer {...rest} ref={ref}>
         <StyledContainerItem className="zoho-lead-form__input zoho-disable-on-submit">
-          <ZohoFormComponent
+          <ContactFormComponent
             handleFormActivation={handleFormActivation}
             initialValues={initialValues}
             validation={formActivated ? validationSchema : null}
@@ -165,6 +165,6 @@ const ZohoLeadForm = forwardRef(
     );
   }
 );
-ZohoLeadForm.displayName = "ZohoLeadForm";
+ContactLeadForm.displayName = "ContactLeadForm";
 
-export { ZohoLeadForm };
+export { ContactLeadForm };

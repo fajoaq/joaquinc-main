@@ -1,12 +1,12 @@
-import TextField from "@mui/material/TextField";
 import { Formik, Form } from "formik";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 import { nightGrey } from "../../styles/colors";
-import { textDropShadow } from "../../styles/text/text-shadow";
+import { textDropShadow } from "../../styles/utils/text-shadow";
 
 const StyledButton = styled(Button)`
   && {
@@ -53,7 +53,7 @@ const StyledTextField = ({ className, elevation = 3, charLimit, ...rest }) => (
   </Paper>
 );
 
-const ZohoFormComponent = ({
+const ContactFormComponent = ({
   initialValues,
   validation = null,
   onSubmit,
@@ -167,4 +167,4 @@ const ZohoFormComponent = ({
   );
 };
 
-export { ZohoFormComponent };
+export { ContactFormComponent };

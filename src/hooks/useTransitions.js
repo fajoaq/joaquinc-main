@@ -25,7 +25,7 @@ const useTransitions = () => {
   };
   //
   const handleResizeDone = () => {
-    console.log("handleResizeDone");
+    //console.log("handleResizeDone");
     removeAllListeners();
 
     setActiveArticleIndex(newIndex.current);
@@ -37,7 +37,7 @@ const useTransitions = () => {
   };
   //
   const handleResize = () => {
-    console.log("handleResize");
+    //console.log("handleResize");
     removeAllListeners();
     mainRef.current.addEventListener("transitionend", handleResizeDone);
 
@@ -46,7 +46,7 @@ const useTransitions = () => {
   };
   //
   const handleChildExited = () => {
-    console.log("handleChildExited");
+    //console.log("handleChildExited");
     removeAllListeners();
 
     mainRef.current.addEventListener("transitionend", handleResizeDone);
@@ -54,7 +54,7 @@ const useTransitions = () => {
   };
   //
   const handleNavClick = (index) => {
-    console.log("handleNavClick");
+    //console.log("handleNavClick");
     if (index === activeArticleIndex) return;
 
     reactRoot.current.classList.toggle("transition");

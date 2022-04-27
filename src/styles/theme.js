@@ -65,9 +65,9 @@ const palette = {
 };
 
 const typography = {
-  fontFamily: ["Gadugi", "San Francisco", "Sans-Serif"].join(","),
+  fontFamily: ["Calibri", "San Francisco", "Sans-Serif"].join(","),
   nav: {
-    fontFamily: ["Gadugi", "San Francisco", "Sans-Serif"].join(","),
+    fontFamily: ["Calibri", "San Francisco", "Sans-Serif"].join(","),
     fontWeight: 100,
   },
   h1: { fontSize: "3.9rem" },

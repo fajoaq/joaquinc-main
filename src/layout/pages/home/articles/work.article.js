@@ -10,7 +10,7 @@ import { ImgWithFallback } from "../../../../components/img-with-fallback.compon
 import {
   ContentContainer,
   Article,
-} from "../../../../components/common.component";
+} from "../../../../components/containers.component";
 
 const panelGap = 5;
 const fadedBlack = "rgba(0,0,0,0.5)";
@@ -80,6 +80,10 @@ const CaseStudyContainer = styled(Grid)`
   & .internal-link:hover {
     color: ${({ theme }) => theme.palette.tertiary.main};
     transition: color 360ms ease-in-out;
+  }
+
+  && .internal-link:active:hover {
+    color: ${({ theme }) => theme.palette.secondary.main};
   }
 `;
 
@@ -162,14 +166,17 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Building PagePrimer
           </CaseStudy>
+
           <CaseStudy>
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Building a Blog
           </CaseStudy>
+
           <CaseStudy>
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Building a Database
           </CaseStudy>
+
           <CaseStudy>
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Fetching w/ Prisma

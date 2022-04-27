@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -9,7 +8,7 @@ import { ImgWithFallback } from "../../../../components/img-with-fallback.compon
 import {
   ContentContainer,
   Article,
-} from "../../../../components/common.component";
+} from "../../../../components/containers.component";
 
 const imageSizes = {
   small: 368,
@@ -68,7 +67,7 @@ const StyledContentContainer = styled(ContentContainer)`
     transform: translateX(0%);
   }
   && .active-enter-done .img-container {
-    transform: translateX(0%);
+    transform: translateX(0%);f
   }
 
   && .hero-next {
@@ -81,19 +80,42 @@ const StyledContentContainer = styled(ContentContainer)`
   }
 
   && .hero-next a {
-    font-size: 7rem;
+    height: 100px;
     width: 100%;
-    height: 100%;
-    text-align: center;
-    background-color: ${({ theme }) => theme.palette.primary.main}52;
-    transition: max-width, color, 260ms ease-in-out;
+    max-width: 120px;
+    background-color: rgba(0,0,0,0.75);
+    transition: max-width 260ms ease-in-out;
+
+    ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
+      max-width: 64px;
+    }
   }
 
   && .hero-next a:hover {
-    color: ${({ theme }) => theme.palette.secondary.main};
-    background-color: ${({ theme }) => theme.palette.primary.main}D9;
-    max-width: 7rem;
-    border-radius: 0;
+    max-width: 130px;
+  }
+
+  && .hero-next a:active:hover {
+    background-color: ${({ theme }) => theme.palette.secondary.main}33;
+  }
+
+  && .hero-next-image {
+    height: 100%;
+    width: 100%;
+    background-color: ${({ theme }) => theme.palette.text.light}B3;
+    mask-image: url("/static/go-next.svg");
+    mask-size: 50% 50%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    transition: background-color 260ms ease-in-out;
+
+    ${({ theme }) => `${theme.breakpoints.down("sm")}`} {
+      background-color: ${({ theme }) => theme.palette.text.main}E6;
+    }
+  }
+
+  && .hero-next-image:hover {
+    background-color: ${({ theme }) => theme.palette.tertiary.main}B3;
   }
 `;
 
@@ -154,10 +176,9 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
               onClick={onClick}
               maxWidth={{ xs: "4rem", md: "6rem" }}
               maxHeight={{ xs: "4rem", md: "6rem" }}
-              lineHeight={{ xs: "2rem", md: "4rem" }}
               borderRadius={{ xs: "100%", lg: 0 }}
             >
-              &#8250;
+              <div className="hero-next-image" />
             </Box>
           </Box>
         </Box>
@@ -168,3 +189,12 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
 HeroArticle.displayName = "HeroArticle";
 
 export { HeroArticle };
+
+/* 
+<ImgWithFallback
+                className="go-next-img"
+                priority="true"
+                src="/static/go-next.svg"
+                alt="click to go to next article"
+              />
+*/
