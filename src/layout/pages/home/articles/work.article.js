@@ -160,8 +160,8 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           <CaseStudy
             imgSource="/static/work/pageprimer-thumb.avif"
             fallback="/static/work/pageprimer-thumb.webp"
-            externalLink="https://joaquinc.com"
-            alt="joaquinc Web Design Site."
+            externalLink="https://pageprimer.com"
+            alt="PagePrimer Web Design Site."
           >
             <ForumIcon className="internal-link__icon" />
             Coming Soon: Building joaquinc
