@@ -8,7 +8,10 @@ import { Footer } from "../components/footer.component";
 import { useTransitions } from "../hooks/useTransitions";
 import { constants } from "../styles/theme";
 
+// we're using font smoothing to coax browser into using
+// hardware acceleration
 const DimensionsContainer = styled(Container)`
+  -webkit-font-smoothing: antialiased;
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -17,7 +20,6 @@ const DimensionsContainer = styled(Container)`
   align-items: center;
   min-height: 100vh;
   padding: 4em 0;
-  tranisition: opacity 1s ease-in-out;
 
   && .transition-enter-done {
     min-height: ${({ theme, dimensions }) =>
