@@ -53,9 +53,8 @@ const StyledContainerItem = styled("div")`
 const initialValues = {
   firstName: "",
   lastName: "",
-
   email: "",
-  message: "",
+  description: "",
   source: "Website Lead Form",
 };
 
@@ -125,8 +124,10 @@ const ContactForm = forwardRef(
         // We dynamically pull in these libraries to keep them
         // out of the initial bundle
         const { post } = await (await import("axios")).default;
-        const { sanitizeForm } = await import("../utils/sanitize-form.utils");
-        const sanitizedValues = await sanitizeForm(values);
+        const { sanitizeFormValues } = await import(
+          "../utils/sanitize-form.utils"
+        );
+        const sanitizedValues = await sanitizeFormValues(values);
 
         post("/api/send-message", sanitizedValues)
           .then((response) => {
