@@ -109,7 +109,7 @@ const StyledContentContainer = styled(ContentContainer)`
     height: 100%;
     width: 100%;
     background-color: ${theme.palette.text.light}B3;
-    mask-image: url("/static/go-next.svg");
+    mask-image: url("/static/site/go-next.svg");
     mask-size: 50% 50%;
     mask-position: center;
     mask-repeat: no-repeat;
@@ -166,8 +166,8 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
           {/* nextjs image component */}
           <ImgWithFallback
             className="image-nextjs"
-            src="/static/fj-orange.avif"
-            fallback="/static/fj-orange.webp"
+            src="/static/site/fj-orange.avif"
+            fallback="/static/site/fj-orange.webp"
             priority="true"
             layout="fill"
             alt="Francis Joaquin Website Author"

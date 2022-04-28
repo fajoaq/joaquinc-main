@@ -9,7 +9,7 @@ const StyledDiv = styled("div")`
   width: 100%;
   opacity: 0.16;
   z-index: -1;
-  background: url(/static/grain.png), url(/static/bg-turbulence.svg);
+  background: url(/static/site/grain.png), url(/static/site/bg-turbulence.svg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -158,8 +158,8 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
 
         <CaseStudyContainer item gap={panelGap}>
           <CaseStudy
-            imgSource="/static/joaquinc-thumb.avif"
-            fallback="/static/joaquinc-thumb.webp"
+            imgSource="/static/work/pageprimer-thumb.avif"
+            fallback="/static/work/pageprimer-thumb.webp"
             externalLink="https://joaquinc.com"
             alt="joaquinc Web Design Site."
           >
