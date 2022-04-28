@@ -164,7 +164,7 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             alt="PagePrimer Web Design Site."
           >
             <ForumIcon className="internal-link__icon" />
-            Coming Soon: Building joaquinc
+            Coming Soon: Building PagePrimer
           </CaseStudy>
 
           <CaseStudy>
