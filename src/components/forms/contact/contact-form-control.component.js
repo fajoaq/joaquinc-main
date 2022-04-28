@@ -58,7 +58,7 @@ const initialValues = {
   source: "Website Lead Form",
 };
 
-const ToggleFormOnSubmit = () => {
+const ToggleFormStyleOnSubmit = () => {
   // hide all form inputs on page after submission
   // show confirmation message
   const elmsToDisable = document.querySelectorAll(".form-disable-on-submit");
@@ -87,6 +87,7 @@ const ContactForm = forwardRef(
     const [formActivated, setFormActivated] = useState(false); // activate form on input click
     const [validationSchema, setValidationSchema] = useState({}); // create and set validatin schema
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(undefined);
 
     useEffect(() => {
       if (onLoad) onLoad();
@@ -112,40 +113,40 @@ const ContactForm = forwardRef(
         setValidationSchema(validation);
         setFormActivated(true);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
 
     const handleSubmit = async (values) => {
-      if (submitted === true || formEnabled.current == false) return;
+      if (formEnabled.current == false || submitted == true) return;
 
       try {
         clearTimeout(thymeRef.current);
         // We dynamically pull in these libraries to keep them
         // out of the initial bundle
         const { post } = await (await import("axios")).default;
-        const { sanitizeFormValues } = await import(
-          "../utils/sanitize-form.utils"
-        );
-        const sanitizedValues = await sanitizeFormValues(values);
 
-        post("/api/send-message", sanitizedValues)
+        post("/api/send-message", values)
           .then((response) => {
             setSubmitted(true);
           })
-          .catch((error) => {});
+          .catch((error) => {
+            setError(error);
+          });
 
         if (onSubmit) onSubmit();
         else {
-          ToggleFormOnSubmit();
+          ToggleFormStyleOnSubmit();
         }
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
 
     return (
       <StyledContainer {...rest} ref={ref}>
+        {error !== undefined ? null : null}
+
         <StyledContainerItem className="form-lead-form__input form-disable-on-submit">
           <ContactFormComponent
             handleFormActivation={handleFormActivation}
@@ -160,6 +161,7 @@ const ContactForm = forwardRef(
           <Typography variant="h5" component="h3">
             {successMessage ? successMessage : defaultSuccessMessage}
           </Typography>
+
           <Typography variant="body1">
             {confirmEmailMessage ? confirmEmailMessage : defaultConfirmMessage}
           </Typography>
