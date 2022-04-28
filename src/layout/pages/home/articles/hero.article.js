@@ -85,13 +85,15 @@ const StyledContentContainer = styled(ContentContainer)`
   }
 
   && .hero-next a {
-    height: 100px;
+    height: 100%;
     width: 100%;
+    max-height: 100px;
     max-width: 120px;
     background-color: rgba(0,0,0,0.75);
     transition: max-width 260ms ease-in-out;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("lg")} {
+      max-height: 64px;
       max-width: 64px;
       background-color: rgba(0,0,0,0.65);
     }
@@ -99,6 +101,11 @@ const StyledContentContainer = styled(ContentContainer)`
 
   && .hero-next a:hover {
     max-width: 130px;
+
+    ${theme.breakpoints.down("lg")} {
+      max-height: 62px;
+      max-width: 62px;
+    }
   }
 
   && .hero-next a:active:hover {
