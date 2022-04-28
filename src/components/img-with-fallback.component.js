@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import Image from "next/image";
 
 // NextJS Support for .avif format
-// starts in v. 12
+// starts in v. 12 https://nextjs.org/docs/api-reference/next/image
 
 const ImgWithFallback = ({
   className,
@@ -29,12 +29,12 @@ const ImgWithFallback = ({
     setError(true);
   };
 
+  // We can use the event object to throttle calls to onLoad
   const enhanceOnLoad = (e) => {
     onLoad();
   };
-
+  // We can this function to set height/width, for example
   const enhanceOnLoadComplete = (e) => {
-    //console.log(e);
     onLoadingComplete();
   };
 

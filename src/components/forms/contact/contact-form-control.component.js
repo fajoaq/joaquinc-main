@@ -59,6 +59,20 @@ const initialValues = {
   source: "Website Lead Form",
 };
 
+const ToggleFormOnSubmit = () => {
+  // hide all form inputs on page after submission
+  // show confirmation message
+  const elmsToDisable = document.querySelectorAll(".form-disable-on-submit");
+  const elmsToEnable = document.querySelectorAll(".form-enable-on-submit");
+
+  for (let i = 0; i < elmsToDisable.length; i++) {
+    elmsToDisable[i].classList.add("submitted");
+  }
+  for (let i = 0; i < elmsToEnable.length; i++) {
+    elmsToEnable[i].classList.add("submitted");
+  }
+};
+
 const ContactForm = forwardRef(
   (
     {
@@ -71,8 +85,8 @@ const ContactForm = forwardRef(
     },
     ref
   ) => {
-    const [formActivated, setFormActivated] = useState(false);
-    const [validationSchema, setValidationSchema] = useState({});
+    const [formActivated, setFormActivated] = useState(false); // activate form on input click
+    const [validationSchema, setValidationSchema] = useState({}); // create and set validatin schema
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
@@ -89,6 +103,8 @@ const ContactForm = forwardRef(
       }, thymeCount);
 
       try {
+        // We dynamically pull in these libraries to keep them
+        // out of the initial bundle
         const { createFormSchema } = await import(
           "../utils/create-form-schema.utils"
         );
@@ -102,13 +118,12 @@ const ContactForm = forwardRef(
     };
 
     const handleSubmit = async (values) => {
-      if (submitted === true) return;
+      if (submitted === true || formEnabled.current == false) return;
 
       try {
-        if (formEnabled.current == false) return;
-
         clearTimeout(thymeRef.current);
-
+        // We dynamically pull in these libraries to keep them
+        // out of the initial bundle
         const { post } = await (await import("axios")).default;
         const { sanitizeForm } = await import("../utils/sanitize-form.utils");
         const sanitizedValues = await sanitizeForm(values);
@@ -121,20 +136,7 @@ const ContactForm = forwardRef(
 
         if (onSubmit) onSubmit();
         else {
-          // hide all form form inputs on page
-          const elmsToDisable = document.querySelectorAll(
-            ".form-disable-on-submit"
-          );
-          const elmsToEnable = document.querySelectorAll(
-            ".form-enable-on-submit"
-          );
-
-          for (let i = 0; i < elmsToDisable.length; i++) {
-            elmsToDisable[i].classList.add("submitted");
-          }
-          for (let i = 0; i < elmsToEnable.length; i++) {
-            elmsToEnable[i].classList.add("submitted");
-          }
+          ToggleFormOnSubmit();
         }
       } catch (error) {
         console.log(error);

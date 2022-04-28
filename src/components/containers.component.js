@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 
-// receives classname from articledata mapping
+// receives classname from articleData mapping
 const ContentContainer = styled("section")`
   grid-column: 1;
   grid-row: 1;

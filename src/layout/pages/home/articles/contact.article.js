@@ -27,6 +27,7 @@ const ContactArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           Contact Me
         </Typography>
         <br />
+
         <ContactForm
           idBase="contact-article-form"
           className="contact-article-form"

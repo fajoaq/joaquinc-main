@@ -198,12 +198,3 @@ const HeroArticle = forwardRef(({ onClick, sharedClass, ...rest }, ref) => (
 HeroArticle.displayName = "HeroArticle";
 
 export { HeroArticle };
-
-/* 
-<ImgWithFallback
-                className="go-next-img"
-                priority="true"
-                src="/static/go-next.svg"
-                alt="click to go to next article"
-              />
-*/

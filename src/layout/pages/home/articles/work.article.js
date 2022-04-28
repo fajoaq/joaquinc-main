@@ -12,12 +12,11 @@ import {
   Article,
 } from "../../../../components/containers.component";
 
-const panelGap = 5;
-const fadedBlack = "rgba(0,0,0,0.5)";
-
 const text = `
   Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
 `;
+
+const panelGap = 5;
 
 //  We can pass a prop to the whole template literal
 // by destructuring it at the top and returning another
@@ -31,7 +30,7 @@ const CaseStudyContainer = styled(Grid)`
 
   && .case-study {
     display: grid;
-    background-color: ${theme.palette.background.light};
+    background-color: ${theme.palette.background.light}E6;
   }
 
   && .case-study.wip {
@@ -40,7 +39,6 @@ const CaseStudyContainer = styled(Grid)`
 
   && .case-study.wip .external-link-container {
     align-items: center;
-    border: solid 1px lightgray;
   }
 
   && .external-link-container {
@@ -50,7 +48,7 @@ const CaseStudyContainer = styled(Grid)`
     display: flex;
     aspect-ratio: 4 / 3;
     justify-content: center;
-    color: ${fadedBlack};
+    color: ${theme.palette.text.main}B3;
   }
 
   && .external-link-container img {
@@ -70,7 +68,7 @@ const CaseStudyContainer = styled(Grid)`
     text-decoration: none;
     line-height: 2.5em;
     color: white;
-    background-color: ${fadedBlack};
+    background-color: ${theme.palette.text.main}A8;
   }
 
   && .internal-link__icon {
@@ -87,7 +85,7 @@ const CaseStudyContainer = styled(Grid)`
   }
 `}
 `;
-
+// link to case study website
 const ExternalLink = ({ externalLink, imgSource, fallback, alt, ...rest }) => (
   <Box
     component="a"
@@ -110,7 +108,7 @@ const ExternalLink = ({ externalLink, imgSource, fallback, alt, ...rest }) => (
     )}
   </Box>
 );
-
+// link to internal page, i.e blog page
 const InternalLink = ({ internalLink, ...rest }) => (
   <Box component="a" href={internalLink} className="internal-link" {...rest} />
 );
@@ -149,10 +147,12 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
           </Typography>
           <br />
         </Grid>
+
         <Grid item className="article-text">
           <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
             {text}
           </Typography>
+          <br />
           <br />
         </Grid>
 

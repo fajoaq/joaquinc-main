@@ -1,6 +1,8 @@
 import { theme } from "./theme";
-
 import { textDropShadow } from "./utils/text-shadow";
+
+// globalStyles is not part of MUI
+// must import theme here to access properties
 
 const globalStyles = `
   html {
@@ -70,7 +72,7 @@ const globalStyles = `
     opacity: 1;
   }
 
-  && .article-title, .artitle-text {
+  && .article-title, .article-text {
     ${textDropShadow(0.07, `255,255,255`, 1)}
   }
 `;

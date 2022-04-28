@@ -1,3 +1,8 @@
+// these are functions, not strictly CSS, to be imported an used inside
+// styled components
+
+// color MUST be a template literal
+
 const textShadow = (size = 0.09, color = `255,255,255`, alpha = 0.88) => `
 text-shadow: 0 ${size}em rgba(${color},${alpha}),
     -${size}em 0 rgba(${color},${alpha}),

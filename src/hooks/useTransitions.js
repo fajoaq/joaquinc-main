@@ -2,20 +2,20 @@ import { useEffect, useState, createRef, useRef } from "react";
 
 import { constants } from "../styles/theme";
 
-const reactRoot = createRef(undefined);
-const mainRef = createRef(undefined);
-const previouslyActive = createRef(undefined);
-const newIndex = createRef(0);
+const reactRoot = createRef(undefined); // the root nextjs element
+const mainRef = createRef(undefined); // main element
+const previouslyActive = createRef(undefined); // used to aid transition to new element
+const newIndex = createRef(0); // capture nav element index when transitinoning
 
 const useTransitions = () => {
-  const childList = useRef([]);
-  const [activeArticleIndex, setActiveArticleIndex] = useState(undefined);
-  const [mainContainerHeight, setMainHeight] = useState(undefined);
-  const [transition, setTransition] = useState(false);
-  const [childTransition, setChildTransition] = useState(false);
+  const childList = useRef([]); // list of elements to transition between
+  const [activeArticleIndex, setActiveArticleIndex] = useState(undefined); // nav/article index
+  const [mainContainerHeight, setMainHeight] = useState(undefined); // holds max-witdth/height
+  const [transition, setTransition] = useState(false); // toggles parent transition (height)
+  const [childTransition, setChildTransition] = useState(false); // toggles active childlist elements
 
   const removeAllListeners = () => {
-    // remove listeners
+    // this function should contain all listeners invoked by other functions
     mainRef.current.removeEventListener("transitionend", handleResizeDone);
     previouslyActive.current.removeEventListener(
       "transitionend",
@@ -25,7 +25,6 @@ const useTransitions = () => {
   };
   //
   const handleResizeDone = () => {
-    //console.log("handleResizeDone");
     removeAllListeners();
 
     setActiveArticleIndex(newIndex.current);
@@ -37,7 +36,6 @@ const useTransitions = () => {
   };
   //
   const handleResize = () => {
-    //console.log("handleResize");
     removeAllListeners();
     mainRef.current.addEventListener("transitionend", handleResizeDone);
 
@@ -46,7 +44,6 @@ const useTransitions = () => {
   };
   //
   const handleChildExited = () => {
-    //console.log("handleChildExited");
     removeAllListeners();
 
     mainRef.current.addEventListener("transitionend", handleResizeDone);
@@ -54,8 +51,7 @@ const useTransitions = () => {
   };
   //
   const handleNavClick = (index) => {
-    //console.log("handleNavClick");
-    if (index === activeArticleIndex) return;
+    if (index === activeArticleIndex) return; // clicked the same nav button
 
     reactRoot.current.classList.toggle("transition");
     previouslyActive.current = childList.current[newIndex.current].current;

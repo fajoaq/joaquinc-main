@@ -80,6 +80,7 @@ const NavHeaderLayout = ({
           <article.Icon fontSize="inherit" />
         </Grid>
       ))}
+      {/* link to external site, not to an article */}
       <Grid
         item
         component="a"

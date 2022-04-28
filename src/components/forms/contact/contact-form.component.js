@@ -155,6 +155,7 @@ const ContactFormComponent = ({
                 aria-label="project information"
               />
             </Grid>
+
             <SubmissionContainer container item justifyContent="start">
               <StyledButton
                 color="text"

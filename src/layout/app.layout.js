@@ -68,6 +68,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
         fontSize={{ xs: "3rem", md: "4rem" }}
         color="text.main"
       />
+      {/* CSSTransition adds classnames to components based on their state */}
       <CSSTransition
         nodeRef={mainRef}
         in={transition}
@@ -76,9 +77,11 @@ const AppLayout = ({ articlesData, ...rest }) => {
       >
         <main ref={mainRef}>
           {articlesData.map(({ Article }, index) => {
+            // create a new Ref, add it to child list for tracking
             const id = index === 0 ? "initial" : null;
             childList.current[index] = createRef();
 
+            // CSSTransition adds classnames to components based on their state
             return (
               <CSSTransition
                 key={`main-article-${index}`}
@@ -89,8 +92,9 @@ const AppLayout = ({ articlesData, ...rest }) => {
                   index === activeArticleIndex ? "active" : "inactive"
                 }
               >
-                {/* pass onclick funtion to hero (index 0) article  */}
-                {/* with next index in array (index 1) */}
+                {/* ref is passed to the Article (child) component, sharedClass keeps container in sync */}
+                {/* pass onclick function to hero (here, index 0) article  */}
+                {/* with next index in array (here, index 1) */}
                 <Article
                   ref={childList.current[index]}
                   onClick={index === 0 ? () => handleNavClick(1) : null}
