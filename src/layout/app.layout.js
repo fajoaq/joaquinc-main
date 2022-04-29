@@ -19,6 +19,7 @@ const DimensionsContainer = styled(Container)`
   align-items: center;
   min-height: 100vh;
   padding: 4em 0;
+  transition: opacity 1s ease-in-out;
 
   && .transition-enter-done {
     transform: translate3d(0, 0, 0);

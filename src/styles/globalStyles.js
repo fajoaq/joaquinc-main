@@ -4,6 +4,8 @@ import { textDropShadow } from "./utils/text-shadow";
 // globalStyles is not part of MUI
 // must import theme here to access properties
 
+// we added transform: translate3d(0,0,0) to coax the
+// browser intro using gpu acceleration
 const globalStyles = `
   html {
     box-sizing: border-box;
@@ -55,6 +57,10 @@ const globalStyles = `
     transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
   }
 
+  && section > article {
+    transform: translate3d(0, 0, 0);
+  }
+
   && section > article > div {
     padding: 3.5em 2.5em 3.5em 2.5em;
 
@@ -69,6 +75,8 @@ const globalStyles = `
   }
 
   && article.active-enter-done {
+    transform: translate3d(0, 0, 0);
+
     opacity: 1;
   }
 
