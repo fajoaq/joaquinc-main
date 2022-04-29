@@ -11,7 +11,6 @@ import { constants } from "../styles/theme";
 // we added transform: translate3d(0,0,0) to coax the
 // browser intro using gpu acceleration
 const DimensionsContainer = styled(Container)`
-  
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -20,10 +19,14 @@ const DimensionsContainer = styled(Container)`
   align-items: center;
   min-height: 100vh;
   padding: 4em 0;
-  tranisition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 
   && .transition-enter-done {
-    transform: translate3d(0,0,0)
+    transform: translate3d(0, 0, 0);
+  }
+
+  && .transition-enter-done {
+    transform: translate3d(0, 0, 0);
 
     min-height: ${({ theme, dimensions }) =>
       dimensions == undefined
