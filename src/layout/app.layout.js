@@ -8,7 +8,10 @@ import { Footer } from "../components/footer.component";
 import { useTransitions } from "../hooks/useTransitions";
 import { constants } from "../styles/theme";
 
+// we added transform: translate3d(0,0,0) to coax the
+// browser intro using gpu acceleration
 const DimensionsContainer = styled(Container)`
+  
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -19,6 +22,8 @@ const DimensionsContainer = styled(Container)`
   padding: 4em 0;
 
   && .transition-enter-done {
+    transform: translate3d(0,0,0)
+
     min-height: ${({ theme, dimensions }) =>
       dimensions == undefined
         ? theme.constants.mainContainerHeight
