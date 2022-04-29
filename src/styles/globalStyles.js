@@ -4,8 +4,6 @@ import { textDropShadow } from "./utils/text-shadow";
 // globalStyles is not part of MUI
 // must import theme here to access properties
 
-// we added transform: translate3d(0,0,0) to coax the
-// browser intro using gpu acceleration
 const globalStyles = `
   html {
     box-sizing: border-box;
@@ -27,6 +25,7 @@ const globalStyles = `
     -moz-osx-font-smoothing: grayscale;
     color: ${theme.palette.text.main};
     background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(90,92,106,1) 0%, rgba(32,45,58,1) 81.3% );
+    background-attachment: fixed;
   }
 
   & a {
@@ -45,20 +44,32 @@ const globalStyles = `
     pointer-events: none;
   }
 
+  && nav {
+    margin-top: 7rem;
+
+    ${theme.breakpoints.down("sm")} {
+      margin-top: 2rem;
+    }
+  }
+
   && main {
+    grid-row: 2;
+    grid-column: 1;
     display: grid;
     position: relative;
-    min-height: 0;
-    max-height: 0;
-    width: 100%;
     overflow: hidden;
+    width: 100%;
+    opacity: 0.9;
     background-color: ${theme.palette.background.main};
-    box-shadow:  0 10px 6px -6px rgb(0 0 0 / 35%);
-    transition:  min-height 500ms ease-in-out, max-height 500ms ease-in-out;
+  }
+
+  && section.active {
+    pointer-events: all;
+    visibility: visible;
   }
 
   && section > article {
-    transform: translate3d(0, 0, 0);
+    min-height: ${theme.constants.minContainerHeight}px;
   }
 
   && section > article > div {
@@ -69,14 +80,7 @@ const globalStyles = `
     }
   }
 
-  && section.active {
-    pointer-events: all;
-    visibility: visible;
-  }
-
   && article.active-enter-done {
-    transform: translate3d(0, 0, 0);
-
     opacity: 1;
   }
 
@@ -86,3 +90,7 @@ const globalStyles = `
 `;
 
 export { globalStyles };
+
+/* 
+    box-shadow: 0 10px 6px -6px rgb(0 0 0 / 35%);
+*/

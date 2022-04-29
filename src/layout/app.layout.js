@@ -4,50 +4,53 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 
 import { NavHeaderLayout } from "./nav-header.layout";
+import { BackDrop } from "../components/back-drop.component";
 import { Footer } from "../components/footer.component";
 import { useTransitions } from "../hooks/useTransitions";
 import { constants } from "../styles/theme";
 
-// we added transform: translate3d(0,0,0) to coax the
-// browser intro using gpu acceleration
+// we added transform: scaled3d for the hardware acceleration
 const DimensionsContainer = styled(Container)`
+  ${({ theme, height }) => `
   grid-column: 1;
   grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  position: relative;
+  align-content: start;
   min-height: 100vh;
-  padding: 4em 0;
-  transition: opacity 1s ease-in-out;
 
-  && .transition-enter-done {
-    transform: translate3d(0, 0, 0);
+
+  && main {
+    transform-origin: top center;
+    transform: scale3d(1, 0, 1);
+    transition: opacity ${constants.navTimeout}ms ease-in,
+      transform ${constants.navTimeout}ms ease-in;
+
+    min-height: ${
+      height < theme.constants.minContainerHeight
+        ? theme.constants.minContainerHeight
+        : height
+    }px;
+
+    max-height: ${
+      height < theme.constants.minContainerHeight
+        ? theme.constants.minContainerHeight
+        : height
+    }px;
   }
 
-  && .transition-enter-done {
-    transform: translate3d(0, 0, 0);
-
-    min-height: ${({ theme, dimensions }) =>
-      dimensions == undefined
-        ? theme.constants.mainContainerHeight
-        : dimensions}px;
-
-    max-height: ${({ theme, dimensions }) =>
-      dimensions == undefined
-        ? theme.constants.mainContainerHeight
-        : dimensions}px;
+  && main.transition-enter-done {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+    transition: opacity ${constants.navTimeout}ms ease-out,
+    transform ${constants.navTimeout}ms ease-out;
   }
 
-  ${({ theme }) => theme.breakpoints.down("lg")} {
+  ${theme.breakpoints.down("lg")} {
     padding-left: 12px;
     padding-right: 12px;
-    justify-content: start;
   }
-
-  ${({ theme }) => theme.breakpoints.down("sm")} {
-    padding-top: 0.2em;
-  }
+`}
 `;
 
 const AppLayout = ({ articlesData, ...rest }) => {
@@ -66,7 +69,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
       id="dimensions-container"
       maxWidth="lg"
       disableGutters
-      dimensions={mainContainerHeight}
+      height={mainContainerHeight}
       {...rest}
     >
       <NavHeaderLayout
@@ -116,6 +119,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
           })}
         </main>
       </CSSTransition>
+      <BackDrop />
       <Footer />
     </DimensionsContainer>
   );
