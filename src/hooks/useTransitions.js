@@ -17,41 +17,48 @@ const useTransitions = () => {
   const removeAllListeners = () => {
     // this function should contain all listeners invoked by other functions
     mainRef.current.removeEventListener("transitionend", handleResizeDone);
+    mainRef.current.removeEventListener("transitionend", handleParentExited);
     previouslyActive.current.removeEventListener(
       "transitionend",
       handleChildExited
     );
-    mainRef.current.removeEventListener("transitionend", handleResizeDone);
   };
   //
-  const handleResizeDone = () => {
+  const handleResizeDone = (e) => {
+    if (e.target !== mainRef.current) return;
     removeAllListeners();
 
     setActiveArticleIndex(newIndex.current);
     setChildTransition(true);
+    setTransition(true);
 
     setTimeout(() => {
       reactRoot.current.classList.toggle("transition");
     }, constants.navTimeout);
   };
   //
-  const handleResize = () => {
+  const handleParentExited = (e) => {
+    if (e.target !== mainRef.current) return;
     removeAllListeners();
-    mainRef.current.addEventListener("transitionend", handleResizeDone);
 
     const { offsetHeight } = childList.current[newIndex.current].current;
+    mainRef.current.addEventListener("transitionend", handleResizeDone);
+
     setMainHeight(offsetHeight);
+    setTransition(true);
   };
   //
-  const handleChildExited = () => {
+  const handleChildExited = (e) => {
+    if (e.target !== previouslyActive.current) return;
     removeAllListeners();
 
-    mainRef.current.addEventListener("transitionend", handleResizeDone);
-    handleResize();
+    mainRef.current.addEventListener("transitionend", handleParentExited);
+    setTransition(false);
   };
   //
   const handleNavClick = (index) => {
     if (index === activeArticleIndex) return; // clicked the same nav button
+    removeAllListeners();
 
     reactRoot.current.classList.toggle("transition");
     previouslyActive.current = childList.current[newIndex.current].current;

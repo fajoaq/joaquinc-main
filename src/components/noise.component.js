@@ -8,7 +8,7 @@ const StyledDiv = styled("div")`
   height: 100%;
   width: 100%;
   opacity: 0.16;
-  z-index: -1;
+  z-index: -10;
   background: url(/static/site/grain.png), url(/static/site/bg-turbulence.svg);
   background-size: cover;
   background-repeat: no-repeat;

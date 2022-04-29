@@ -15,7 +15,7 @@ import {
 } from "./colors";
 
 const constants = {
-  minContainerHeight: 532,
+  minContainerHeight: 533,
   navTimeout: 260,
 };
 
