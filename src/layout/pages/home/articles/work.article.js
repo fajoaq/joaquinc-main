@@ -12,10 +12,6 @@ import {
   Article,
 } from "../../../../components/containers.component";
 
-const text = `
-  Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia luctus elit eget interdum.
-`;
-
 const panelGap = 5;
 
 //  We can pass a prop to the whole template literal
@@ -141,22 +137,29 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
   <ContentContainer {...rest} className={sharedClass}>
     <Article container component="article" ref={ref}>
       <Grid container>
-        <Grid item className="article-title">
+        <Grid item className="article-title" xs={12}>
           <Typography component="h2" variant="h3">
             Work
           </Typography>
           <br />
         </Grid>
 
-        <Grid item className="article-text">
+        <Grid item className="article-text" xs={12} md={10} lg={9}>
           <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
-            {text}
+            &#x1F604; Hi! My name is Francis and I am a{" "}
+            <strong>Developing Web Developer</strong>. Here you will find some
+            of my best work, along with articles documenting my journey. Reach
+            out if you have questions, want to{" "}
+            <a href="https://github.com/fajoaq" target="_blank">
+              learn more
+            </a>
+            , or just want to say hello. &#x1F44B;
           </Typography>
           <br />
           <br />
         </Grid>
 
-        <CaseStudyContainer item gap={panelGap}>
+        <CaseStudyContainer item gap={panelGap} xs={12}>
           <CaseStudy
             imgSource="/static/work/pageprimer-thumb.avif"
             fallback="/static/work/pageprimer-thumb.webp"

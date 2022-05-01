@@ -28,9 +28,13 @@ const globalStyles = `
     background-attachment: fixed;
   }
 
-  & a {
+  && a {
     cursor: pointer;
     color:  ${theme.palette.text.main};
+  }
+
+  && .article-text a {
+    color:  ${theme.palette.text.link};
   }
 
   && #__next {
