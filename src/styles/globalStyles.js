@@ -31,6 +31,7 @@ const globalStyles = `
   && a {
     cursor: pointer;
     color:  ${theme.palette.text.main};
+    text-decoration: none;
   }
 
   && .article-text a {
