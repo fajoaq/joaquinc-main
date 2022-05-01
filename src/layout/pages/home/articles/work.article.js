@@ -1,4 +1,6 @@
 import { forwardRef } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -105,13 +107,25 @@ const ExternalLink = ({ externalLink, imgSource, fallback, alt, ...rest }) => (
   </Box>
 );
 // link to internal page, i.e blog page
-const InternalLink = ({ internalLink, ...rest }) => (
-  <Box component="a" href={internalLink} className="internal-link" {...rest} />
-);
+const InternalLink = ({ internalLink, ...rest }) => {
+  const router = useRouter();
+  const handleClick = (e) => {
+    e.preventDefault();
+    //console.log(router.basePath);
+  };
+  return (
+    <Link
+      href={router.pathname + internalLink}
+      onClick={handleClick}
+      className="internal-link"
+      {...rest}
+    />
+  );
+};
 
 const CaseStudy = ({
   externalLink = "https://google.com",
-  internalLink = "/",
+  internalLink = "blog",
   alt = "case study",
   imgSource,
   fallback,
@@ -164,26 +178,17 @@ const WorkArticle = forwardRef(({ sharedClass, ...rest }, ref) => (
             imgSource="/static/work/pageprimer-thumb.avif"
             fallback="/static/work/pageprimer-thumb.webp"
             externalLink="https://pageprimer.com"
+            internalLink="blog/pageprimer"
             alt="PagePrimer Web Design Site."
           >
-            <ForumIcon className="internal-link__icon" />
             Coming Soon: Building PagePrimer
           </CaseStudy>
 
-          <CaseStudy>
-            <ForumIcon className="internal-link__icon" />
-            Coming Soon: Building a Blog
-          </CaseStudy>
+          <CaseStudy>Coming Soon: Building a Blog</CaseStudy>
 
-          <CaseStudy>
-            <ForumIcon className="internal-link__icon" />
-            Coming Soon: Building a Database
-          </CaseStudy>
+          <CaseStudy>Coming Soon: Building a Database</CaseStudy>
 
-          <CaseStudy>
-            <ForumIcon className="internal-link__icon" />
-            Coming Soon: Fetching w/ Prisma
-          </CaseStudy>
+          <CaseStudy>Coming Soon: Fetching w/ Prisma</CaseStudy>
         </CaseStudyContainer>
       </Grid>
     </Article>

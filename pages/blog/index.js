@@ -1,14 +1,20 @@
 import { Fragment } from "react";
 import Head from "next/head";
 
-import { AppLayout } from "../src/layout";
+import { AppLayout } from "../../src/layout";
 import {
   navButtons,
   navConstants,
-} from "../src/components/nav-buttons.component";
-import { HeroArticle, WorkArticle, ContactArticle } from "../src/layout/pages";
-import { SEO } from "../src/seo/seo";
+} from "../../src/components/nav-buttons.component";
+import {
+  HeroArticle,
+  BlogArticle,
+  ContactArticle,
+} from "../../src/layout/pages";
+import { SEO } from "../../src/seo/seo";
 
+// we're replacing work article with blog article
+// in the articles array
 const articlesData = [
   {
     Article: HeroArticle,
@@ -16,9 +22,9 @@ const articlesData = [
     ariaLabel: "Home",
   },
   {
-    Article: WorkArticle,
-    Icon: navButtons[navConstants.work],
-    ariaLabel: "Portfolio",
+    Article: BlogArticle,
+    Icon: navButtons[navConstants.blog],
+    ariaLabel: "Blog",
   },
   {
     Article: ContactArticle,
@@ -27,8 +33,7 @@ const articlesData = [
   },
 ];
 
-const Index = (props) => {
-  console.log(props);
+const Index = () => {
   return (
     <Fragment>
       {/* route specific meta data */}
@@ -36,11 +41,11 @@ const Index = (props) => {
         <meta property="description" content={SEO.SITE_DESCRIPTION} />
         <meta name="description" content={SEO.SITE_DESCRIPTION} />
         <meta property="image" content={SEO.SITE_IMAGE} />
-        <meta property="title" content={SEO.SITE_TITLE} />
-        <title>{SEO.SITE_TITLE}</title>
+        <meta property="title" content={"Blog | " + SEO.SITE_TITLE} />
+        <title>{"Blog | " + SEO.SITE_TITLE}</title>
       </Head>
 
-      <AppLayout articlesData={articlesData} />
+      <AppLayout articlesData={articlesData} articleIndex={navConstants.blog} />
     </Fragment>
   );
 };

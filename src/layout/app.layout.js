@@ -53,7 +53,7 @@ const DimensionsContainer = styled(Container)`
 `}
 `;
 
-const AppLayout = ({ articlesData, ...rest }) => {
+const AppLayout = ({ articlesData, articleIndex = 0, ...rest }) => {
   const [
     childTransition,
     handleNavClick,
@@ -62,7 +62,7 @@ const AppLayout = ({ articlesData, ...rest }) => {
     activeArticleIndex,
     mainContainerHeight,
     transition,
-  ] = useTransitions();
+  ] = useTransitions(articleIndex);
 
   return (
     <DimensionsContainer

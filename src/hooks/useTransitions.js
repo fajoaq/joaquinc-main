@@ -7,7 +7,7 @@ const mainRef = createRef(undefined); // main element
 const previouslyActive = createRef(undefined); // used to aid transition to new element
 const newIndex = createRef(0); // capture nav element index when transitinoning
 
-const useTransitions = () => {
+const useTransitions = (defaultArticleIndex) => {
   const childList = useRef([]); // list of elements to transition between
   const [activeArticleIndex, setActiveArticleIndex] = useState(undefined); // nav/article index
   const [mainContainerHeight, setMainHeight] = useState(undefined); // holds max-witdth/height
@@ -27,8 +27,11 @@ const useTransitions = () => {
   const handleResizeDone = (e) => {
     if (e.target !== mainRef.current) return;
     removeAllListeners();
-
-    setActiveArticleIndex(newIndex.current);
+    // initial setup ends here, we set index to the default
+    // if activeArticleIndex is still undefined (first render)
+    setActiveArticleIndex(
+      activeArticleIndex === undefined ? defaultArticleIndex : newIndex.current
+    );
     setChildTransition(true);
     setTransition(true);
 
