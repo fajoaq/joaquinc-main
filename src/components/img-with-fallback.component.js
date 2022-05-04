@@ -33,7 +33,7 @@ const ImgWithFallback = ({
   const enhanceOnLoad = (e) => {
     onLoad();
   };
-  // We can this function to set height/width, for example
+  // We can use this function to set height/width, for example
   const enhanceOnLoadComplete = (e) => {
     onLoadingComplete();
   };

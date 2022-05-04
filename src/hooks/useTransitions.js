@@ -1,101 +1,137 @@
-import { useEffect, useState, createRef, useRef } from "react";
+import { useRouter } from "next/router";
+import { useEffect, createRef, useState } from "react";
 
-import { constants } from "../styles/theme";
+import { useTransitionState } from "../context/transition.context";
+import { TRANSITION_CLASS, constants } from "../constants/constants";
 
-const reactRoot = createRef(undefined); // the root nextjs element
-const mainRef = createRef(undefined); // main element
-const previouslyActive = createRef(undefined); // used to aid transition to new element
-const newIndex = createRef(0); // capture nav element index when transitinoning
+const newRoute = createRef();
 
-const useTransitions = (defaultArticleIndex) => {
-  const childList = useRef([]); // list of elements to transition between
-  const [activeArticleIndex, setActiveArticleIndex] = useState(undefined); // nav/article index
-  const [mainContainerHeight, setMainHeight] = useState(undefined); // holds max-witdth/height
-  const [transition, setTransition] = useState(false); // toggles parent transition (height)
-  const [childTransition, setChildTransition] = useState(false); // toggles active childlist elements
+const STATE_ENTER = {
+  foregroundTransition: TRANSITION_CLASS.initial,
+};
+
+const STATE_INITIAL = {
+  ...STATE_ENTER,
+};
+
+const STATE_ENTER_COMPLETE = {
+  foregroundTransition: `${TRANSITION_CLASS.initial} ${TRANSITION_CLASS.exited}`,
+  contentTransition: TRANSITION_CLASS.entered,
+  backgroundTransition: `${TRANSITION_CLASS.initial} ${TRANSITION_CLASS.entered}`,
+};
+
+const STATE_EXIT = {
+  foregroundTransition: TRANSITION_CLASS.initial,
+  contentTransition: TRANSITION_CLASS.exited,
+  backgroundTransition: `${TRANSITION_CLASS.initial} ${TRANSITION_CLASS.exited}`,
+};
+
+const useTransitions = () => {
+  const router = useRouter();
+  const [transitionState, setTransitionState] = useTransitionState();
+  const [setupDone, setSetupDone] = useState(false);
 
   const removeAllListeners = () => {
-    // this function should contain all listeners invoked by other functions
-    mainRef.current.removeEventListener("transitionend", handleResizeDone);
-    mainRef.current.removeEventListener("transitionend", handleParentExited);
-    previouslyActive.current.removeEventListener(
+    // this function should remove all listeners invoked by other functions
+    transitionState.foregroundRef.current?.removeEventListener(
       "transitionend",
-      handleChildExited
+      handleResizeDone
+    );
+    transitionState.contentRef.current.removeEventListener(
+      "transitionend",
+      handleContentExited
+    );
+    transitionState.foregroundRef.current?.removeEventListener(
+      "transitionend",
+      handleSetupDone
     );
   };
   //
   const handleResizeDone = (e) => {
-    if (e.target !== mainRef.current) return;
-    removeAllListeners();
-    // initial setup ends here, we set index to the default
-    // if activeArticleIndex is still undefined (first render)
-    setActiveArticleIndex(
-      activeArticleIndex === undefined ? defaultArticleIndex : newIndex.current
-    );
-    setChildTransition(true);
-    setTransition(true);
+    if (
+      e.target.classList.contains(constants.classNames.mainTransition) === false
+    )
+      return; // bubbling event check
 
-    setTimeout(() => {
-      reactRoot.current.classList.toggle("transition");
-    }, constants.navTimeout);
+    removeAllListeners();
+
+    setTransitionState((prev) => ({
+      ...prev,
+      ...STATE_ENTER_COMPLETE,
+    }));
   };
   //
-  const handleParentExited = (e) => {
-    if (e.target !== mainRef.current) return;
+  const handleContentExited = (e) => {
+    if (
+      e.target.classList.contains(constants.classNames.mainTransition) === false
+    )
+      return; // bubbling event check
+
     removeAllListeners();
 
-    const { offsetHeight } = childList.current[newIndex.current].current;
-    mainRef.current.addEventListener("transitionend", handleResizeDone);
-
-    setMainHeight(offsetHeight);
-    setTransition(true);
+    router.push(newRoute.current, undefined, { scroll: false });
   };
   //
-  const handleChildExited = (e) => {
-    if (e.target !== previouslyActive.current) return;
-    removeAllListeners();
-
-    mainRef.current.addEventListener("transitionend", handleParentExited);
-    setTransition(false);
-  };
-  //
-  const handleNavClick = (index) => {
-    if (index === activeArticleIndex) return; // clicked the same nav button
-    removeAllListeners();
-
-    reactRoot.current.classList.toggle("transition");
-    previouslyActive.current = childList.current[newIndex.current].current;
-    previouslyActive.current.addEventListener(
+  const handleClick = (route) => {
+    newRoute.current = route; // capture the new route
+    transitionState.contentRef.current.addEventListener(
       "transitionend",
-      handleChildExited
+      handleContentExited
     );
 
-    newIndex.current = index;
-    setChildTransition(false);
+    setTransitionState((prev) => ({
+      ...prev,
+      ...STATE_EXIT,
+    }));
   };
   //
-  // initial setup
   useEffect(() => {
-    reactRoot.current = document.getElementById("__next");
-    mainRef.current.addEventListener("transitionend", handleResizeDone);
-    previouslyActive.current = childList.current[0].current;
-    const { offsetHeight } = previouslyActive.current;
-    newIndex.current = 0;
+    // this useffect runs on new content height (new route)
+    // is this the initial render ?
+    if (!setupDone) return;
 
-    reactRoot.current.classList.toggle("transition");
-    setMainHeight(offsetHeight);
-    setTransition(true);
+    transitionState.foregroundRef.current?.addEventListener(
+      "transitionend",
+      handleResizeDone
+    );
+
+    setTransitionState((prev) => ({
+      ...prev,
+      ...STATE_ENTER,
+    }));
+  }, [transitionState.mainContainerHeight]);
+  //
+  //
+  // setup (initial render)
+  const handleSetupDone = (e) => {
+    if (
+      e.target.classList.contains(constants.classNames.mainTransition) === false
+    )
+      return; // bubbling event check
+
+    removeAllListeners();
+
+    setTransitionState((prev) => ({
+      ...prev,
+      ...STATE_ENTER_COMPLETE,
+    }));
+    setSetupDone(true);
+  };
+
+  useEffect(() => {
+    transitionState.foregroundRef.current?.addEventListener(
+      "transitionend",
+      handleSetupDone
+    );
+
+    setTransitionState((prev) => ({
+      ...prev,
+      ...STATE_INITIAL,
+      navigate: handleClick,
+    }));
   }, []);
 
-  return [
-    childTransition,
-    handleNavClick,
-    mainRef,
-    childList,
-    activeArticleIndex,
-    mainContainerHeight,
-    transition,
-  ];
+  return [handleClick];
 };
 
 export { useTransitions };

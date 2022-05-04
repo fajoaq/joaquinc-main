@@ -7,6 +7,7 @@ import {
   golden,
   carbon,
   linkBlue,
+  linkVisited,
   almostWhite,
   nightGrey,
   errorRed,
@@ -14,10 +15,7 @@ import {
   twitterBlue,
 } from "./colors";
 
-const constants = {
-  minContainerHeight: 533,
-  navTimeout: 260,
-};
+import { constants } from "../constants/constants";
 
 const breakpoints = {
   values: {
@@ -34,6 +32,7 @@ const palette = {
     main: carbon,
     light: white,
     link: linkBlue,
+    linkVisite: linkVisited,
     deselected: white,
   },
   primary: {

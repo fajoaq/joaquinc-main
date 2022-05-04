@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import { v4 } from "uuid";
 
-import { SEO } from "../src/seo/seo";
+import { SEO } from "../src/constants/seo";
 import { theme } from "../src/styles/theme";
 import { createEmotionCache } from "../src/styles/createEmotionCache";
 

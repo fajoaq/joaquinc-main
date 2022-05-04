@@ -1,3 +1,6 @@
-import { HeroArticle, WorkArticle, ContactArticle, BlogArticle } from "./home";
+import { HeroArticle } from "./hero.page";
+import { WorkArticle } from "./work.page";
+import { ContactArticle } from "./contact.page";
+import { BlogArticle } from "./blog.page";
 
 export { HeroArticle, WorkArticle, ContactArticle, BlogArticle };

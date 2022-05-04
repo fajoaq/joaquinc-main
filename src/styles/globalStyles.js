@@ -1,4 +1,5 @@
 import { theme } from "./theme";
+import { constants } from "../constants/constants";
 import { textDropShadow } from "./utils/text-shadow";
 
 // globalStyles is not part of MUI
@@ -28,33 +29,25 @@ const globalStyles = `
     background-attachment: fixed;
   }
 
-  && a {
-    cursor: pointer;
-    color:  ${theme.palette.text.main};
-    text-decoration: none;
-  }
-
-  && .article-text a {
-    color:  ${theme.palette.text.link};
-  }
-
   && #__next {
     display: grid;
     position: relative;
+    align-content: start;
+    min-height: 100vh;
     height: 100%;
-    pointer-events: all;
-  }
-
-  && #__next.transition { 
-    pointer-events: none;
   }
 
   && nav {
     margin-top: 7rem;
+    pointer-events: none;
 
     ${theme.breakpoints.down("sm")} {
       margin-top: 2rem;
     }
+  }
+
+  && nav.active {
+    pointer-events: all;
   }
 
   && main {
@@ -64,17 +57,7 @@ const globalStyles = `
     position: relative;
     overflow: hidden;
     width: 100%;
-    opacity: 0.9;
-    background-color: ${theme.palette.background.main};
-  }
 
-  && section.active {
-    pointer-events: all;
-    visibility: visible;
-  }
-
-  && section > article {
-    min-height: ${theme.constants.minContainerHeight}px;
   }
 
   && section > article > div {
@@ -85,17 +68,34 @@ const globalStyles = `
     }
   }
 
-  && article.active-enter-done {
-    opacity: 1;
-  }
-
   && .article-title, .article-text {
     ${textDropShadow(0.07, `255,255,255`, 1)}
+  }
+
+  && a {
+    cursor: pointer;
+    color:  ${theme.palette.text.main};
+    text-decoration: none;
+    text-decoration-thickness: 0.09em;
+    transition: color, text-decoration-thickness, ${
+      constants.buttonHover
+    }ms ease-in-out;
+  }
+
+  && .article-text a:link {
+    color: ${theme.palette.text.main};
+    text-decoration: underline;
+    text-decoration-thickness: 0.09em;
+  }
+
+  && .article-text a:hover {
+    text-decoration-color: ${theme.palette.text.link};
+    text-decoration-thickness: 0.15em;
+  }
+
+  && .article-text a:visited {
+    color: ${theme.palette.text.linkVisited};
   }
 `;
 
 export { globalStyles };
-
-/* 
-    box-shadow: 0 10px 6px -6px rgb(0 0 0 / 35%);
-*/

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /api/send-message
+
+Sitemap: https://example.com/sitemap.xml

@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { SEO } from "../../src/constants/seo";
 
-import { BlogArticle } from "../../src/layout/pages";
+import { WorkArticle } from "../../src/layout/pages";
 
 const Page = () => (
   <Fragment>
@@ -12,11 +12,11 @@ const Page = () => (
       <meta property="description" content={SEO.SITE_DESCRIPTION} />
       <meta name="description" content={SEO.SITE_DESCRIPTION} />
       <meta property="image" content={SEO.SITE_IMAGE} />
-      <meta property="title" content={"Blog | " + SEO.SITE_TITLE} />
-      <title>{"Blog | " + SEO.SITE_TITLE}</title>
+      <meta property="title" content={"Work | " + SEO.SITE_TITLE} />
+      <title>{"Work | " + SEO.SITE_TITLE}</title>
     </Head>
 
-    <BlogArticle />
+    <WorkArticle />
   </Fragment>
 );
 
