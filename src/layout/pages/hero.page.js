@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
-import { ImgWithFallback } from "../../components/img-with-fallback.component";
+import { ImgWithLazyRoot } from "../../components/img-w-lazy-root.component";
 import {
   ContentContainer,
   Article,
@@ -234,10 +234,10 @@ const HeroArticle = (props) => {
             }}
           >
             {/* nextjs image component */}
-            <ImgWithFallback
+            <ImgWithLazyRoot
               className="image-nextjs"
-              src="/static/site/fj-orange.avif"
-              fallback="/static/site/fj-orange.webp"
+              src="/static/site/fj-orange.jpg"
+              type="image/jpg"
               priority="true"
               layout="fill"
               alt="Francis Joaquin Website Author"

@@ -9,7 +9,7 @@ import BuildIcon from "@mui/icons-material/Build";
 
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
-import { ImgWithFallback } from "../../components/img-with-fallback.component";
+import { ImgWithLazyRoot } from "../../components/img-w-lazy-root.component";
 import {
   ContentContainer,
   Article,
@@ -60,16 +60,19 @@ const CaseStudyContainer = styled(Grid)`
   && .internal-link {
     grid-column: 1;
     grid-row: 1;
-    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: auto;
-    text-decoration: none;
     line-height: 2.5em;
+    text-decoration: none;
+    z-index: 999;
     color: white;
     background-color: rgba(0,0,0,0.6);
   }
 
   && .internal-link__icon {
-    margin: 0.6em 0.2em 0 0.2em;
+    margin-right: 0.2em ;
   }
 
   & .internal-link:hover {
@@ -84,14 +87,8 @@ const CaseStudyContainer = styled(Grid)`
 `;
 //
 // link to case study website
-const ExternalLink = ({
-  externalLink,
-  imgSource,
-  fallback,
-  priority,
-  alt,
-  ...rest
-}) => (
+// dropped support for webp/avif until adoption improves
+const ExternalLink = ({ externalLink, imgSource, priority, alt, ...rest }) => (
   <a
     className={`external-link-container`}
     href={externalLink}
@@ -104,9 +101,9 @@ const ExternalLink = ({
         <BuildIcon fontSize="large" />
       </span>
     ) : (
-      <ImgWithFallback
+      <ImgWithLazyRoot
         src={imgSource}
-        fallback={fallback}
+        type="image/jpg"
         layout="fill"
         priority={priority}
         alt={alt}
@@ -138,7 +135,6 @@ const CaseStudy = ({
   internalLink = "/blog",
   alt = "case study",
   imgSource,
-  fallback,
   priority = "false",
   children,
   ...rest
@@ -152,7 +148,6 @@ const CaseStudy = ({
     <ExternalLink
       externalLink={externalLink}
       imgSource={imgSource}
-      fallback={fallback}
       priority={priority}
       alt={alt}
       aria-label={imgSource ? alt : "Case study coming in the future"}
@@ -242,8 +237,7 @@ const WorkArticle = (props) => {
 
           <CaseStudyContainer gap={panelGap}>
             <CaseStudy
-              imgSource="/static/work/pageprimer-thumb.avif"
-              fallback="/static/work/pageprimer-thumb.webp"
+              imgSource="/static/work/pageprimer-thumb.jpg"
               externalLink="https://pageprimer.com"
               internalLink="/blog"
               priority="true"
