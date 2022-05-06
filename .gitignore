@@ -36,4 +36,4 @@ yarn-error.log*
 .vercel
 
 # removed
-/src/utils
+/src/utils/removed

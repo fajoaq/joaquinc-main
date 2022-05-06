@@ -73,6 +73,8 @@ const useTransitions = () => {
   };
   //
   const handleClick = (route) => {
+    if (route === newRoute.current) return;
+
     newRoute.current = route; // capture the new route
     transitionState.contentRef.current.addEventListener(
       "transitionend",

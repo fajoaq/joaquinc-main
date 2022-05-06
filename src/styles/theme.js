@@ -84,6 +84,9 @@ const typography = {
   learnMore: {
     fontWeight: 500,
   },
+  articleLink: {
+    fontSize: "1.6rem",
+  },
 };
 
 const components = {

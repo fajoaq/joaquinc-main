@@ -7,6 +7,7 @@ import { TRANSITION_CLASS, constants } from "../constants/constants";
 import { RenderThrottle } from "../components/wrapper/render-throttle.component";
 import { useTransitions } from "../../src/hooks/useTransitions";
 import { useTransitionState } from "../context/transition.context";
+import { matchNameToRoute } from "../utils/matchNameToRoute";
 
 const Header = styled(Grid)`
   ${({ theme }) => `
@@ -63,7 +64,7 @@ const Header = styled(Grid)`
 `;
 //
 // work page link is also the blog page link
-// TBD create a smaller blog page link above work page link
+// TBD create a smaller blog page icon link above work page link
 const navLinks = [
   {
     name: "home",
@@ -89,7 +90,7 @@ const githubLinkData = {
   name: "github",
   href: "https://github.com/fajoaq",
   Icon: navButtons[navConstants.github],
-  "aria-label": "Learn more about Francis.",
+  "aria-label": "Learn more about Francis on Github.",
   rel: "noopener noreferrer",
   target: "_blank",
 };
@@ -129,20 +130,6 @@ const NavLayout = ({ navigate, ...rest }) => {
     handleClick(newUrl);
   };
 
-  const matchNameToRoute = (name, href) => {
-    // format the url path to "/route"
-    // extract the route namte "route"
-    let url = window.location.href;
-    url = url.substring(url.lastIndexOf("/")).toLowerCase();
-    let routeName = url.substring(url.lastIndexOf("/") + 1).toLowerCase();
-
-    if (routeName.length == 0) routeName = "home"; // home page route is empty string
-
-    if (url == href || name.includes(routeName)) return `icon-${name} active`;
-
-    return "";
-  };
-
   return (
     <RenderThrottle
       trigger={transitionState.contentTransition === TRANSITION_CLASS.entered}
@@ -157,12 +144,14 @@ const NavLayout = ({ navigate, ...rest }) => {
         component="nav"
         {...rest}
       >
-        {navLinks.map((navIconData, index) => (
+        {navLinks.map((navIconData) => (
           <Icon
             key={`nav-item-${navIconData.name}`}
             className={
               transitionState.contentTransition === TRANSITION_CLASS.entered
                 ? matchNameToRoute(navIconData.name, navIconData.href)
+                  ? `icon-${navIconData.name} active`
+                  : ""
                 : `icon-${navIconData.name}`
             }
             handleNavClick={handleNavClick}

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../context/transition.context";
+import { ArticleNavigation } from "./common/navigation.component";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import {
   ContentContainer,
@@ -49,9 +50,7 @@ const BlogArticle = (props) => {
         ref={transitionState.contentRef}
       >
         <Container maxWidth="md">
-          <Typography className="article-title" component="h2" variant="h3">
-            Blog
-          </Typography>
+          <ArticleNavigation fromArticle="Blog" toArticle="Work" />
           <Typography variant="body1">{text}</Typography>
           <Typography variant="body1">{text}</Typography>
           <Typography variant="body1">{text}</Typography>

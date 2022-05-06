@@ -5,11 +5,14 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
-import BuildIcon from "@mui/icons-material/Build";
 
+import {
+  InternalLink,
+  ExternalLink,
+  ArticleNavigation,
+} from "./common/navigation.component";
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
-import { ImgWithLazyRoot } from "../../components/img-w-lazy-root.component";
 import {
   ContentContainer,
   Article,
@@ -21,114 +24,22 @@ const panelGap = 5;
 // by destructuring it at the top and returning another
 // template literal
 const CaseStudyContainer = styled(Grid)`
-  ${({ theme }) => `
-  
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 
   && .case-study {
     display: grid;
-    border: 1px solid rgba(0,0,0,0.1);
-    background-color: ${theme.palette.background.light}E6;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: ${({ theme }) => theme.palette.background.light}E6;
   }
 
-  && .case-study.wip .external-link-container {
+  && .case-study.wip .external-link-container,
+  .case-study.wip .internal-link {
     pointer-events: none;
     align-items: center;
   }
-
-  && .external-link-container {
-    grid-column: 1;
-    grid-row: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    aspect-ratio: ${constants.aspectRatio.default};
-    color: ${theme.palette.text.main}B3;
-  }
-
-  && .external-link-container img {
-    filter: brightness(110%);
-  }
-
-  && .external-link-container img:hover {
-    filter: brightness(86%);
-    transition: filter ${constants.buttonHover}ms ease-in-out;
-  }
-
-  && .internal-link {
-    grid-column: 1;
-    grid-row: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    line-height: 2.5em;
-    text-decoration: none;
-    z-index: 999;
-    color: white;
-    background-color: rgba(0,0,0,0.6);
-  }
-
-  && .internal-link__icon {
-    margin-right: 0.2em ;
-  }
-
-  & .internal-link:hover {
-    color: ${theme.palette.tertiary.main};
-    transition: color ${constants.navTimeout}ms ease-in-out;
-  }
-
-  && .internal-link:active:hover {
-    color: ${theme.palette.secondary.main};
-  }
-`}
 `;
-//
-// link to case study website
-// dropped support for webp/avif until adoption improves
-const ExternalLink = ({ externalLink, imgSource, priority, alt, ...rest }) => (
-  <a
-    className={`external-link-container`}
-    href={externalLink}
-    target="_blank"
-    rel="noopener noreferrer"
-    {...rest}
-  >
-    {imgSource == undefined ? (
-      <span>
-        <BuildIcon fontSize="large" />
-      </span>
-    ) : (
-      <ImgWithLazyRoot
-        src={imgSource}
-        type="image/jpg"
-        layout="fill"
-        priority={priority}
-        alt={alt}
-      />
-    )}
-  </a>
-);
-// link to internal page, i.e blog page
-const InternalLink = ({ internalLink, ...rest }) => {
-  const [transitionState] = useTransitionState();
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    transitionState.navigate(e.target.href);
-  };
-
-  return (
-    <a
-      href={internalLink}
-      onClick={handleClick}
-      className="internal-link"
-      {...rest}
-    />
-  );
-};
 
 const CaseStudy = ({
   externalLink = "https://google.com",
@@ -200,10 +111,7 @@ const WorkArticle = (props) => {
       >
         <div>
           <Container maxWidth="md">
-            <Typography className="article-title" component="h2" variant="h3">
-              Work
-            </Typography>
-            <br />
+            <ArticleNavigation fromArticle="Work" toArticle="Blog" />
 
             <Box
               className="article-text"
