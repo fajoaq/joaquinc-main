@@ -70,7 +70,7 @@ const typography = {
     fontWeight: 100,
   },
   h1: { fontSize: "3.9rem" },
-  h2: { fontWeight: 200, fontSize: "3rem" },
+  h2: { fontSize: "3rem" },
   h3: { fontSize: "1.9rem" },
   h4: { fontSize: "1.6rem" },
   intro: { fontSize: "1.4rem" },
