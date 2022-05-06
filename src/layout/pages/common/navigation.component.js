@@ -71,22 +71,25 @@ const ExternalLink = ({ externalLink, imgSource, priority, alt, ...rest }) => (
 
 const NavigationBox = styled(Box)`
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
 `;
-const ArticleNavigation = ({ fromArticle, toArticle, ...rest }) => (
+const ArticleNavigation = ({
+  fromArticle,
+  toArticle,
+  component = "h2",
+  ...rest
+}) => (
   <NavigationBox marginBottom={constants.spacing.medium} {...rest}>
-    <Typography className="article-title" component="h2" variant="h3">
+    <Typography className="article-title" component={component} variant="h2">
       {fromArticle}
     </Typography>
     <InternalLink
       className="internal-link"
       internalLink={`/${toArticle.toLowerCase()}`}
     >
-      <Typography
-        className="article-title"
-        component="span"
-        variant="articleLink"
-      >
+      <Typography className="article-title" variant="articleLink">
         {toArticle}&#x025B8;
       </Typography>
     </InternalLink>

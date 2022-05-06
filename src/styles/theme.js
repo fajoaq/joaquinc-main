@@ -72,6 +72,7 @@ const typography = {
   h1: { fontSize: "3.9rem" },
   h2: { fontWeight: 200, fontSize: "3rem" },
   h3: { fontSize: "1.9rem" },
+  h4: { fontSize: "1.6rem" },
   intro: { fontSize: "1.4rem" },
   body1: { fontSize: "1.1rem" },
   body2: {
@@ -85,7 +86,7 @@ const typography = {
     fontWeight: 500,
   },
   articleLink: {
-    fontSize: "1.6rem",
+    fontSize: "1.4em",
   },
 };
 

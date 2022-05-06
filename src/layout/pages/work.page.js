@@ -107,39 +107,57 @@ const WorkArticle = (props) => {
         ref={transitionState.contentRef}
       >
         <div>
-          <Container maxWidth="md">
-            <ArticleNavigation fromArticle="Work" toArticle="Blog" />
+          <ArticleNavigation fromArticle="Work" toArticle="Blog" />
 
-            <Box
-              className="article-text"
-              marginBottom={constants.spacing.large}
-            >
-              <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
-                Hi! My name is Francis and I am a{" "}
-                <strong>Developing Web Developer</strong>. Here you will find
-                some of my work, including articles documenting my journey.{" "}
-                <a
-                  href={"/contact"}
-                  onClick={handleClick}
-                  aria-label="Send Francis a message."
+          <Box className="article-text" marginBottom={constants.spacing.large}>
+            <Grid container>
+              {/* paragraph 1 */}
+              <Grid
+                item
+                xs={12}
+                md={7}
+                marginBottom={{ xs: constants.spacing.small, md: 0 }}
+              >
+                <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
+                  Hi! My name is Francis and I am a{" "}
+                  <strong>Developing Web Developer</strong>. Here you will find
+                  some of my latest work.{" "}
+                  <a
+                    href={"/contact"}
+                    onClick={handleClick}
+                    aria-label="Send Francis a message."
+                  >
+                    Contact me
+                  </a>{" "}
+                  if you have any questions, want to learn more{" "}
+                  <a
+                    href="https://github.com/fajoaq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Learn more about Francis on his github page."
+                  >
+                    about me
+                  </a>
+                  , or just want to say hello. &#x1F44B;
+                </Typography>
+              </Grid>
+              {/* paragraph 2 */}
+              <Grid
+                item
+                xs={12}
+                md={5}
+                paddingLeft={{ xs: "0", md: constants.spacing.small }}
+              >
+                <Typography
+                  fontSize={{ xs: "1.1rem", md: "1.4rem" }}
+                  textAlign={{ xs: "start", md: "center" }}
                 >
-                  Contact me
-                </a>{" "}
-                if you have any questions, want to learn more{" "}
-                <a
-                  className="learn-more-link"
-                  href="https://github.com/fajoaq"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Learn more about Francis on his github page."
-                >
-                  about me
-                </a>
-                , or just want to say hello. &#x1F44B;
-              </Typography>
-            </Box>
-          </Container>
-
+                  Come along on my web dev journey by following my blog.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+          {/* Case studies, with links to blog posts */}
           <CaseStudyContainer gap={panelGap}>
             <CaseStudy
               imgSource="/static/work/pageprimer-thumb.jpg"

@@ -196,6 +196,7 @@ const HeroArticle = (props) => {
         container
         component="article"
         className={transitionState.contentTransition}
+        id="index"
         ref={transitionState.contentRef}
       >
         <Grid

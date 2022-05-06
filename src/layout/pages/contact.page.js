@@ -59,7 +59,7 @@ const ContactArticle = (props) => {
         ref={transitionState.contentRef}
       >
         <Container maxWidth="md">
-          <Typography component="h2" variant="h3" className="article-title">
+          <Typography component="h1" variant="h2" className="article-title">
             Contact Me
           </Typography>
           <br />

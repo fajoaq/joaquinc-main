@@ -86,7 +86,7 @@ const Article = styled(Grid)`
   }
   && .internal-link.wip:hover:active {
     color: white;
-    transition: color ${constants.navTimeout - 100}ms ease-in-out;
+    transition: color ${constants.buttonHover - 60}ms ease-in-out;
   }
 `}
 `;

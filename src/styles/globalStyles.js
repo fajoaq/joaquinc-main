@@ -60,7 +60,7 @@ const globalStyles = `
 
   }
 
-  && section > article > div {
+  && section > article:not(#index) {
     padding: 3.5em 2.5em 3.5em 2.5em;
 
     ${theme.breakpoints.down("sm")} {

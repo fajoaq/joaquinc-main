@@ -8,6 +8,7 @@ const constants = {
   navTimeout: 380,
   transitionDelay: 100,
   spacing: {
+    small: 3,
     medium: 6,
     large: 12,
   },
