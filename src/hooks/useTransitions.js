@@ -73,7 +73,10 @@ const useTransitions = () => {
   };
   //
   const handleClick = (route) => {
-    if (route === newRoute.current) return;
+    if (newRoute.current === null || newRoute.current === undefined)
+      newRoute.current = window.location.href;
+
+    if (route === newRoute.current || route.length === 0) return; // same route, bad route
 
     newRoute.current = route; // capture the new route
     transitionState.contentRef.current.addEventListener(

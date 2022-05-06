@@ -86,6 +86,7 @@ const globalStyles = `
     color: ${theme.palette.text.main};
     text-decoration: underline;
     text-decoration-thickness: 0.09em;
+    text-underline-offset: 0.04em;
   }
 
   && .article-text a:hover {

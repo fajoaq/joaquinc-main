@@ -76,6 +76,18 @@ const Article = styled(Grid)`
   && .internal-link:active:hover {
     color: ${theme.palette.secondary.main};
   }
+
+  && .internal-link.wip {
+    pointer-events: all;
+    cursor: help;
+  }
+  && .internal-link.wip:hover {
+    color: ${theme.palette.secondary.main}
+  }
+  && .internal-link.wip:hover:active {
+    color: white;
+    transition: color ${constants.navTimeout - 100}ms ease-in-out;
+  }
 `}
 `;
 

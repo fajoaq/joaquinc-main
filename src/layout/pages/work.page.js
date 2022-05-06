@@ -34,24 +34,25 @@ const CaseStudyContainer = styled(Grid)`
     background-color: ${({ theme }) => theme.palette.background.light}E6;
   }
 
-  && .case-study.wip .external-link-container,
-  .case-study.wip .internal-link {
-    pointer-events: none;
+  && .case-study.wip .external-link-container {
     align-items: center;
+  }
+
+  && .case-study.wip {
+    pointer-events: none;
   }
 `;
 
 const CaseStudy = ({
-  externalLink = "https://google.com",
-  internalLink = "/blog",
-  alt = "case study",
+  externalLink,
+  alt = "A link to an external case study.",
   imgSource,
   priority = "false",
   children,
   ...rest
 }) => (
   <Box
-    className={`case-study  ${imgSource ? "" : "wip"}`}
+    className="case-study"
     disabled={imgSource ? false : true}
     width={{ xs: "100%", md: "48%", lg: "31%" }}
     {...rest}
@@ -61,12 +62,8 @@ const CaseStudy = ({
       imgSource={imgSource}
       priority={priority}
       alt={alt}
-      aria-label={imgSource ? alt : "Case study coming in the future"}
     />
-    <InternalLink internalLink={internalLink}>
-      <ForumIcon className="internal-link__icon" />
-      {children}
-    </InternalLink>
+    {children}
   </Box>
 );
 
@@ -147,18 +144,35 @@ const WorkArticle = (props) => {
             <CaseStudy
               imgSource="/static/work/pageprimer-thumb.jpg"
               externalLink="https://pageprimer.com"
-              internalLink="/blog"
               priority="true"
-              alt="PagePrimer Web Design Site."
+              alt="A Link to PagePrimer Web Design Site."
             >
-              Coming Soon: Building PagePrimer
+              <InternalLink className="internal-link internal-link-box wip">
+                <ForumIcon className="internal-link__icon" />
+                Coming Soon: Building PagePrimer
+              </InternalLink>
             </CaseStudy>
 
-            <CaseStudy> Coming Soon: Building a Blog</CaseStudy>
+            <CaseStudy className="case-study wip">
+              <InternalLink className="internal-link internal-link-box wip">
+                <ForumIcon className="internal-link__icon" />
+                Coming Soon: Building a Blog
+              </InternalLink>
+            </CaseStudy>
 
-            <CaseStudy>Coming Soon: Building a Database</CaseStudy>
+            <CaseStudy className="case-study wip">
+              <InternalLink className="internal-link internal-link-box wip">
+                <ForumIcon className="internal-link__icon" />
+                Coming Soon: Building a Database
+              </InternalLink>
+            </CaseStudy>
 
-            <CaseStudy>Coming Soon: Fetching w/ Prisma</CaseStudy>
+            <CaseStudy className="case-study wip">
+              <InternalLink className="internal-link internal-link-box wip">
+                <ForumIcon className="internal-link__icon" />
+                Coming Soon: Fetching w/ Prisma
+              </InternalLink>
+            </CaseStudy>
           </CaseStudyContainer>
         </div>
       </Article>

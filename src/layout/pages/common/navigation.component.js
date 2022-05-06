@@ -11,6 +11,7 @@ import { constants } from "../../../constants/constants";
 const InternalLink = ({
   internalLink,
   className = "internal-link internal-link-box",
+  alt = "A Link to a Blog Page.",
   ...rest
 }) => {
   const [transitionState] = useTransitionState();
@@ -29,6 +30,10 @@ const InternalLink = ({
       className={className}
       href={internalLink}
       onClick={handleClick}
+      alt={internalLink ? alt : "Link Disabled."}
+      role="link"
+      aria-label={internalLink ? alt : "Link disabled."}
+      disabled={internalLink ? false : true}
       {...rest}
     />
   );
@@ -43,6 +48,9 @@ const ExternalLink = ({ externalLink, imgSource, priority, alt, ...rest }) => (
     href={externalLink}
     target="_blank"
     rel="noopener noreferrer"
+    role="link"
+    aria-label={imgSource ? alt : "Link disabled."}
+    disabled={externalLink ? false : true}
     {...rest}
   >
     {imgSource == undefined ? (
