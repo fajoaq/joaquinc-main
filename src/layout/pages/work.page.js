@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
 
@@ -15,7 +14,7 @@ import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import {
   ContentContainer,
-  Article,
+  Section,
 } from "../../components/containers.component";
 
 const panelGap = 5;
@@ -101,99 +100,99 @@ const WorkArticle = (props) => {
       }
       {...props}
     >
-      <Article
-        component="article"
+      <Section
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
-        <div>
-          <ArticleNavigation fromArticle="Work" toArticle="Blog" />
+        <ArticleNavigation fromArticle="Work" toArticle="Blog" />
 
-          <Box className="article-text" marginBottom={constants.spacing.large}>
-            <Grid container>
-              {/* paragraph 1 */}
-              <Grid
-                item
-                xs={12}
-                md={7}
-                marginBottom={{ xs: constants.spacing.small, md: 0 }}
+        <Grid
+          container
+          className="article-text"
+          component="article"
+          marginBottom={constants.spacing.large}
+        >
+          {/* paragraph 1 */}
+          <Grid
+            item
+            xs={12}
+            md={7}
+            marginBottom={{ xs: constants.spacing.small, md: 0 }}
+          >
+            <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
+              Hi! My name is Francis and I am a{" "}
+              <strong>Developing Web Developer</strong>. Here you will find some
+              of my latest work.{" "}
+              <a
+                href={"/contact"}
+                onClick={handleClick}
+                aria-label="Send Francis a message."
               >
-                <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
-                  Hi! My name is Francis and I am a{" "}
-                  <strong>Developing Web Developer</strong>. Here you will find
-                  some of my latest work.{" "}
-                  <a
-                    href={"/contact"}
-                    onClick={handleClick}
-                    aria-label="Send Francis a message."
-                  >
-                    Contact me
-                  </a>{" "}
-                  if you have any questions, want to learn more{" "}
-                  <a
-                    href="https://github.com/fajoaq"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Learn more about Francis on his github page."
-                  >
-                    about me
-                  </a>
-                  , or just want to say hello. &#x1F44B;
-                </Typography>
-              </Grid>
-              {/* paragraph 2 */}
-              <Grid
-                item
-                xs={12}
-                md={5}
-                paddingLeft={{ xs: "0", md: constants.spacing.small }}
+                Contact me
+              </a>{" "}
+              if you have any questions, want to learn more{" "}
+              <a
+                href="https://github.com/fajoaq"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Learn more about Francis on his github page."
               >
-                <Typography
-                  fontSize={{ xs: "1.1rem", md: "1.4rem" }}
-                  textAlign={{ xs: "start", md: "center" }}
-                >
-                  Come along on my web dev journey by following my blog.
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
-          {/* Case studies, with links to blog posts */}
-          <CaseStudyContainer gap={panelGap}>
-            <CaseStudy
-              imgSource="/static/work/pageprimer-thumb.jpg"
-              externalLink="https://pageprimer.com"
-              priority="true"
-              alt="A Link to PagePrimer Web Design Site."
+                about me
+              </a>
+              , or just want to say hello. &#x1F44B;
+            </Typography>
+          </Grid>
+          {/* paragraph 2 */}
+          <Grid
+            item
+            xs={12}
+            md={5}
+            paddingLeft={{ xs: "0", md: constants.spacing.small }}
+          >
+            <Typography
+              fontSize={{ xs: "1.1rem", md: "1.4rem" }}
+              textAlign={{ xs: "start", md: "center" }}
             >
-              <InternalLink className="internal-link internal-link-box wip">
-                <ForumIcon className="internal-link__icon" />
-                Coming Soon: Building PagePrimer
-              </InternalLink>
-            </CaseStudy>
+              Come along on my web dev journey by following my blog.
+            </Typography>
+          </Grid>
+        </Grid>
+        {/* Case studies, with links to blog posts */}
+        <CaseStudyContainer component="article" gap={panelGap}>
+          <CaseStudy
+            imgSource="/static/work/pageprimer-thumb.jpg"
+            externalLink="https://pageprimer.com"
+            priority="true"
+            alt="A Link to PagePrimer Web Design Site."
+          >
+            <InternalLink className="internal-link internal-link-box wip">
+              <ForumIcon className="internal-link__icon" />
+              Coming Soon: Building PagePrimer
+            </InternalLink>
+          </CaseStudy>
 
-            <CaseStudy className="case-study wip">
-              <InternalLink className="internal-link internal-link-box wip">
-                <ForumIcon className="internal-link__icon" />
-                Coming Soon: Building a Blog
-              </InternalLink>
-            </CaseStudy>
+          <CaseStudy className="case-study wip">
+            <InternalLink className="internal-link internal-link-box wip">
+              <ForumIcon className="internal-link__icon" />
+              Coming Soon: Building a Blog
+            </InternalLink>
+          </CaseStudy>
 
-            <CaseStudy className="case-study wip">
-              <InternalLink className="internal-link internal-link-box wip">
-                <ForumIcon className="internal-link__icon" />
-                Coming Soon: Building a Database
-              </InternalLink>
-            </CaseStudy>
+          <CaseStudy className="case-study wip">
+            <InternalLink className="internal-link internal-link-box wip">
+              <ForumIcon className="internal-link__icon" />
+              Coming Soon: Building a Database
+            </InternalLink>
+          </CaseStudy>
 
-            <CaseStudy className="case-study wip">
-              <InternalLink className="internal-link internal-link-box wip">
-                <ForumIcon className="internal-link__icon" />
-                Coming Soon: Fetching w/ Prisma
-              </InternalLink>
-            </CaseStudy>
-          </CaseStudyContainer>
-        </div>
-      </Article>
+          <CaseStudy className="case-study wip">
+            <InternalLink className="internal-link internal-link-box wip">
+              <ForumIcon className="internal-link__icon" />
+              Coming Soon: Fetching w/ Prisma
+            </InternalLink>
+          </CaseStudy>
+        </CaseStudyContainer>
+      </Section>
     </ContentContainer>
   );
 };

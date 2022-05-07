@@ -8,11 +8,11 @@ import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import { ContactForm } from "../../components/forms/contact/contact-form-control.component";
 import {
   ContentContainer,
-  Article,
+  Section,
 } from "../../components/containers.component";
 
 // TBD remove the need to adjust article height based on screen width
-const StyledArticle = styled(Article)`
+const StyledSection = styled(Section)`
   && .contact-article-form {
     min-height: 478px;
   }
@@ -53,12 +53,11 @@ const ContactArticle = (props) => {
       }
       {...props}
     >
-      <StyledArticle
-        component="article"
+      <StyledSection
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
-        <Container maxWidth="md">
+        <Container component="article" maxWidth="md" disableGutters>
           <Typography component="h1" variant="h2" className="article-title">
             Contact Me
           </Typography>
@@ -71,7 +70,7 @@ const ContactArticle = (props) => {
             confirmEmailMessage="I will be in contact shortly."
           />
         </Container>
-      </StyledArticle>
+      </StyledSection>
     </ContentContainer>
   );
 };

@@ -8,9 +8,11 @@ const constants = {
   navTimeout: 380,
   transitionDelay: 100,
   spacing: {
+    xsmall: 1.5,
     small: 3,
     medium: 6,
     large: 12,
+    xlarge: 16,
   },
   classNames: {
     transitionContainer: "transition-container",

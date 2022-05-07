@@ -37,7 +37,7 @@ const globalStyles = `
     height: 100%;
   }
 
-  && nav {
+  && nav#main-nav {
     margin-top: 7rem;
     pointer-events: none;
 
@@ -46,7 +46,7 @@ const globalStyles = `
     }
   }
 
-  && nav.active {
+  && nav#main-nav.active {
     pointer-events: all;
   }
 
@@ -58,14 +58,6 @@ const globalStyles = `
     overflow: hidden;
     width: 100%;
 
-  }
-
-  && section > article:not(#index) {
-    padding: 3.5em 2.5em 3.5em 2.5em;
-
-    ${theme.breakpoints.down("sm")} {
-      padding: 2.5em 1.5em 2.5em 1.5em;
-    }
   }
 
   && .article-title, .article-text {

@@ -44,6 +44,7 @@ const Background = (props) => {
     <StyledBox
       className={`${transitionState.backgroundTransition} ${constants.classNames.transitionContainer}`}
       dimensions={transitionState.mainContainerHeight}
+      role="presentation"
       disabled={true}
     >
       <StyledInnerBox

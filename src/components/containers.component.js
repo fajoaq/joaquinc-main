@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 
 import { constants } from "../constants/constants";
 
-const ContentContainer = styled("section")`
+const ContentContainer = styled("div")`
   grid-column: 1;
   grid-row: 1;
   display: grid;
@@ -23,14 +23,23 @@ const ContentContainer = styled("section")`
     transition: opacity ${constants.navTimeout}ms ease-in-out;
   }
 `;
+ContentContainer.defaultProps = {
+  id: "content-container",
+};
 
-const Article = styled(Grid)`
+const Section = styled(Grid)`
   ${({ theme }) => `
 
   grid-column: 1;
   grid-row: 1;
   display: flex;
+  flex-direction: column;
   height: max-content;
+  padding: 3.5em 2.5em 3.5em 2.5em;
+
+  ${theme.breakpoints.down("sm")} {
+    padding: 2.5em 1.5em 2.5em 1.5em;
+  }
 
   && .external-link-container {
     grid-column: 1;
@@ -90,5 +99,9 @@ const Article = styled(Grid)`
   }
 `}
 `;
+Section.defaultProps = {
+  id: "main-section",
+  component: "section",
+};
 
-export { ContentContainer, Article };
+export { ContentContainer, Section };

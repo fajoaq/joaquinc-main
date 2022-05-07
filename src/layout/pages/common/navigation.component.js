@@ -78,11 +78,15 @@ const NavigationBox = styled(Box)`
 const ArticleNavigation = ({
   fromArticle,
   toArticle,
-  component = "h2",
+  mainHeading = "h2",
   ...rest
 }) => (
-  <NavigationBox marginBottom={constants.spacing.medium} {...rest}>
-    <Typography className="article-title" component={component} variant="h2">
+  <NavigationBox
+    component="nav"
+    marginBottom={constants.spacing.medium}
+    {...rest}
+  >
+    <Typography className="article-title" component={mainHeading} variant="h2">
       {fromArticle}
     </Typography>
     <InternalLink

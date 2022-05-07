@@ -73,6 +73,8 @@ const useTransitions = () => {
   };
   //
   const handleClick = (route) => {
+    if (!route) return;
+
     if (newRoute.current === null || newRoute.current === undefined)
       newRoute.current = window.location.href;
 

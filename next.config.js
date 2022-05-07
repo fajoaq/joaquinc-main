@@ -9,5 +9,6 @@ module.exports = withBundleAnalyzer({
   optimizeFonts: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    domains: ["dummyimage.com"],
   },
 });

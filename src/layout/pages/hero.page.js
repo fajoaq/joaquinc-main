@@ -9,8 +9,15 @@ import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import { ImgWithLazyRoot } from "../../components/img-w-lazy-root.component";
 import {
   ContentContainer,
-  Article,
+  Section,
 } from "../../components/containers.component";
+
+const StyledSection = styled(Section)`
+  && {
+    flex-direction: row;
+    padding: 0;
+  }
+`;
 
 const imageSizes = {
   small: 368,
@@ -192,11 +199,9 @@ const HeroArticle = (props) => {
       }
       {...props}
     >
-      <Article
+      <StyledSection
         container
-        component="article"
         className={transitionState.contentTransition}
-        id="index"
         ref={transitionState.contentRef}
       >
         <Grid
@@ -263,7 +268,7 @@ const HeroArticle = (props) => {
             </Box>
           </Box>
         </Grid>
-      </Article>
+      </StyledSection>
     </StyledContentContainer>
   );
 };

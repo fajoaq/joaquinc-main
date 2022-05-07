@@ -140,8 +140,10 @@ const NavLayout = ({ navigate, ...rest }) => {
             ? "active"
             : ""
         }
+        id="main-nav"
         container
         component="nav"
+        aria-label="Main Navigation."
         {...rest}
       >
         {navLinks.map((navIconData) => (
