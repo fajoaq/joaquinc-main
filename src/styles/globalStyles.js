@@ -57,7 +57,6 @@ const globalStyles = `
     position: relative;
     overflow: hidden;
     width: 100%;
-
   }
 
   && .article-title, .article-text {
@@ -88,6 +87,26 @@ const globalStyles = `
 
   && .article-text a:visited {
     color: ${theme.palette.text.linkVisited};
+  }
+
+  && .inline-padding {
+    padding-left: 2.5em;
+    padding-Right: 2.5em;
+
+    ${theme.breakpoints.down("sm")} {
+      padding-left: 1.5em;
+      padding-Right: 1.5em;
+    }
+  }
+
+  && .inline-padding-vertical {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em;
+
+    ${theme.breakpoints.down("sm")} {
+      padding-top: 2.5em;
+      padding-bottom: 2.5em;
+    }
   }
 `;
 

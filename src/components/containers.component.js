@@ -35,10 +35,10 @@ const Section = styled(Grid)`
   display: flex;
   flex-direction: column;
   height: max-content;
-  padding: 3.5em 2.5em 3.5em 2.5em;
+  padding-top: 3.5em;
 
   ${theme.breakpoints.down("sm")} {
-    padding: 2.5em 1.5em 2.5em 1.5em;
+    padding-top: 2.5em;
   }
 
   && .external-link-container {

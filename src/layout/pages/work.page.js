@@ -26,11 +26,12 @@ const CaseStudyContainer = styled(Grid)`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  background-color: ${({ theme }) => theme.palette.background.light}E6;
 
   && .case-study {
     display: grid;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: ${({ theme }) => theme.palette.background.light}E6;
+    background-color: ${({ theme }) => theme.palette.background.main};
   }
 
   && .case-study.wip .external-link-container {
@@ -104,13 +105,17 @@ const WorkArticle = (props) => {
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
-        <ArticleNavigation fromArticle="Work" toArticle="Blog" />
+        <ArticleNavigation
+          className="inline-padding"
+          fromArticle="Work"
+          toArticle="Blog"
+        />
 
         <Grid
           container
-          className="article-text"
+          className="article-text inline-padding"
+          paddingBottom={constants.spacing.medium}
           component="article"
-          marginBottom={constants.spacing.large}
         >
           {/* paragraph 1 */}
           <Grid
@@ -158,7 +163,11 @@ const WorkArticle = (props) => {
           </Grid>
         </Grid>
         {/* Case studies, with links to blog posts */}
-        <CaseStudyContainer component="article" gap={panelGap}>
+        <CaseStudyContainer
+          className="inline-padding inline-padding-vertical"
+          component="article"
+          gap={panelGap}
+        >
           <CaseStudy
             imgSource="/static/work/pageprimer-thumb.jpg"
             externalLink="https://pageprimer.com"

@@ -32,7 +32,7 @@ const palette = {
     main: carbon,
     light: white,
     link: linkBlue,
-    linkVisite: linkVisited,
+    linkVisited: linkVisited,
     deselected: white,
   },
   primary: {

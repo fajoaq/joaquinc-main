@@ -24,6 +24,10 @@ const StyledSection = styled(Section)`
   }
 `;
 
+const StyledContainer = styled(Container)`
+  padding-top: 0;
+`;
+
 const ContactArticle = (props) => {
   const [transitionState, setTransitionState] = useTransitionState();
 
@@ -57,7 +61,12 @@ const ContactArticle = (props) => {
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
-        <Container component="article" maxWidth="md" disableGutters>
+        <StyledContainer
+          className="inline-padding inline-padding-vertical"
+          component="article"
+          maxWidth="md"
+          disableGutters
+        >
           <Typography component="h1" variant="h2" className="article-title">
             Contact Me
           </Typography>
@@ -69,7 +78,7 @@ const ContactArticle = (props) => {
             successMessage="Thank You for Your Message"
             confirmEmailMessage="I will be in contact shortly."
           />
-        </Container>
+        </StyledContainer>
       </StyledSection>
     </ContentContainer>
   );

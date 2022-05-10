@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../../context/transition.context";
@@ -9,6 +10,23 @@ import {
   ContentContainer,
   Section,
 } from "../../../components/containers.component";
+
+const panelGap = 5;
+
+const StyledSection = styled(Section)`
+  padding-top: 3.5em;
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    padding-top: 2.5em;
+  }
+`;
+
+const StyledArticle = styled("article")`
+  width: 100%;
+  padding-top: ${({ theme }) => theme.spacing(constants.spacing.large)};
+  padding-bottom: ${({ theme }) => theme.spacing(constants.spacing.large)};
+  background-color: ${({ theme }) => theme.palette.background.light}E6;
+`;
 
 const BlogArticle = (props) => {
   const [transitionState, setTransitionState] = useTransitionState();
@@ -44,30 +62,35 @@ const BlogArticle = (props) => {
       }
       {...props}
     >
-      <Section
+      <StyledSection
         container
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
         <ArticleNavigation
+          className="inline-padding"
           fromArticle="Blog"
           toArticle="Work"
           mainHeading="h1"
         />
 
-        <LatesPostPreview component="article" linkToArticle={handleClick} />
+        <LatesPostPreview
+          className="inline-padding"
+          component="article"
+          linkToArticle={handleClick}
+        />
 
-        <article style={{ width: "100%" }}>
+        <StyledArticle className="inline-padding">
           <Typography
             component="h2"
             variant="h4"
-            marginBottom={constants.spacing.small}
+            marginBottom={constants.spacing.medium}
           >
             New posts
           </Typography>
-          <BlogPostsCarousel />
-        </article>
-      </Section>
+          <BlogPostsCarousel panelGap={panelGap} />
+        </StyledArticle>
+      </StyledSection>
     </ContentContainer>
   );
 };
