@@ -7,7 +7,10 @@ import { TRANSITION_CLASS, constants } from "../constants/constants";
 import { RenderThrottle } from "../components/wrapper/render-throttle.component";
 import { useTransitions } from "../../src/hooks/useTransitions";
 import { useTransitionState } from "../context/transition.context";
-import { matchNameToRoute } from "../utils/matchNameToRoute";
+import {
+  matchNameToRoute,
+  matchIconArrToRoute,
+} from "../utils/matchNameToRoute";
 
 const Header = styled(Grid)`
   ${({ theme }) => `
@@ -16,74 +19,157 @@ const Header = styled(Grid)`
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: end;
+  font-size: 3.5rem;
 
-  & a:hover {
+  & .icon {
+    position: relative;
+  }
+
+  & a {
+    display: flex;
+    justify-content: center;
+    color: ${theme.palette.text.navLink};
+    padding: 0;
+    margin: 0;
+  }
+
+  & .icon a:hover {
     color: ${theme.palette.tertiary.main};
     transition: color ${constants.buttonHover}ms ease-in-out;
   }
-  & a:active:hover {
+  & .icon a:active:hover {
     color: ${theme.palette.secondary.main};
     transition: color ${constants.buttonHover}ms ease-in-out;
   }
 
-  & a:after {
+  & .icon:after {
     content: "";
     display: inline-block;
     position: absolute;
-    left: 20%;
-    bottom: 0em;
+    bottom: 0rem;
+    left: 0.1rem;
     margin-right: -0.5em;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
     border-top: 30px solid transparent;
     border-bottom: 0 solid transparent;
     transition: border-bottom ${constants.navTimeout}ms ease-in-out;
+    pointer-events: none;
   }
 
-  & a.active {
-    color: ${theme.palette.background.light};
-  }
-
-  & a.active:after {
+  & .icon.active:after {
     border-bottom: 30px solid ${theme.palette.background.main};
   }
 
-  & a.active.icon-home, a.active.icon-0 {
+  && .icon.active a.active {
+    font-size: 4rem;
+    color: ${theme.palette.background.light};
+    transition: font-size ${constants.navTimeout}ms ease-in-out;
+  }
+  && .icon.active.icon-column-0 a {
     color: ${theme.palette.primary.main};
   }
-  & a.active.icon-home:after, a.active.icon-0:after {
+  & .icon.active.icon-column-0:after {
     border-bottom: 30px solid ${theme.palette.primary.main};
   }
 
+  && .icon-column-1 div:first-of-type a {
+    font-size: 2.2rem;
+    margin-bottom: 0.6rem;
+  }
+  && .icon-column-1.active a:not(.active) {
+    font-size: 2.2rem;
+    margin-bottom: 0.6rem;
+  }
+
   ${theme.breakpoints.down("sm")} {
-    && a:after {
-      left: 15%;
+    font-size: 3rem;
+
+    && .icon.active a.active {
+      font-size: 3.3rem;
+    }
+
+    && .icon:after {
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid transparent;
+    }
+
+    & .icon.active:after {
+      border-bottom: 20px solid ${theme.palette.background.main};
+    }
+
+    & .icon.active.icon-column-0:after {
+      border-bottom: 20px solid ${theme.palette.primary.main};
+    }
+
+    && .icon:after {
+      left: 0.5rem;
+    }
+
+    && .icon-column-1.active a:not(.active) {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    && .icon-column-1 div:first-of-type a {
+      font-size: 2rem;
     }
   }
 `}
 `;
+
+const IconColumn = styled(Grid)`
+  ${({ theme }) => `
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: ${theme.spacing(constants.spacing.small)};
+    margin-right: ${theme.spacing(constants.spacing.small)};
+    padding-bottom: ${theme.spacing(constants.spacing.medium)};
+
+    ${theme.breakpoints.down("sm")} {
+      padding-bottom: ${theme.spacing(constants.spacing.small)};
+    }
+  `}
+`;
+
 //
 // work page link is also the blog page link
 // TBD create a smaller blog page icon link above work page link
 const navLinks = [
-  {
-    name: "home",
-    href: "/",
-    Icon: navButtons[navConstants.home],
-    "aria-label": "Home.",
-  },
-  {
-    name: "work blog",
-    href: "/work",
-    Icon: navButtons[navConstants.work],
-    "aria-label": "Francis' work.",
-  },
-  {
-    name: "contact",
-    href: "/contact",
-    Icon: navButtons[navConstants.contact],
-    "aria-label": "Contact Francis.",
-  },
+  [
+    {
+      name: "home",
+      href: "/",
+      Icon: navButtons[navConstants.home],
+      "aria-label": "Home.",
+    },
+  ],
+  [
+    {
+      name: "blog",
+      href: "/blog",
+      Icon: navButtons[navConstants.blog],
+      "aria-label": "Francis' work.",
+    },
+    {
+      name: "work",
+      href: "/work",
+      Icon: navButtons[navConstants.work],
+      "aria-label": "Francis' work.",
+    },
+  ],
+  [
+    {
+      name: "contact",
+      href: "/contact",
+      Icon: navButtons[navConstants.contact],
+      "aria-label": "Contact Francis.",
+    },
+  ],
 ];
 
 const githubLinkData = {
@@ -101,7 +187,6 @@ const Icon = ({ handleNavClick, navIconData: { Icon, ...data }, ...rest }) => {
       onClick={handleNavClick || null}
       item
       component="a"
-      position="relative"
       padding={3}
       role="button"
       {...data}
@@ -110,6 +195,64 @@ const Icon = ({ handleNavClick, navIconData: { Icon, ...data }, ...rest }) => {
       <Icon fontSize="inherit" />
     </Grid>
   );
+};
+
+const constructIconColumn = (onClick, navIconData, index) => {
+  const [transitionState] = useTransitionState();
+  return (
+    <Grid
+      key={index}
+      item
+      order={
+        transitionState.contentTransition === TRANSITION_CLASS.entered
+          ? matchNameToRoute(navIconData.name, navIconData.href)
+            ? 2
+            : 1
+          : 1
+      }
+    >
+      <Icon
+        handleNavClick={onClick}
+        navIconData={navIconData}
+        className={
+          transitionState.contentTransition === TRANSITION_CLASS.entered
+            ? matchNameToRoute(navIconData.name, navIconData.href)
+              ? `icon-${navIconData.name} active`
+              : ""
+            : `icon-${navIconData.name}`
+        }
+        id={
+          navIconData.name == "blog"
+            ? "blog-icon"
+            : navIconData.name == "work"
+            ? "work-icon"
+            : ""
+        }
+      />
+    </Grid>
+  );
+};
+
+const constructNavIcons = (onClick) => {
+  const [transitionState] = useTransitionState();
+
+  return navLinks.map((iconArr, index) => (
+    <IconColumn
+      key={`nav-item-${index}`}
+      container
+      className={
+        transitionState.contentTransition === TRANSITION_CLASS.entered
+          ? matchIconArrToRoute(iconArr)
+            ? `icon icon-column-${index} active`
+            : `icon icon-column-${index}`
+          : `icon icon-column-${index}`
+      }
+    >
+      {iconArr.map((navIconData, index) =>
+        constructIconColumn(onClick, navIconData, index)
+      )}
+    </IconColumn>
+  ));
 };
 
 const NavLayout = ({ navigate, ...rest }) => {
@@ -146,24 +289,13 @@ const NavLayout = ({ navigate, ...rest }) => {
         aria-label="Main Navigation."
         {...rest}
       >
-        {navLinks.map((navIconData) => (
+        {constructNavIcons(handleNavClick)}
+        <IconColumn className="icon">
           <Icon
-            key={`nav-item-${navIconData.name}`}
-            className={
-              transitionState.contentTransition === TRANSITION_CLASS.entered
-                ? matchNameToRoute(navIconData.name, navIconData.href)
-                  ? `icon-${navIconData.name} active`
-                  : ""
-                : `icon-${navIconData.name}`
-            }
-            handleNavClick={handleNavClick}
-            navIconData={navIconData}
+            key={`nav-item-${githubLinkData.name}`}
+            navIconData={githubLinkData}
           />
-        ))}
-        <Icon
-          key={`nav-item-${githubLinkData.name}`}
-          navIconData={githubLinkData}
-        />
+        </IconColumn>
       </Header>
     </RenderThrottle>
   );

@@ -26,6 +26,8 @@ const StyledArticle = styled("article")`
   padding-top: ${({ theme }) => theme.spacing(constants.spacing.large)};
   padding-bottom: ${({ theme }) => theme.spacing(constants.spacing.large)};
   background-color: ${({ theme }) => theme.palette.background.light}E6;
+  box-shadow: ${({ theme }) =>
+    `0 1px 0px 5px ${theme.palette.background.light}E6, 0 1px 0px 6px #0000000D`};
 `;
 
 const BlogArticle = (props) => {

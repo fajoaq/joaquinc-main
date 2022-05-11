@@ -33,6 +33,7 @@ const palette = {
     light: white,
     link: linkBlue,
     linkVisited: linkVisited,
+    navLink: "#00000070",
     deselected: white,
   },
   primary: {

@@ -41,7 +41,7 @@ export default function WebApp(props) {
         <CssBaseline />
         <GlobalStyles styles={globalStyles} />
         <TransitionStateProvider>
-          <NavLayout fontSize={{ xs: "3rem", md: "4rem" }} color="text.main" />
+          <NavLayout />
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>

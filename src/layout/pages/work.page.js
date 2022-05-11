@@ -27,6 +27,8 @@ const CaseStudyContainer = styled(Grid)`
   flex-wrap: wrap;
   width: 100%;
   background-color: ${({ theme }) => theme.palette.background.light}E6;
+  box-shadow: ${({ theme }) =>
+    `0 1px 0px 5px ${theme.palette.background.light}E6, 0 1px 0px 6px #0000000D`};
 
   && .case-study {
     display: grid;
@@ -114,7 +116,7 @@ const WorkArticle = (props) => {
         <Grid
           container
           className="article-text inline-padding"
-          paddingBottom={constants.spacing.medium}
+          paddingBottom={constants.spacing.large}
           component="article"
         >
           {/* paragraph 1 */}

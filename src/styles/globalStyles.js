@@ -36,11 +36,11 @@ const globalStyles = `
   }
 
   && nav#main-nav {
-    margin-top: 7rem;
+    margin-top: 6rem;
     pointer-events: none;
 
     ${theme.breakpoints.down("sm")} {
-      margin-top: 2rem;
+      margin-top: 2.6rem;
     }
   }
 

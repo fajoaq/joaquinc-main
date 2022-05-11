@@ -14,7 +14,11 @@ const CardMediaContainer = styled("div")`
 
 const StyledCard = styled(Card)`
   flex-basis: 31%;
-  min-width: 306px;
+  min-width: 334px;
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    min-width: 280px;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -35,8 +39,7 @@ const PostCard = ({ src, postTitle, postIntro, ...rest }) => (
       </Typography>
     </CardContent>
     <CardActions>
-      <StyledButton size="small">Share</StyledButton>
-      <StyledButton size="small">Learn More</StyledButton>
+      <StyledButton size="small">Continue reading &#x025B8;</StyledButton>
     </CardActions>
   </StyledCard>
 );
