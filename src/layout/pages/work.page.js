@@ -69,7 +69,7 @@ const CaseStudy = ({
   </Box>
 );
 
-const WorkArticle = (props) => {
+const WorkArticle = ({ blogPosts, ...rest }) => {
   const [transitionState, setTransitionState] = useTransitionState();
 
   // because transitions wont work when heights are the same
@@ -101,7 +101,7 @@ const WorkArticle = (props) => {
           ? `${constants.classNames.containerActiveClass}`
           : `${constants.classNames.containerInactiveClass}`
       }
-      {...props}
+      {...rest}
     >
       <Section
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
@@ -170,7 +170,34 @@ const WorkArticle = (props) => {
           component="article"
           gap={panelGap}
         >
-          <CaseStudy
+          {blogPosts.map((post, index) => (
+            <CaseStudy
+              key={post.sys.id}
+              imgSource={`https:${post.fields.blogThumbnail.fields.file.url}`}
+              externalLink={post.fields.externalLink}
+              priority={index === 0 ? "true" : "false"}
+              alt={post.fields.blogThumbnail.fields.description}
+            >
+              <InternalLink
+                className="internal-link internal-link-box"
+                internalLink={`/blog/${post.fields.slug}`}
+              >
+                <ForumIcon className="internal-link__icon" />
+                {post.fields.readingTime}min Read: {post.fields.title}
+              </InternalLink>
+            </CaseStudy>
+          ))}
+        </CaseStudyContainer>
+      </Section>
+    </ContentContainer>
+  );
+};
+WorkArticle.displayName = "WorkArticle";
+
+export { WorkArticle };
+
+/* 
+<CaseStudy
             imgSource="/static/work/pageprimer-thumb.jpg"
             externalLink="https://pageprimer.com"
             priority="true"
@@ -202,11 +229,4 @@ const WorkArticle = (props) => {
               Coming Soon: Fetching w/ Prisma
             </InternalLink>
           </CaseStudy>
-        </CaseStudyContainer>
-      </Section>
-    </ContentContainer>
-  );
-};
-WorkArticle.displayName = "WorkArticle";
-
-export { WorkArticle };
+*/

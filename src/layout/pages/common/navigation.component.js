@@ -27,7 +27,7 @@ const InternalLink = ({
 
   return (
     <a
-      className={className}
+      className={internalLink ? className : `${className} wip`}
       href={internalLink}
       onClick={handleClick}
       alt={internalLink ? alt : "Link Disabled."}

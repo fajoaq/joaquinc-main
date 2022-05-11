@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../../context/transition.context";
 import { ArticleNavigation } from "../common/navigation.component";
-import { LatesPostPreview, BlogPostsCarousel } from "./blog.component";
+import { LatesPostPreview, BlogPostsGrid } from "./blog.component";
 import { TRANSITION_CLASS, constants } from "../../../constants/constants";
 import {
   ContentContainer,
@@ -30,7 +30,7 @@ const StyledArticle = styled("article")`
     `0 1px 0px 5px ${theme.palette.background.light}E6, 0 1px 0px 6px #0000000D`};
 `;
 
-const BlogArticle = (props) => {
+const BlogArticle = ({ blogPosts, ...rest }) => {
   const [transitionState, setTransitionState] = useTransitionState();
 
   // because transitions wont work when heights are the same
@@ -62,7 +62,7 @@ const BlogArticle = (props) => {
           ? `${constants.classNames.containerActiveClass}`
           : `${constants.classNames.containerInactiveClass}`
       }
-      {...props}
+      {...rest}
     >
       <StyledSection
         container
@@ -79,6 +79,7 @@ const BlogArticle = (props) => {
         <LatesPostPreview
           className="inline-padding"
           component="article"
+          latestPost={blogPosts[0]}
           linkToArticle={handleClick}
         />
 
@@ -90,7 +91,7 @@ const BlogArticle = (props) => {
           >
             New posts
           </Typography>
-          <BlogPostsCarousel panelGap={panelGap} />
+          <BlogPostsGrid panelGap={panelGap} blogPosts={blogPosts} />
         </StyledArticle>
       </StyledSection>
     </ContentContainer>

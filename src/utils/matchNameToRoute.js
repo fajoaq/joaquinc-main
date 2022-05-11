@@ -30,7 +30,7 @@ const matchIconArrToRoute = (arr) => {
 
     if (url == route || iconData.name.includes(routeName)) isActive = true;
   });
-  console.log(isActive);
+
   return isActive;
 };
 

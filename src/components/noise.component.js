@@ -5,12 +5,12 @@ const Container = styled("div")`
   display: grid;
   height: 100%;
   width: 100%;
-  z-index: -10;
+  z-index: -999;
   pointer-events: none;
 `;
 
 const sharedStyles = `
-grid-column: 1;
+  grid-column: 1;
   grid-row: 1;
   overflow: hidden; // added for pseudo-element
   position: fixed; // added for pseudo-element

@@ -75,11 +75,11 @@ const Header = styled(Grid)`
   }
 
   && .icon-column-1 div:first-of-type a {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 0.6rem;
   }
   && .icon-column-1.active a:not(.active) {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 0.6rem;
   }
 
@@ -105,16 +105,16 @@ const Header = styled(Grid)`
     }
 
     && .icon:after {
-      left: 0.5rem;
+      left: 0.4rem;
     }
 
     && .icon-column-1.active a:not(.active) {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 0.7rem;
     }
 
     && .icon-column-1 div:first-of-type a {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 `}

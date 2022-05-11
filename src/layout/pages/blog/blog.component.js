@@ -15,7 +15,7 @@ const BlogPostImg = styled(Paper)`
   pointer-events: none;
 `;
 
-const LatesPostPreview = ({ linkToArticle, ...rest }) => (
+const LatesPostPreview = ({ latestPost, linkToArticle, ...rest }) => (
   <Grid container display="flex" paddingTop={0} {...rest}>
     <Grid
       component="header"
@@ -24,7 +24,7 @@ const LatesPostPreview = ({ linkToArticle, ...rest }) => (
       marginBottom={constants.spacing.small}
     >
       <Typography component="h2" variant="h4">
-        Latest: Building PagePrimer
+        Latest: {latestPost.fields.title}
       </Typography>
     </Grid>
 
@@ -43,7 +43,7 @@ const LatesPostPreview = ({ linkToArticle, ...rest }) => (
       <BlogPostImg elevation={3}>
         <ImgWithLazyRoot
           className="image-nextjs"
-          src="/static/work/pageprimer-thumb.jpg"
+          src={`https:${latestPost.fields.blogThumbnail.fields.file.url}`}
           type="image/jpg"
           priority="true"
           layout="fill"
@@ -61,11 +61,8 @@ const LatesPostPreview = ({ linkToArticle, ...rest }) => (
     >
       <Box className="article-text">
         <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
-          PagePrimer helps users craft afforable and performant web solutions
-          using modern frameworks like <strong>React and NextJs</strong>. In
-          this article I go over how I built PagePrimer and what I learned along
-          the way.{" "}
-          <a href="/blog" onClick={linkToArticle}>
+          {latestPost.fields.blogIntro}{" "}
+          <a href={`/blog/${latestPost.fields.slug}`} onClick={linkToArticle}>
             continue reading
           </a>
           &#x025B8;
@@ -82,17 +79,31 @@ const StyledArticle = styled(Grid)`
   justify-content: center;
 `;
 
-const BlogPostsCarousel = ({ panelGap = 5, ...rest }) => (
+const BlogPostsGrid = ({ panelGap = 5, blogPosts, ...rest }) => (
   <StyledArticle gap={panelGap} {...rest}>
-    {postData1.map((post, index) => (
+    {blogPosts.map((post, index) => (
       <PostCard
-        key={`post-card-${index}`}
-        src={post.imgUrl}
-        postTitle={post.postTitle}
-        postIntro={post.postIntro}
+        key={post.sys.id}
+        src={`https:${post.fields.blogThumbnail.fields.file.url}`}
+        href={`/blog/${post.fields.slug}`}
+        postTitle={post.fields.title}
+        blogIntro={post.fields.blogIntro}
+        readingTime={post.fields.readingTime}
+        priority={index === 0 ? "true" : "false"}
       />
     ))}
   </StyledArticle>
 );
 
-export { LatesPostPreview, BlogPostsCarousel, BlogPostImg };
+export { LatesPostPreview, BlogPostsGrid, BlogPostImg };
+
+/* 
+ PagePrimer helps users craft afforable and performant web solutions
+          using modern frameworks like <strong>React and NextJs</strong>. In
+          this article I go over how I built PagePrimer and what I learned along
+          the way.{" "}
+          <a href="/blog" onClick={linkToArticle}>
+            continue reading
+          </a>
+          &#x025B8;
+*/
