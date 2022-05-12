@@ -1,17 +1,13 @@
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../../context/transition.context";
 import { ArticleNavigation } from "../common/navigation.component";
-import { LatesPostPreview, BlogPostsGrid } from "./blog.component";
 import { TRANSITION_CLASS, constants } from "../../../constants/constants";
 import {
   ContentContainer,
   Section,
 } from "../../../components/containers.component";
-
-const panelGap = 5;
 
 const StyledSection = styled(Section)`
   padding-top: 3.5em;
@@ -21,16 +17,12 @@ const StyledSection = styled(Section)`
   }
 `;
 
-const StyledArticle = styled("article")`
-  width: 100%;
-  padding-top: ${({ theme }) => theme.spacing(constants.spacing.large)};
-  padding-bottom: ${({ theme }) => theme.spacing(constants.spacing.large)};
-  background-color: ${({ theme }) => theme.palette.background.light}E6;
-  box-shadow: ${({ theme }) =>
-    `0 1px 0px 5px ${theme.palette.background.light}E6, 0 1px 0px 6px #0000000D`};
-`;
-
-const BlogArticle = ({ blogPosts, ...rest }) => {
+const BlogLayout = ({
+  children,
+  toArticle = "work",
+  toArticleTitle = "my work",
+  ...rest
+}) => {
   const [transitionState, setTransitionState] = useTransitionState();
 
   // because transitions wont work when heights are the same
@@ -47,11 +39,6 @@ const BlogArticle = ({ blogPosts, ...rest }) => {
       mainContainerHeight: newHeight,
     }));
   }, []);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    transitionState.navigate(e.target.href);
-  };
 
   // we mark one of the container's children with a special class
   // to set it as the main transition, for use in transitionend event listeners
@@ -72,31 +59,16 @@ const BlogArticle = ({ blogPosts, ...rest }) => {
         <ArticleNavigation
           className="inline-padding"
           fromArticle="Blog"
-          toArticle="Work"
+          toArticle={toArticle}
+          toArticleTitle={toArticleTitle}
           mainHeading="h1"
         />
 
-        <LatesPostPreview
-          className="inline-padding"
-          component="article"
-          latestPost={blogPosts[0]}
-          linkToArticle={handleClick}
-        />
-
-        <StyledArticle className="inline-padding">
-          <Typography
-            component="h2"
-            variant="h4"
-            marginBottom={constants.spacing.medium}
-          >
-            New posts
-          </Typography>
-          <BlogPostsGrid panelGap={panelGap} blogPosts={blogPosts} />
-        </StyledArticle>
+        {children}
       </StyledSection>
     </ContentContainer>
   );
 };
-BlogArticle.displayName = "BlogArticle";
+BlogLayout.displayName = "BlogLayout";
 
-export { BlogArticle };
+export { BlogLayout };

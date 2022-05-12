@@ -107,11 +107,7 @@ const WorkArticle = ({ blogPosts, ...rest }) => {
         className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
         ref={transitionState.contentRef}
       >
-        <ArticleNavigation
-          className="inline-padding"
-          fromArticle="Work"
-          toArticle="Blog"
-        />
+        <ArticleNavigation className="inline-padding" fromArticle="Work" />
 
         <Grid
           container

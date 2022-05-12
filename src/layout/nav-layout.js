@@ -7,10 +7,7 @@ import { TRANSITION_CLASS, constants } from "../constants/constants";
 import { RenderThrottle } from "../components/wrapper/render-throttle.component";
 import { useTransitions } from "../../src/hooks/useTransitions";
 import { useTransitionState } from "../context/transition.context";
-import {
-  matchNameToRoute,
-  matchIconArrToRoute,
-} from "../utils/matchNameToRoute";
+import { matchIconColumnToRoute } from "../utils/matchNavColumnToRoute";
 
 const Header = styled(Grid)`
   ${({ theme }) => `
@@ -75,12 +72,12 @@ const Header = styled(Grid)`
   }
 
   && .icon-column-1 div:first-of-type a {
-    font-size: 2rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
   }
   && .icon-column-1.active a:not(.active) {
-    font-size: 2rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
   }
 
   ${theme.breakpoints.down("sm")} {
@@ -109,12 +106,13 @@ const Header = styled(Grid)`
     }
 
     && .icon-column-1.active a:not(.active) {
-      font-size: 1.8rem;
-      margin-bottom: 0.7rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
     }
 
     && .icon-column-1 div:first-of-type a {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
     }
   }
 `}
@@ -197,15 +195,16 @@ const Icon = ({ handleNavClick, navIconData: { Icon, ...data }, ...rest }) => {
   );
 };
 
-const constructIconColumn = (onClick, navIconData, index) => {
+const constructIconColumn = (onClick, navIconData, pathName) => {
   const [transitionState] = useTransitionState();
+
   return (
     <Grid
-      key={index}
+      key={navIconData.name}
       item
       order={
         transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? matchNameToRoute(navIconData.name, navIconData.href)
+          ? navIconData.name == pathName
             ? 2
             : 1
           : 1
@@ -216,7 +215,7 @@ const constructIconColumn = (onClick, navIconData, index) => {
         navIconData={navIconData}
         className={
           transitionState.contentTransition === TRANSITION_CLASS.entered
-            ? matchNameToRoute(navIconData.name, navIconData.href)
+            ? navIconData.name == pathName
               ? `icon-${navIconData.name} active`
               : ""
             : `icon-${navIconData.name}`
@@ -233,7 +232,7 @@ const constructIconColumn = (onClick, navIconData, index) => {
   );
 };
 
-const constructNavIcons = (onClick) => {
+const constructNavIcons = (onClick, pathName) => {
   const [transitionState] = useTransitionState();
 
   return navLinks.map((iconArr, index) => (
@@ -242,14 +241,14 @@ const constructNavIcons = (onClick) => {
       container
       className={
         transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? matchIconArrToRoute(iconArr)
+          ? matchIconColumnToRoute(iconArr, pathName)
             ? `icon icon-column-${index} active`
             : `icon icon-column-${index}`
           : `icon icon-column-${index}`
       }
     >
-      {iconArr.map((navIconData, index) =>
-        constructIconColumn(onClick, navIconData, index)
+      {iconArr.map((navIconData) =>
+        constructIconColumn(onClick, navIconData, pathName)
       )}
     </IconColumn>
   ));
@@ -259,6 +258,10 @@ const NavLayout = ({ navigate, ...rest }) => {
   const router = useRouter();
   const [handleClick] = useTransitions(); // transition states initialization, call once
   const [transitionState] = useTransitionState();
+
+  let pathName = router.route
+    .substring(1, router.route.lastIndexOf("/"))
+    .toLowerCase();
 
   const handleNavClick = (e) => {
     e.preventDefault();
@@ -289,7 +292,7 @@ const NavLayout = ({ navigate, ...rest }) => {
         aria-label="Main Navigation."
         {...rest}
       >
-        {constructNavIcons(handleNavClick)}
+        {constructNavIcons(handleNavClick, pathName)}
         <IconColumn className="icon">
           <Icon
             key={`nav-item-${githubLinkData.name}`}

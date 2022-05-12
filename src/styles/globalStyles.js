@@ -27,6 +27,10 @@ const globalStyles = `
     color: ${theme.palette.text.main};
   }
 
+  figure {
+    margin: 0;
+  }
+
   && #__next {
     display: grid;
     position: relative;
@@ -61,7 +65,7 @@ const globalStyles = `
     ${textDropShadow(0.07, `255,255,255`, 1)}
   }
 
-  && a {
+  && a, figure a {
     cursor: pointer;
     color:  ${theme.palette.text.main};
     text-decoration: none;
@@ -71,6 +75,12 @@ const globalStyles = `
     }ms ease-in-out;
   }
 
+  & figure a {
+    text-decoration: underline;
+    text-decoration-thickness: 0.09em;
+    font-style: normal;
+  }
+
   && .article-text a:link {
     color: ${theme.palette.text.main};
     text-decoration: underline;
@@ -78,7 +88,7 @@ const globalStyles = `
     text-underline-offset: 0.04em;
   }
 
-  && .article-text a:hover {
+  && .article-text a:hover, figure a:hover {
     text-decoration-color: ${theme.palette.text.link};
     text-decoration-thickness: 0.15em;
   }

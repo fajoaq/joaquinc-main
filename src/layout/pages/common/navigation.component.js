@@ -77,7 +77,8 @@ const NavigationBox = styled(Box)`
 `;
 const ArticleNavigation = ({
   fromArticle,
-  toArticle,
+  toArticle = "blog",
+  toArticleTitle = "my blog",
   mainHeading = "h2",
   ...rest
 }) => (
@@ -94,7 +95,7 @@ const ArticleNavigation = ({
       internalLink={`/${toArticle.toLowerCase()}`}
     >
       <Typography className="article-title" variant="articleLink">
-        {toArticle}&#x025B8;
+        {toArticleTitle}&#x025B8;
       </Typography>
     </InternalLink>
   </NavigationBox>

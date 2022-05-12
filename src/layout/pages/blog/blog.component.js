@@ -7,70 +7,84 @@ import Typography from "@mui/material/Typography";
 import { PostCard } from "../../../components/card.component";
 import { ImgWithLazyRoot } from "../../../components/img-w-lazy-root.component";
 import { constants } from "../../../constants/constants";
-import { postData1 } from "./post-data";
 
 const BlogPostImg = styled(Paper)`
   position: relative;
   aspect-ratio: ${constants.aspectRatio.default};
   pointer-events: none;
+  margin-bottom: ${({ theme }) => theme.spacing(constants.spacing.xsmall)};
 `;
 
-const LatesPostPreview = ({ latestPost, linkToArticle, ...rest }) => (
-  <Grid container display="flex" paddingTop={0} {...rest}>
-    <Grid
-      component="header"
-      item
-      xs={12}
-      marginBottom={constants.spacing.small}
-    >
-      <Typography component="h2" variant="h4">
-        Latest: {latestPost.fields.title}
-      </Typography>
-    </Grid>
-
-    <Grid
-      item
-      component="a"
-      href="/blog"
-      onClick={linkToArticle}
-      xs={12}
-      md={5}
-      marginBottom={{
-        xs: constants.spacing.small,
-        md: constants.spacing.large,
-      }}
-    >
-      <BlogPostImg elevation={3}>
-        <ImgWithLazyRoot
-          className="image-nextjs"
-          src={`https:${latestPost.fields.blogThumbnail.fields.file.url}`}
-          type="image/jpg"
-          priority="true"
-          layout="fill"
-          alt="PagePrimer Web Design."
-        />
-      </BlogPostImg>
-    </Grid>
-
-    <Grid
-      item
-      xs={12}
-      md={7}
-      paddingLeft={{ xs: 0, md: constants.spacing.medium }}
-      marginBottom={{ xs: constants.spacing.large, md: 0 }}
-    >
-      <Box className="article-text">
-        <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
-          {latestPost.fields.blogIntro}{" "}
-          <a href={`/blog/${latestPost.fields.slug}`} onClick={linkToArticle}>
-            continue reading
-          </a>
-          &#x025B8;
+const LatesPostPreview = ({ children, latestPost, ...rest }) => {
+  return (
+    <Grid container display="flex" paddingTop={0} {...rest}>
+      <Grid
+        component="header"
+        item
+        xs={12}
+        marginBottom={constants.spacing.small}
+      >
+        <Typography component="h2" variant="h4">
+          Latest: {latestPost.fields.title}
         </Typography>
-      </Box>
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        md={5}
+        marginBottom={{
+          xs: constants.spacing.small,
+          md: constants.spacing.large,
+        }}
+      >
+        <figure>
+          <BlogPostImg elevation={3}>
+            <ImgWithLazyRoot
+              className="image-nextjs"
+              src={`https:${latestPost.fields.blogThumbnail.fields.file.url}`}
+              type="image/jpg"
+              priority="true"
+              layout="fill"
+              alt="PagePrimer Web Design."
+            />
+          </BlogPostImg>
+          <Typography component="figcaption" variant="body2" textAlign="center">
+            {latestPost.fields.blogBanner.fields.description}.{" "}
+            {latestPost.fields.externalLink && (
+              <a
+                href={latestPost.fields.externalLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Site
+              </a>
+            )}
+            &#x21B1;
+          </Typography>
+        </figure>
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        md={7}
+        paddingLeft={{ xs: 0, md: constants.spacing.medium }}
+        marginBottom={{ xs: constants.spacing.large, md: 0 }}
+      >
+        <Box className="article-text">
+          {children ? (
+            children
+          ) : (
+            <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
+              {latestPost.fields.blogIntro}
+            </Typography>
+          )}
+        </Box>
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
+};
 
 const StyledArticle = styled(Grid)`
   display: flex;

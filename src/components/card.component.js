@@ -53,7 +53,7 @@ const PostCard = ({
         </Typography>
       </div>
       <Typography variant="body2" color="text.secondary">
-        {blogIntro}
+        {blogIntro.slice(260)}&#8230;
       </Typography>
     </CardContent>
     <CardActions>

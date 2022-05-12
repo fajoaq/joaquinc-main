@@ -4,7 +4,7 @@ import Head from "next/head";
 
 import { SEO } from "../../src/constants/seo";
 
-import { BlogArticle } from "../../src/layout/pages";
+import { BlogLayout, BlogIndex } from "../../src/layout/pages";
 
 const Page = (props) => (
   <Fragment>
@@ -17,7 +17,9 @@ const Page = (props) => (
       <title>{"Blog | " + SEO.SITE_TITLE}</title>
     </Head>
 
-    <BlogArticle blogPosts={props.posts} />
+    <BlogLayout toArticle="work" toArticleTitle="my work">
+      <BlogIndex blogPosts={props.posts} />
+    </BlogLayout>
   </Fragment>
 );
 
