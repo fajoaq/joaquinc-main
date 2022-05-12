@@ -8,6 +8,7 @@ import { RenderThrottle } from "../components/wrapper/render-throttle.component"
 import { useTransitions } from "../../src/hooks/useTransitions";
 import { useTransitionState } from "../context/transition.context";
 import { matchIconColumnToRoute } from "../utils/matchNavColumnToRoute";
+import { getPathName } from "../utils/getPathName";
 
 const Header = styled(Grid)`
   ${({ theme }) => `
@@ -259,9 +260,7 @@ const NavLayout = ({ navigate, ...rest }) => {
   const [handleClick] = useTransitions(); // transition states initialization, call once
   const [transitionState] = useTransitionState();
 
-  let pathName = router.route
-    .substring(1, router.route.lastIndexOf("/"))
-    .toLowerCase();
+  let pathName = getPathName(router.route.slice(1));
 
   const handleNavClick = (e) => {
     e.preventDefault();
