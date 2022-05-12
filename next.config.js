@@ -8,7 +8,6 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   optimizeFonts: false,
   images: {
-    formats: ["image/avif", "image/webp"],
     domains: ["images.ctfassets.net", "dummyimage.com"],
   },
 });

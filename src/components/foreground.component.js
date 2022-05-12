@@ -47,6 +47,7 @@ const ForeGround = (props) => {
       className={`${transitionState.foregroundTransition} ${constants.classNames.transitionContainer}`}
       dimensions={transitionState.mainContainerHeight}
       role="presentation"
+      aria-hidden="true"
       disabled={true}
     >
       <StyledInnerBox

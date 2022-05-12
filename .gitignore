@@ -35,5 +35,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# images hash/hashed
+/public/static/work/hash
+
 # removed
 /src/utils/removed

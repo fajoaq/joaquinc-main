@@ -38,12 +38,12 @@ const STATE_ENTERED = `
 `;
 const STATE_EXITED = `
   && .exited header {
-    opacity: 0;
+    opacity: 0.1;
     transform: translateX(-100%);
     transition: opacity, transform, ${constants.navTimeout}ms ease-in-out;
   }
   && .exited .img-container {
-    opacity: 0;
+    opacity: 0.1;
     transform: translateX(100%);
     transition: opacity, transform, ${constants.navTimeout}ms ease-in-out;
   }
@@ -68,14 +68,14 @@ const StyledContentContainer = styled(ContentContainer)`
     justify-content: center;
     padding: 0 2.5em 2.5em 2.5em;
     background-color: ${theme.palette.primary.main};
-    opacity: 0;
+    opacity: 0.1;
     transform: translateX(-100%);
     transition: opacity,transform, ${constants.navTimeout + 140}ms ease-in-out;
   }
 
   && .img-container {
     display: grid;
-    opacity: 0;
+    opacity: 0.1;
     transform: translateX(100%);
     transition: opacity, transform, ${constants.navTimeout + 140}ms ease-in-out;
   }

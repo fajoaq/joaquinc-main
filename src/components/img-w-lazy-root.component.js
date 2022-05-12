@@ -54,6 +54,8 @@ const ImgWithLazyRoot = ({
       onErrorCapture={handleError}
       lazyBoundary={lazyBoundary}
       lazyRoot={lazyRoot ? lazyRoot.current : null}
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkqOutBwADHQGMRFCS/wAAAABJRU5ErkJggg=="
       {...rest}
     />
   );
