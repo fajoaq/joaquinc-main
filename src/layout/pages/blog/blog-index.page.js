@@ -53,7 +53,11 @@ const BlogIndex = ({ blogPosts }) => {
         >
           New posts
         </Typography>
-        <BlogPostsGrid panelGap={panelGap} blogPosts={blogPosts} />
+        <BlogPostsGrid
+          panelGap={panelGap}
+          blogPosts={blogPosts}
+          onClick={handleClick}
+        />
       </StyledArticle>
     </Fragment>
   );

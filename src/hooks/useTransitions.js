@@ -106,6 +106,12 @@ const useTransitions = () => {
       ...prev,
       ...STATE_ENTER,
     }));
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    }); // scroll smoothly to top
   }, [transitionState.mainContainerHeight]);
   //
   //

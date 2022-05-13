@@ -184,6 +184,13 @@ const WorkArticle = ({ blogPosts, ...rest }) => {
             </CaseStudy>
           ))}
         </CaseStudyContainer>
+
+        {transitionState.contentTransition ===
+        TRANSITION_CLASS.entered ? null : (
+          <div className="loader-container">
+            <div className="loader" />
+          </div>
+        )}
       </Section>
     </ContentContainer>
   );

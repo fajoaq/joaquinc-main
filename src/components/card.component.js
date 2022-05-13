@@ -31,6 +31,7 @@ const PostCard = ({
   postTitle,
   blogIntro,
   readingTime,
+  onClick,
   ...rest
 }) => (
   <StyledCard elevation={2} {...rest}>
@@ -57,7 +58,7 @@ const PostCard = ({
       </Typography>
     </CardContent>
     <CardActions>
-      <StyledButton href={href} size="small">
+      <StyledButton href={href} size="small" onClick={onClick}>
         Continue reading &#x025B8;
       </StyledButton>
     </CardActions>

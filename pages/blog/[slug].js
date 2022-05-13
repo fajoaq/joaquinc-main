@@ -6,22 +6,32 @@ import { SEO } from "../../src/constants/seo";
 
 import { BlogLayout, BlogPost } from "../../src/layout/pages";
 
-const Page = ({ post }) => (
-  <Fragment>
-    {/* route specific meta data */}
-    <Head>
-      <meta property="description" content={SEO.SITE_DESCRIPTION} />
-      <meta name="description" content={SEO.SITE_DESCRIPTION} />
-      <meta property="image" content={SEO.SITE_IMAGE} />
-      <meta property="title" content={"Blog | " + post.fields.title} />
-      <title>{"Blog | " + post.fields.title}</title>
-    </Head>
+const Page = ({ post }) => {
+  // fallback page
+  if (!post)
+    return (
+      <div className="loader-container">
+        <div className="loader" />
+      </div>
+    );
 
-    <BlogLayout toArticle="blog" toArticleTitle="all posts">
-      <BlogPost blogPost={post} />
-    </BlogLayout>
-  </Fragment>
-);
+  return (
+    <Fragment>
+      {/* route specific meta data */}
+      <Head>
+        <meta property="description" content={SEO.SITE_DESCRIPTION} />
+        <meta name="description" content={SEO.SITE_DESCRIPTION} />
+        <meta property="image" content={SEO.SITE_IMAGE} />
+        <meta property="title" content={"Blog | " + post.fields.title} />
+        <title>{"Blog | " + post.fields.title}</title>
+      </Head>
+
+      <BlogLayout toArticle="blog" toArticleTitle="all posts">
+        <BlogPost blogPost={post} />
+      </BlogLayout>
+    </Fragment>
+  );
+};
 
 const clientx = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -53,7 +63,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 

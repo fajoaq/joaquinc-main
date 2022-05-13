@@ -66,6 +66,12 @@ const BlogLayout = ({
 
         {children}
       </StyledSection>
+
+      {transitionState.contentTransition === TRANSITION_CLASS.entered ? null : (
+        <div className="loader-container">
+          <div className="loader" />
+        </div>
+      )}
     </ContentContainer>
   );
 };

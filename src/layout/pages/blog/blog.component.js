@@ -93,7 +93,7 @@ const StyledArticle = styled(Grid)`
   justify-content: center;
 `;
 
-const BlogPostsGrid = ({ panelGap = 5, blogPosts, ...rest }) => (
+const BlogPostsGrid = ({ panelGap = 5, blogPosts, onClick, ...rest }) => (
   <StyledArticle gap={panelGap} {...rest}>
     {blogPosts.map((post, index) => (
       <PostCard
@@ -104,6 +104,7 @@ const BlogPostsGrid = ({ panelGap = 5, blogPosts, ...rest }) => (
         blogIntro={post.fields.blogIntro}
         readingTime={post.fields.readingTime}
         priority={index === 0 ? "true" : "false"}
+        onClick={onClick}
       />
     ))}
   </StyledArticle>

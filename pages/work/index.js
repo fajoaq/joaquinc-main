@@ -6,20 +6,29 @@ import { SEO } from "../../src/constants/seo";
 
 import { WorkArticle } from "../../src/layout/pages";
 
-const Page = (props) => (
-  <Fragment>
-    {/* route specific meta data */}
-    <Head>
-      <meta property="description" content={SEO.SITE_DESCRIPTION} />
-      <meta name="description" content={SEO.SITE_DESCRIPTION} />
-      <meta property="image" content={SEO.SITE_IMAGE} />
-      <meta property="title" content={"Work | " + SEO.SITE_TITLE} />
-      <title>{"Work | " + SEO.SITE_TITLE}</title>
-    </Head>
+const Page = ({ posts }) => {
+  if (!posts)
+    return (
+      <div className="loader-container">
+        <div className="loader" />
+      </div>
+    );
 
-    <WorkArticle blogPosts={props.posts} />
-  </Fragment>
-);
+  return (
+    <Fragment>
+      {/* route specific meta data */}
+      <Head>
+        <meta property="description" content={SEO.SITE_DESCRIPTION} />
+        <meta name="description" content={SEO.SITE_DESCRIPTION} />
+        <meta property="image" content={SEO.SITE_IMAGE} />
+        <meta property="title" content={"Work | " + SEO.SITE_TITLE} />
+        <title>{"Work | " + SEO.SITE_TITLE}</title>
+      </Head>
+
+      <WorkArticle blogPosts={posts} />
+    </Fragment>
+  );
+};
 
 export async function getStaticProps() {
   const clientx = createClient({
