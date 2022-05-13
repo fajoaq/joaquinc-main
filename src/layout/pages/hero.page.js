@@ -1,23 +1,12 @@
-import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import { useTransitionState } from "../../context/transition.context";
-import { TRANSITION_CLASS, constants } from "../../constants/constants";
+import { constants } from "../../constants/constants";
 import { ImgWithLazyRoot } from "../../components/img-w-lazy-root.component";
-import {
-  ContentContainer,
-  Section,
-} from "../../components/containers.component";
-
-const StyledSection = styled(Section)`
-  && {
-    flex-direction: row;
-    padding: 0;
-  }
-`;
+import { PageLayout } from "./common/page-layout.component";
 
 const imageSizes = {
   small: 368,
@@ -49,14 +38,22 @@ const STATE_EXITED = `
   }
 `;
 
-//  We can pass a prop to the whole template literal
-// by destructuring it at the top and returning another
-// template literal
-const StyledContentContainer = styled(ContentContainer)`
+const StyledPageLayout = styled(PageLayout)`
   ${({ theme }) => `
-
+  
   ${STATE_ENTERED}
   ${STATE_EXITED}
+
+  && #main-section {
+    flex-direction: row;
+    padding: 0;
+  }
+
+  ${theme.breakpoints.down("lg")} {
+    && #main-section {
+    flex-direction: column;
+    }
+  }
 
   && article > div {
     padding: 0;
@@ -67,6 +64,7 @@ const StyledContentContainer = styled(ContentContainer)`
     flex-direction: column;
     justify-content: center;
     padding: 0 2.5em 2.5em 2.5em;
+    width: 100%;
     background-color: ${theme.palette.primary.main};
     opacity: 0.1;
     transform: translateX(-100%);
@@ -167,109 +165,83 @@ const StyledContentContainer = styled(ContentContainer)`
 `;
 
 const HeroArticle = (props) => {
-  const [transitionState, setTransitionState] = useTransitionState();
+  const [transitionState] = useTransitionState();
 
   const handleGoNext = () => {
     transitionState.navigate("/work");
   };
 
-  // because transitions wont work when heights are the same
-  // we add one from new height
-  useEffect(() => {
-    const { offsetHeight } = transitionState.contentRef.current;
-    const newHeight =
-      transitionState.mainContainerHeight === offsetHeight
-        ? offsetHeight - 1
-        : offsetHeight;
-
-    setTransitionState((prev) => ({
-      ...prev,
-      mainContainerHeight: newHeight,
-    }));
-  }, []);
-
-  // we mark one of the container's children with a special class
-  // to set it as the main transition, for use in transitionend event listeners
   return (
-    <StyledContentContainer
-      className={
-        transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? `${constants.classNames.containerActiveClass}`
-          : `${constants.classNames.containerInactiveClass}`
-      }
+    <StyledPageLayout
+      sectionClassName={transitionState.contentTransition}
+      navigationHeader={false}
       {...props}
     >
-      <StyledSection
-        container
-        className={transitionState.contentTransition}
-        ref={transitionState.contentRef}
+      <Grid
+        className="main-transition"
+        item
+        component="header"
+        xs={12}
+        lg={7.5}
+        order={{ xs: 2, lg: 1 }}
+        textAlign={{ xs: "center", lg: "start" }}
       >
-        <Grid
-          className="main-transition"
-          item
-          component="header"
-          xs={12}
-          lg={7.5}
-          order={{ xs: 2, lg: 1 }}
-          textAlign={{ xs: "center", lg: "start" }}
-        >
-          <Typography variant="h1">Francis Joaquin</Typography>
-          <Typography component="h2" variant="h3" paddingTop={3}>
-            Developing Web Developer
-          </Typography>
-        </Grid>
+        <Typography variant="h1">Francis Joaquin</Typography>
+        <Typography component="h2" variant="h3" paddingTop={3}>
+          Developing Web Developer
+        </Typography>
+      </Grid>
 
-        {/* image positioning container */}
-        <Grid
-          className="img-container"
-          item
-          xs={12}
-          lg={4.5}
-          order={{ xs: 1, lg: 2 }}
-          justifyContent={{ xs: "center", lg: "end" }}
-          bgcolor={{ xs: "primary.main", lg: "#e5e4e3" }}
+      {/* image positioning container */}
+      <Grid
+        className="img-container"
+        item
+        xs={12}
+        lg={4.5}
+        order={{ xs: 1, lg: 2 }}
+        justifyContent={{ xs: "center", lg: "end" }}
+        bgcolor={{ xs: "primary.main", lg: "#e5e4e3" }}
+      >
+        {/* image mask/height container */}
+        <Box
+          className="img-mask"
+          display="grid"
+          position="relative"
+          height={{
+            xs: imageSizes.small + "px",
+            lg: imageSizes.medium + "px",
+          }}
         >
-          {/* image mask/height container */}
+          {/* nextjs image component */}
+          <ImgWithLazyRoot
+            className="image-nextjs"
+            src="/static/site/fj-orange.jpg"
+            type="image/jpg"
+            priority="true"
+            layout="fill"
+            alt="Francis Joaquin Website Author"
+          />
+          {/* go next button container */}
           <Box
-            className="img-mask"
-            display="grid"
-            position="relative"
-            height={{
-              xs: imageSizes.small + "px",
-              lg: imageSizes.medium + "px",
-            }}
+            className="hero-next"
+            justifyContent={{ xs: "center", lg: "end" }}
           >
-            {/* nextjs image component */}
-            <ImgWithLazyRoot
-              className="image-nextjs"
-              src="/static/site/fj-orange.jpg"
-              type="image/jpg"
-              priority="true"
-              layout="fill"
-              alt="Francis Joaquin Website Author"
-            />
-            {/* go next button container */}
+            {/* go to next article button */}
             <Box
-              className="hero-next"
-              justifyContent={{ xs: "center", lg: "end" }}
+              onClick={handleGoNext}
+              component="a"
+              maxWidth={{ xs: "4rem", md: "6rem" }}
+              maxHeight={{ xs: "4rem", md: "6rem" }}
+              borderRadius={{ xs: "100%", lg: 0 }}
+              role="button"
+              aria-label={"Go to portfolio"}
             >
-              {/* go to next article button */}
-              <Box
-                onClick={handleGoNext}
-                component="a"
-                maxWidth={{ xs: "4rem", md: "6rem" }}
-                maxHeight={{ xs: "4rem", md: "6rem" }}
-                borderRadius={{ xs: "100%", lg: 0 }}
-                role="button"
-                aria-label={"Go to portfolio"}
-              >
-                <div className="hero-next-image" />
-              </Box>
+              <div className="hero-next-image" />
             </Box>
           </Box>
-        </Grid>
-      </StyledSection>
-    </StyledContentContainer>
+        </Box>
+      </Grid>
+    </StyledPageLayout>
   );
 };
 HeroArticle.displayName = "HeroArticle";

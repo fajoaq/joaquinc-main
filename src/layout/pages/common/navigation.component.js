@@ -92,7 +92,7 @@ const ArticleNavigation = ({
     </Typography>
     <InternalLink
       className="internal-link"
-      internalLink={`/${toArticle.toLowerCase()}`}
+      internalLink={toArticle == "/" ? "/" : `/${toArticle.toLowerCase()}`}
     >
       <Typography className="article-title" variant="articleLink">
         {toArticleTitle}&#x025B8;

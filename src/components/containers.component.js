@@ -1,9 +1,10 @@
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 import { constants } from "../constants/constants";
 
-const ContentContainer = styled("div")`
+const ContentContainer = styled(Box)`
   grid-column: 1;
   grid-row: 1;
   display: grid;

@@ -1,18 +1,15 @@
-import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-import { useTransitionState } from "../../context/transition.context";
-import { TRANSITION_CLASS, constants } from "../../constants/constants";
+import { PageLayout } from "./common/page-layout.component";
 import { ContactForm } from "../../components/forms/contact/contact-form-control.component";
-import {
-  ContentContainer,
-  Section,
-} from "../../components/containers.component";
 
-// TBD remove the need to adjust article height based on screen width
-const StyledSection = styled(Section)`
+// TBD remove the need to adjust article
+// when the contact page hint changes container height
+const StyledContainer = styled(Container)`
+  padding-top: 0;
+
   && .contact-article-form {
     min-height: 478px;
   }
@@ -24,65 +21,27 @@ const StyledSection = styled(Section)`
   }
 `;
 
-const StyledContainer = styled(Container)`
-  padding-top: 0;
-`;
-
-const ContactArticle = (props) => {
-  const [transitionState, setTransitionState] = useTransitionState();
-
-  // because transitions wont work when heights are the same
-  // we add one from new height
-  useEffect(() => {
-    const { offsetHeight } = transitionState.contentRef.current;
-    const newHeight =
-      transitionState.mainContainerHeight === offsetHeight
-        ? offsetHeight - 1
-        : offsetHeight;
-
-    setTransitionState((prev) => ({
-      ...prev,
-      mainContainerHeight: newHeight,
-    }));
-  }, []);
-
-  // we mark one of the container's children with a special class
-  // to mark it as the main transition, for use in transitionend event listeners
-  return (
-    <ContentContainer
-      className={
-        transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? `${constants.classNames.containerActiveClass}`
-          : `${constants.classNames.containerInactiveClass}`
-      }
-      {...props}
+const ContactArticle = (props) => (
+  <PageLayout navigationHeader={false} {...props}>
+    <StyledContainer
+      className="inline-padding inline-padding-vertical"
+      component="article"
+      maxWidth="md"
+      disableGutters
     >
-      <StyledSection
-        className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
-        ref={transitionState.contentRef}
-      >
-        <StyledContainer
-          className="inline-padding inline-padding-vertical"
-          component="article"
-          maxWidth="md"
-          disableGutters
-        >
-          <Typography component="h1" variant="h2" className="article-title">
-            Contact Me
-          </Typography>
-          <br />
+      <Typography component="h1" variant="h2" className="article-title">
+        Contact Me
+      </Typography>
+      <br />
 
-          <ContactForm
-            idBase="contact-article-form"
-            className="contact-article-form"
-            successMessage="Thank You for Your Message"
-            confirmEmailMessage="I will be in contact shortly."
-          />
-        </StyledContainer>
-      </StyledSection>
-    </ContentContainer>
-  );
-};
-ContactArticle.displayName = "ContactArticle";
+      <ContactForm
+        idBase="contact-article-form"
+        className="contact-article-form"
+        successMessage="Thank You for Your Message"
+        confirmEmailMessage="I will be in contact shortly."
+      />
+    </StyledContainer>
+  </PageLayout>
+);
 
 export { ContactArticle };

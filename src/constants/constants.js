@@ -1,4 +1,8 @@
 const constants = {
+  baseUrl:
+    process.env.NODE_ENV === "development"
+      ? "localhost:3000"
+      : "https://joaquinc.com",
   minContainerHeight: 533,
   aspectRatio: {
     default: "4/3",

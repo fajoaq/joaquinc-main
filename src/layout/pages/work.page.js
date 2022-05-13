@@ -1,21 +1,13 @@
-import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import ForumIcon from "@mui/icons-material/Forum";
 
-import {
-  InternalLink,
-  ExternalLink,
-  ArticleNavigation,
-} from "./common/navigation.component";
+import { InternalLink, ExternalLink } from "./common/navigation.component";
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
-import {
-  ContentContainer,
-  Section,
-} from "../../components/containers.component";
+import { PageLayout } from "./common/page-layout.component";
 
 const panelGap = 5;
 
@@ -70,166 +62,99 @@ const CaseStudy = ({
 );
 
 const WorkArticle = ({ blogPosts, ...rest }) => {
-  const [transitionState, setTransitionState] = useTransitionState();
-
-  // because transitions wont work when heights are the same
-  // we add one from new height
-  useEffect(() => {
-    const { offsetHeight } = transitionState.contentRef.current;
-    const newHeight =
-      transitionState.mainContainerHeight === offsetHeight
-        ? offsetHeight - 1
-        : offsetHeight;
-
-    setTransitionState((prev) => ({
-      ...prev,
-      mainContainerHeight: newHeight,
-    }));
-  }, []);
+  const [transitionState] = useTransitionState();
 
   const handleClick = (e) => {
     e.preventDefault();
     transitionState.navigate(e.target.href);
   };
 
-  // we mark one of the container's children with a special class
-  // to set it as the main transition, for use in transitionend event listeners
   return (
-    <ContentContainer
-      className={
-        transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? `${constants.classNames.containerActiveClass}`
-          : `${constants.classNames.containerInactiveClass}`
-      }
-      {...rest}
-    >
-      <Section
-        className={`${transitionState.contentTransition} ${constants.classNames.mainTransition}`}
-        ref={transitionState.contentRef}
+    <PageLayout fromArticle="Work" {...rest}>
+      <Grid
+        container
+        className="article-text inline-padding"
+        paddingBottom={constants.spacing.large}
+        component="article"
       >
-        <ArticleNavigation className="inline-padding" fromArticle="Work" />
-
+        {/* paragraph 1 */}
         <Grid
-          container
-          className="article-text inline-padding"
-          paddingBottom={constants.spacing.large}
-          component="article"
+          item
+          xs={12}
+          md={7}
+          marginBottom={{ xs: constants.spacing.small, md: 0 }}
         >
-          {/* paragraph 1 */}
-          <Grid
-            item
-            xs={12}
-            md={7}
-            marginBottom={{ xs: constants.spacing.small, md: 0 }}
-          >
-            <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
-              Hi! My name is Francis and I am a{" "}
-              <strong>Developing Web Developer</strong>. Here you will find some
-              of my latest work.{" "}
-              <a
-                href={"/contact"}
-                onClick={handleClick}
-                aria-label="Send Francis a message."
-              >
-                Contact me
-              </a>{" "}
-              if you have any questions, want to learn more{" "}
-              <a
-                href="https://github.com/fajoaq"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Learn more about Francis on his github page."
-              >
-                about me
-              </a>
-              , or just want to say hello. &#x1F44B;
-            </Typography>
-          </Grid>
-          {/* paragraph 2 */}
-          <Grid
-            item
-            xs={12}
-            md={5}
-            paddingLeft={{ xs: "0", md: constants.spacing.small }}
-          >
-            <Typography
-              fontSize={{ xs: "1.1rem", md: "1.4rem" }}
-              textAlign={{ xs: "start", md: "center" }}
+          <Typography fontSize={{ xs: "1.1rem", md: "1.5rem" }}>
+            Hi! My name is Francis and I am a{" "}
+            <strong>Developing Web Developer</strong>. Here you will find some
+            of my latest work.{" "}
+            <a
+              href={"/contact"}
+              onClick={handleClick}
+              aria-label="Send Francis a message."
             >
-              Come along on my web dev journey by following my blog.
-            </Typography>
-          </Grid>
+              Contact me
+            </a>{" "}
+            if you have any questions, want to learn more{" "}
+            <a
+              href="https://github.com/fajoaq"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Learn more about Francis on his github page."
+            >
+              about me
+            </a>
+            , or just want to say hello. &#x1F44B;
+          </Typography>
         </Grid>
-        {/* Case studies, with links to blog posts */}
-        <CaseStudyContainer
-          className="inline-padding inline-padding-vertical"
-          component="article"
-          gap={panelGap}
+        {/* paragraph 2 */}
+        <Grid
+          item
+          xs={12}
+          md={5}
+          paddingLeft={{ xs: "0", md: constants.spacing.small }}
         >
-          {blogPosts.map((post, index) => (
-            <CaseStudy
-              key={post.sys.id}
-              imgSource={`https:${post.fields.blogThumbnail.fields.file.url}`}
-              externalLink={post.fields.externalLink}
-              priority={index === 0 ? "true" : "false"}
-              alt={post.fields.blogThumbnail.fields.description}
+          <Typography
+            fontSize={{ xs: "1.1rem", md: "1.4rem" }}
+            textAlign={{ xs: "start", md: "center" }}
+          >
+            Come along on my web dev journey by following my blog.
+          </Typography>
+        </Grid>
+      </Grid>
+      {/* Case studies, with links to blog posts */}
+      <CaseStudyContainer
+        className="inline-padding inline-padding-vertical"
+        component="article"
+        gap={panelGap}
+      >
+        {blogPosts.map((post, index) => (
+          <CaseStudy
+            key={post.sys.id}
+            imgSource={`https:${post.fields.blogThumbnail.fields.file.url}`}
+            externalLink={post.fields.externalLink}
+            priority={index === 0 ? "true" : "false"}
+            alt={post.fields.blogThumbnail.fields.description}
+          >
+            <InternalLink
+              className="internal-link internal-link-box"
+              internalLink={`/blog/${post.fields.slug}`}
             >
-              <InternalLink
-                className="internal-link internal-link-box"
-                internalLink={`/blog/${post.fields.slug}`}
-              >
-                <ForumIcon className="internal-link__icon" />
-                {post.fields.readingTime}min Read: {post.fields.title}
-              </InternalLink>
-            </CaseStudy>
-          ))}
-        </CaseStudyContainer>
+              <ForumIcon className="internal-link__icon" />
+              {post.fields.readingTime}min Read: {post.fields.title}
+            </InternalLink>
+          </CaseStudy>
+        ))}
+      </CaseStudyContainer>
 
-        {transitionState.contentTransition ===
-        TRANSITION_CLASS.entered ? null : (
-          <div className="loader-container">
-            <div className="loader" />
-          </div>
-        )}
-      </Section>
-    </ContentContainer>
+      {transitionState.contentTransition === TRANSITION_CLASS.entered ? null : (
+        <div className="loader-container">
+          <div className="loader" />
+        </div>
+      )}
+    </PageLayout>
   );
 };
 WorkArticle.displayName = "WorkArticle";
 
 export { WorkArticle };
-
-/* 
-<CaseStudy
-            imgSource="/static/work/pageprimer-thumb.jpg"
-            externalLink="https://pageprimer.com"
-            priority="true"
-            alt="A Link to PagePrimer Web Design Site."
-          >
-            <InternalLink className="internal-link internal-link-box wip">
-              <ForumIcon className="internal-link__icon" />
-              Coming Soon: Building PagePrimer
-            </InternalLink>
-          </CaseStudy>
-
-          <CaseStudy className="case-study wip">
-            <InternalLink className="internal-link internal-link-box wip">
-              <ForumIcon className="internal-link__icon" />
-              Coming Soon: Building a Blog
-            </InternalLink>
-          </CaseStudy>
-
-          <CaseStudy className="case-study wip">
-            <InternalLink className="internal-link internal-link-box wip">
-              <ForumIcon className="internal-link__icon" />
-              Coming Soon: Building a Database
-            </InternalLink>
-          </CaseStudy>
-
-          <CaseStudy className="case-study wip">
-            <InternalLink className="internal-link internal-link-box wip">
-              <ForumIcon className="internal-link__icon" />
-              Coming Soon: Fetching w/ Prisma
-            </InternalLink>
-          </CaseStudy>
-*/

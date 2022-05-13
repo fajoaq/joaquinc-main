@@ -81,7 +81,7 @@ const useTransitions = () => {
     if (route === newRoute.current || route.length === 0) return; // same route, bad route
 
     newRoute.current = route; // capture the new route
-    transitionState.contentRef.current.addEventListener(
+    transitionState.contentRef.current?.addEventListener(
       "transitionend",
       handleContentExited
     );
