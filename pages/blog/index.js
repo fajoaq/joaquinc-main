@@ -33,17 +33,29 @@ const Page = ({ posts }) => {
 };
 
 export async function getStaticProps() {
+  let res = null;
+
   const clientx = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   });
 
-  const res = await clientx.getEntries({ content_type: "blogPost" });
+  try {
+    res = await clientx.getEntries({ content_type: "blogPost" });
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
       posts: res.items,
       revalidate: 1,
+      fallback: true,
     },
   };
 }

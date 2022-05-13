@@ -37,7 +37,7 @@ const useTransitions = () => {
       "transitionend",
       handleResizeDone
     );
-    transitionState.contentRef.current.removeEventListener(
+    transitionState.contentRef.current?.removeEventListener(
       "transitionend",
       handleContentExited
     );

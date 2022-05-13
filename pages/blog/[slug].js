@@ -39,21 +39,58 @@ const clientx = createClient({
 });
 
 export async function getStaticProps({ params }) {
-  const { items } = await clientx.getEntries({
-    content_type: "blogPost",
-    "fields.slug": params.slug,
-  });
+  let data = null;
+
+  try {
+    data = await clientx.getEntries({
+      content_type: "blogPost",
+      "fields.slug": params.slug,
+    });
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/blog",
+        permanent: false,
+      },
+    };
+  }
+
+  if (!data.items.length) {
+    return {
+      redirect: {
+        destination: "/blog",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
-      post: items[0],
+      post: data.items[0],
       revalidate: 1,
+      fallback: true,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const res = await clientx.getEntries({ content_type: "blogPost" });
+  let res = null;
+
+  try {
+    res = await clientx.getEntries({ content_type: "blogPost" });
+  } catch (error) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
+
+  if (!res.items.length) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 
   const paths = res.items.map((item) => {
     return {
