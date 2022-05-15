@@ -38,15 +38,17 @@ const clientx = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
+// You can search for entries based on the values of referenced entries.
 export async function getStaticProps({ params }) {
   let data = null;
-
   try {
     data = await clientx.getEntries({
       content_type: "blogPost",
-      "fields.slug": params.slug,
+      "fields.slug.sys.contentType.sys.id": "slug",
+      "fields.slug.fields.slug[match]": params.slug,
     });
   } catch (error) {
+    console.log(error);
     return {
       redirect: {
         destination: "/blog",
@@ -63,6 +65,8 @@ export async function getStaticProps({ params }) {
       },
     };
   }
+
+  console.log(data.items[0]);
 
   return {
     props: {
@@ -92,11 +96,9 @@ export async function getStaticPaths() {
     };
   }
 
-  const paths = res.items.map((item) => {
-    return {
-      params: { slug: item.fields.slug },
-    };
-  });
+  const paths = res.items.map((item) => ({
+    params: { slug: item.fields.slug.fields.slug },
+  }));
 
   return {
     paths,

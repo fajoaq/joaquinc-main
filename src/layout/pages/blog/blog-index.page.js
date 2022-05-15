@@ -38,7 +38,10 @@ const BlogIndex = ({ blogPosts }) => {
       >
         <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
           {blogPosts[0].fields.blogIntro.slice(260)}&#8230;{" "}
-          <a href={`/blog/${blogPosts[0].fields.slug}`} onClick={handleClick}>
+          <a
+            href={`/blog/${blogPosts[0].fields.slug.fields.slug}`}
+            onClick={handleClick}
+          >
             continue reading
           </a>
           &#x025B8;

@@ -61,8 +61,10 @@ const CaseStudy = ({
   </Box>
 );
 
-const WorkArticle = ({ blogPosts, ...rest }) => {
+const WorkArticle = ({ caseStudies, ...rest }) => {
   const [transitionState] = useTransitionState();
+
+  console.log(caseStudies);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -128,7 +130,40 @@ const WorkArticle = ({ blogPosts, ...rest }) => {
         component="article"
         gap={panelGap}
       >
-        {blogPosts.map((post, index) => (
+        {caseStudies.map((study) => (
+          <CaseStudy
+            key={study.sys.id}
+            imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
+            externalLink={study.fields.externalLink}
+            alt={study.fields.thumbnail.fields.description}
+          >
+            {!study.fields.hasPost ? null : (
+              <InternalLink
+                className="internal-link internal-link-box"
+                internalLink={`/blog/${study.fields.slug.fields.slug}`}
+              >
+                <ForumIcon className="internal-link__icon" />
+                Read: {study.fields.title}
+              </InternalLink>
+            )}
+          </CaseStudy>
+        ))}
+      </CaseStudyContainer>
+
+      {transitionState.contentTransition === TRANSITION_CLASS.entered ? null : (
+        <div className="loader-container">
+          <div className="loader" />
+        </div>
+      )}
+    </PageLayout>
+  );
+};
+WorkArticle.displayName = "WorkArticle";
+
+export { WorkArticle };
+
+/* 
+      {caseStudies.map((post, index) => (
           <CaseStudy
             key={post.sys.id}
             imgSource={`https:${post.fields.blogThumbnail.fields.file.url}`}
@@ -145,16 +180,24 @@ const WorkArticle = ({ blogPosts, ...rest }) => {
             </InternalLink>
           </CaseStudy>
         ))}
-      </CaseStudyContainer>
 
-      {transitionState.contentTransition === TRANSITION_CLASS.entered ? null : (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
-      )}
-    </PageLayout>
-  );
-};
-WorkArticle.displayName = "WorkArticle";
 
-export { WorkArticle };
+        {caseStudies.map((study, index) => (
+          <CaseStudy
+            key={study.sys.id}
+            imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
+            externalLink={study.fields.externalLink}
+            alt={study.fields.thumbnail.fields.description}
+          >
+            {!study.fields.slug.fields.hasPost ? null : (
+              <InternalLink
+                className="internal-link internal-link-box"
+                internalLink={`/blog/${study.fields.slug}`}
+              >
+                <ForumIcon className="internal-link__icon" />
+                Read: {study.fields.title}
+              </InternalLink>
+            )}
+          </CaseStudy>
+        ))}
+*/

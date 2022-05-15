@@ -6,8 +6,8 @@ import { SEO } from "../../src/constants/seo";
 
 import { WorkArticle } from "../../src/layout/pages";
 
-const Page = ({ posts }) => {
-  if (!posts)
+const Page = ({ caseStudies }) => {
+  if (!caseStudies)
     return (
       <div className="loader-container">
         <div className="loader" />
@@ -25,7 +25,7 @@ const Page = ({ posts }) => {
         <title>{"Work | " + SEO.SITE_TITLE}</title>
       </Head>
 
-      <WorkArticle blogPosts={posts} />
+      <WorkArticle caseStudies={caseStudies} />
     </Fragment>
   );
 };
@@ -39,7 +39,9 @@ export async function getStaticProps() {
   });
 
   try {
-    res = await clientx.getEntries({ content_type: "blogPost" });
+    res = await clientx.getEntries({
+      content_type: "caseStudy",
+    });
   } catch (error) {
     return {
       redirect: {
@@ -51,7 +53,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: res.items,
+      caseStudies: JSON.parse(res.stringifySafe()).items,
       revalidate: 1,
       fallback: true,
     },
@@ -59,3 +61,8 @@ export async function getStaticProps() {
 }
 
 export default Page;
+
+// "fields.externalLink[exists]": true,
+/* 
+You can check for the presence of a field using the [exists] operator. It checks whether a certain field is defined (i.e. it has any value) or not.
+*/

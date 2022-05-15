@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -51,16 +52,18 @@ const LatesPostPreview = ({ children, latestPost, ...rest }) => {
           </BlogPostImg>
           <Typography component="figcaption" variant="body2" textAlign="center">
             {latestPost.fields.blogBanner.fields.description}.{" "}
-            {latestPost.fields.externalLink && (
-              <a
-                href={latestPost.fields.externalLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Site
-              </a>
+            {latestPost.fields.caseStudy && (
+              <Fragment>
+                <a
+                  href={latestPost.fields.caseStudy.fields.externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Site
+                </a>
+                <span>&#x21B1;</span>
+              </Fragment>
             )}
-            &#x21B1;
           </Typography>
         </figure>
       </Grid>
@@ -99,7 +102,7 @@ const BlogPostsGrid = ({ panelGap = 5, blogPosts, onClick, ...rest }) => (
       <PostCard
         key={post.sys.id}
         src={`https:${post.fields.blogThumbnail.fields.file.url}`}
-        href={`/blog/${post.fields.slug}`}
+        href={`/blog/${post.fields.slug.fields.slug}`}
         postTitle={post.fields.title}
         blogIntro={post.fields.blogIntro}
         readingTime={post.fields.readingTime}
@@ -111,14 +114,3 @@ const BlogPostsGrid = ({ panelGap = 5, blogPosts, onClick, ...rest }) => (
 );
 
 export { LatesPostPreview, BlogPostsGrid, BlogPostImg };
-
-/* 
- PagePrimer helps users craft afforable and performant web solutions
-          using modern frameworks like <strong>React and NextJs</strong>. In
-          this article I go over how I built PagePrimer and what I learned along
-          the way.{" "}
-          <a href="/blog" onClick={linkToArticle}>
-            continue reading
-          </a>
-          &#x025B8;
-*/
