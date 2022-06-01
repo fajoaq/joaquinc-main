@@ -22,7 +22,7 @@
     "@mui/material": "^5.5.2",
     "axios": "^0.26.1",
     "contentful": "^9.1.28",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "formik": "^2.2.9",
     "next": "^12.1.0",
     "prop-types": "^15.8.1",
