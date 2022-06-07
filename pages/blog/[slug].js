@@ -66,8 +66,6 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  console.log(data.items[0]);
-
   return {
     props: {
       post: data.items[0],

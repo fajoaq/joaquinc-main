@@ -64,8 +64,6 @@ const CaseStudy = ({
 const WorkArticle = ({ caseStudies, ...rest }) => {
   const [transitionState] = useTransitionState();
 
-  console.log(caseStudies);
-
   const handleClick = (e) => {
     e.preventDefault();
     transitionState.navigate(e.target.href);
