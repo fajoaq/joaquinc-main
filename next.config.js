@@ -7,6 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   optimizeFonts: false,
+  swcMinify: true,
   images: {
     domains: ["images.ctfassets.net", "dummyimage.com"],
   },
