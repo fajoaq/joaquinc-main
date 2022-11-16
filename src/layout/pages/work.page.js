@@ -8,6 +8,7 @@ import { InternalLink, ExternalLink } from "./common/navigation.component";
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import { PageLayout } from "./common/page-layout.component";
+import { useEffect } from "react";
 
 const panelGap = 5;
 
@@ -72,13 +73,18 @@ const CaseStudy = ({
   </Box>
 );
 
-const WorkArticle = ({ caseStudies, ...rest }) => {
+const WorkArticle = ({ data, ...rest }) => {
   const [transitionState] = useTransitionState();
+  const { caseStudies, artwork } = data;
 
   const handleClick = (e) => {
     e.preventDefault();
     transitionState.navigate(e.target.href);
   };
+
+  useEffect(() => {
+    console.log(artwork);
+  }, [data]);
 
   return (
     <PageLayout fromArticle="Work" {...rest}>
@@ -172,7 +178,7 @@ const WorkArticle = ({ caseStudies, ...rest }) => {
             <CaseStudy
               key={study.sys.id}
               imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
-              externalLink={study.fields.externalLink}
+              externalLink={study.fields?.externalLink || null}
               alt={study.fields.thumbnail.fields.description}
               maxWidth={{ xs: "100%", md: "48%" }}
             >
@@ -211,11 +217,11 @@ const WorkArticle = ({ caseStudies, ...rest }) => {
             </Typography>
           </Box>
 
-          {caseStudies.map((study, i) => (
+          {artwork.map((study, i) => (
             <CaseStudy
               key={study.sys.id}
               imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
-              externalLink={study.fields.externalLink}
+              externalLink={study.fields?.externalLink || null}
               alt={study.fields.thumbnail.fields.description}
             >
               {!study.fields.hasPost ? null : (

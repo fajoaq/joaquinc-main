@@ -6,7 +6,7 @@ import { SEO } from "../../src/constants/seo";
 
 import { WorkArticle } from "../../src/layout/pages";
 
-const Page = ({ caseStudies }) => {
+const Page = ({ caseStudies, artwork }) => {
   if (!caseStudies)
     return (
       <div className="loader-container">
@@ -25,13 +25,14 @@ const Page = ({ caseStudies }) => {
         <title>{"Work | " + SEO.SITE_TITLE}</title>
       </Head>
 
-      <WorkArticle caseStudies={caseStudies} />
+      <WorkArticle data={{ caseStudies, artwork }} />
     </Fragment>
   );
 };
 
 export async function getStaticProps() {
-  let res = null;
+  let caseStudies = null;
+  let artwork = null;
 
   const clientx = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
@@ -39,8 +40,11 @@ export async function getStaticProps() {
   });
 
   try {
-    res = await clientx.getEntries({
+    caseStudies = await clientx.getEntries({
       content_type: "caseStudy",
+    });
+    artwork = await clientx.getEntries({
+      content_type: "artwork",
     });
   } catch (error) {
     return {
@@ -53,7 +57,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      caseStudies: JSON.parse(res.stringifySafe()).items,
+      caseStudies: JSON.parse(caseStudies.stringifySafe()).items,
+      artwork: JSON.parse(artwork.stringifySafe()).items,
       revalidate: 1,
       fallback: true,
     },
