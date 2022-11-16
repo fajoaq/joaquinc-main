@@ -22,10 +22,20 @@ const CaseStudyContainer = styled(Grid)`
   box-shadow: ${({ theme }) =>
     `0 1px 0px 5px ${theme.palette.background.light}E6, 0 1px 0px 6px #0000000D`};
 
+  && .case-study-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   && .case-study {
     display: grid;
+    flex-grow: 1;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: ${({ theme }) => theme.palette.background.main};
+  }
+
+  && .intro-text {
+    border: none;
   }
 
   && .case-study.wip .external-link-container {
@@ -48,7 +58,7 @@ const CaseStudy = ({
   <Box
     className="case-study"
     disabled={imgSource ? false : true}
-    width={{ xs: "100%", md: "48%", lg: "31%" }}
+    width={{ xs: "100%" }}
     {...rest}
   >
     <ExternalLink
@@ -122,30 +132,102 @@ const WorkArticle = ({ caseStudies, ...rest }) => {
           </Typography>
         </Grid>
       </Grid>
-      {/* Case studies, with links to blog posts */}
+      {/* Case studies and artwork, with links to blog posts */}
       <CaseStudyContainer
-        className="inline-padding inline-padding-vertical"
+        container
         component="article"
         gap={panelGap}
+        paddingBottom={constants.spacing.large}
+        flexWrap={{ xs: "nowrap", md: "wrap" }}
+        flexDirection={{ xs: "column-reverse", md: "row" }}
+        className="inline-padding inline-padding-vertical"
       >
-        {caseStudies.map((study) => (
-          <CaseStudy
-            key={study.sys.id}
-            imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
-            externalLink={study.fields.externalLink}
-            alt={study.fields.thumbnail.fields.description}
+        {/* New Projects */}
+        <Grid
+          item
+          xs={12}
+          md={8}
+          gap={panelGap}
+          marginBottom={{ xs: constants.spacing.small, md: 0 }}
+          className="case-study-row"
+        >
+          {/* Artwork intro text */}
+          <Box
+            className="case-study intro-text article-text"
+            padding={constants.spacing.xsmall}
           >
-            {!study.fields.hasPost ? null : (
-              <InternalLink
-                className="internal-link internal-link-box"
-                internalLink={`/blog/${study.fields.slug.fields.slug}`}
-              >
-                <ForumIcon className="internal-link__icon" />
-                Read: {study.fields.title}
-              </InternalLink>
-            )}
-          </CaseStudy>
-        ))}
+            <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
+              New projects &nbsp;
+              <a href={`/blog`} onClick={handleClick}>
+                view all
+              </a>
+              &#x025B8;
+            </Typography>
+          </Box>
+
+          {caseStudies.map((study) => (
+            <CaseStudy
+              key={study.sys.id}
+              imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
+              externalLink={study.fields.externalLink}
+              alt={study.fields.thumbnail.fields.description}
+              maxWidth={{ xs: "100%", md: "48%" }}
+            >
+              {!study.fields.hasPost ? null : (
+                <InternalLink
+                  className="internal-link internal-link-box"
+                  internalLink={`/blog/${study.fields.slug.fields.slug}`}
+                >
+                  <ForumIcon className="internal-link__icon" />
+                  Read: {study.fields.title}
+                </InternalLink>
+              )}
+            </CaseStudy>
+          ))}
+        </Grid>
+
+        {/* New Artwork */}
+        <Grid
+          item
+          xs={12}
+          md={3.5}
+          gap={panelGap}
+          marginBottom={{ xs: constants.spacing.small, md: 0 }}
+          className="case-study-row "
+        >
+          {/* Artwork intro text */}
+          <Box
+            className="case-study intro-text article-text"
+            padding={constants.spacing.xsmall}
+          >
+            <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
+              New artwork &nbsp;
+              <a href={`/blog`} onClick={handleClick}>
+                view all
+              </a>
+              &#x025B8;
+            </Typography>
+          </Box>
+
+          {caseStudies.map((study, i) => (
+            <CaseStudy
+              key={study.sys.id}
+              imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
+              externalLink={study.fields.externalLink}
+              alt={study.fields.thumbnail.fields.description}
+            >
+              {!study.fields.hasPost ? null : (
+                <InternalLink
+                  className="internal-link internal-link-box"
+                  internalLink={`/blog/${study.fields.slug.fields.slug}`}
+                >
+                  <ForumIcon className="internal-link__icon" />
+                  Read: {study.fields.title}
+                </InternalLink>
+              )}
+            </CaseStudy>
+          ))}
+        </Grid>
       </CaseStudyContainer>
 
       {transitionState.contentTransition === TRANSITION_CLASS.entered ? null : (
