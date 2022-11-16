@@ -35,6 +35,7 @@ const CaseStudyContainer = styled(Grid)`
   }
 
   && .intro-text {
+    display: flex;
     border: none;
   }
 
@@ -153,15 +154,17 @@ const WorkArticle = ({ caseStudies, ...rest }) => {
         >
           {/* Artwork intro text */}
           <Box
-            className="case-study intro-text article-text"
+            display={{ xs: "flex", md: "block !important" }}
             padding={constants.spacing.xsmall}
+            className="case-study intro-text article-text"
           >
             <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
               New projects &nbsp;
+            </Typography>
+            <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
               <a href={`/blog`} onClick={handleClick}>
-                view all
+                view all &#x025B8;
               </a>
-              &#x025B8;
             </Typography>
           </Box>
 
@@ -203,9 +206,8 @@ const WorkArticle = ({ caseStudies, ...rest }) => {
             <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
               New artwork &nbsp;
               <a href={`/blog`} onClick={handleClick}>
-                view all
+                view all &#x025B8;
               </a>
-              &#x025B8;
             </Typography>
           </Box>
 
