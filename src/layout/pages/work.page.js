@@ -26,6 +26,7 @@ const CaseStudyContainer = styled(Grid)`
   && .case-study-row {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
   }
 
   && .case-study {
@@ -202,7 +203,7 @@ const WorkArticle = ({ data, ...rest }) => {
           md={3.5}
           gap={panelGap}
           marginBottom={{ xs: constants.spacing.small, md: 0 }}
-          className="case-study-row "
+          className="case-study-row"
         >
           {/* Artwork intro text */}
           <Box
