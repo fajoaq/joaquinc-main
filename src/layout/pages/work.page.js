@@ -11,6 +11,7 @@ import { PageLayout } from "./common/page-layout.component";
 import { useEffect } from "react";
 
 const panelGap = 5;
+const lazyLoadCount = 2;
 
 //  We can pass a prop to the whole template literal
 // by destructuring it at the top and returning another
@@ -54,7 +55,7 @@ const CaseStudy = ({
   externalLink,
   alt = "A link to an external case study.",
   imgSource,
-  priority = "false",
+  priority = "true",
   children,
   ...rest
 }) => (
@@ -175,12 +176,13 @@ const WorkArticle = ({ data, ...rest }) => {
             </Typography>
           </Box>
 
-          {caseStudies.map((study) => (
+          {caseStudies.map((study, i) => (
             <CaseStudy
               key={study.sys.id}
               imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
               externalLink={study.fields?.externalLink || null}
               alt={study.fields.thumbnail.fields.description}
+              priority={i > lazyLoadCount ? "false" : "true"}
               maxWidth={{ xs: "100%", md: "48%" }}
             >
               {!study.fields.hasPost ? null : (
@@ -218,20 +220,21 @@ const WorkArticle = ({ data, ...rest }) => {
             </Typography>
           </Box>
 
-          {artwork.map((study, i) => (
+          {artwork.map((art, i) => (
             <CaseStudy
-              key={study.sys.id}
-              imgSource={`https:${study.fields.thumbnail.fields.file.url}`}
-              externalLink={study.fields?.externalLink || null}
-              alt={study.fields.thumbnail.fields.description}
+              key={art.sys.id}
+              imgSource={`https:${art.fields.thumbnail.fields.file.url}`}
+              externalLink={art.fields?.externalLink || null}
+              alt={art.fields.thumbnail.fields.description}
+              priority={i > lazyLoadCount ? "false" : "true"}
             >
-              {!study.fields.hasPost ? null : (
+              {!art.fields.hasPost ? null : (
                 <InternalLink
                   className="internal-link internal-link-box"
-                  internalLink={`/blog/${study.fields.slug.fields.slug}`}
+                  internalLink={`/blog/${art.fields.slug.fields.slug}`}
                 >
                   <ForumIcon className="internal-link__icon" />
-                  Read: {study.fields.title}
+                  Read: {art.fields.title}
                 </InternalLink>
               )}
             </CaseStudy>
