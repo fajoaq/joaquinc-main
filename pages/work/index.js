@@ -31,8 +31,7 @@ const Page = ({ caseStudies, artwork }) => {
 };
 
 export async function getStaticProps() {
-  let caseStudies = null;
-  let artwork = null;
+  let caseStudies, artwork;
 
   const clientx = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
@@ -40,12 +39,17 @@ export async function getStaticProps() {
   });
 
   try {
-    caseStudies = await clientx.getEntries({
+    const caseStudiesPromise = clientx.getEntries({
       content_type: "caseStudy",
     });
-    artwork = await clientx.getEntries({
+    const artworkPromise = clientx.getEntries({
       content_type: "artwork",
     });
+
+    [caseStudies, artwork] = await Promise.all([
+      caseStudiesPromise,
+      artworkPromise,
+    ]);
   } catch (error) {
     return {
       redirect: {
@@ -57,8 +61,10 @@ export async function getStaticProps() {
 
   return {
     props: {
-      caseStudies: JSON.parse(caseStudies.stringifySafe()).items,
-      artwork: JSON.parse(artwork.stringifySafe()).items,
+      caseStudies: caseStudies
+        ? JSON.parse(caseStudies.stringifySafe()).items
+        : null,
+      artwork: artwork ? JSON.parse(artwork.stringifySafe()).items : null,
       revalidate: 1,
       fallback: true,
     },
