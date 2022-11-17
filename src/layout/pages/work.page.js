@@ -8,7 +8,6 @@ import { InternalLink, ExternalLink } from "./common/navigation.component";
 import { useTransitionState } from "../../context/transition.context";
 import { TRANSITION_CLASS, constants } from "../../constants/constants";
 import { PageLayout } from "./common/page-layout.component";
-import { useEffect } from "react";
 
 const panelGap = 5;
 const lazyLoadCount = 2;
@@ -83,10 +82,6 @@ const WorkArticle = ({ data, ...rest }) => {
     e.preventDefault();
     transitionState.navigate(e.target.href);
   };
-
-  useEffect(() => {
-    console.log(artwork);
-  }, [data]);
 
   return (
     <PageLayout fromArticle="Work" {...rest}>
