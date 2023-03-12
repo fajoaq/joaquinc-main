@@ -11,8 +11,8 @@ import { PageLayout } from "./common/page-layout.component";
 
 const panelGap = 5;
 const lazyLoadCount = 2;
-const viewAllArtLink = "https://www.instagram.com/dominican.francster/";
-const aboutMeLink = "https://www.facebook.com/fajoaq/";
+const viewAllArtLink = "https://86lt.short.gy/instagram"; //short.io link
+const aboutMeLink = "https://86lt.short.gy/facebook"; //short.io link
 
 //  We can pass a prop to the whole template literal
 // by destructuring it at the top and returning another
