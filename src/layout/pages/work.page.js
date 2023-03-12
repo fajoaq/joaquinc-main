@@ -11,6 +11,7 @@ import { PageLayout } from "./common/page-layout.component";
 
 const panelGap = 5;
 const lazyLoadCount = 2;
+const viewAllArtLink = "https://www.instagram.com/dominican.francster/";
 
 //  We can pass a prop to the whole template literal
 // by destructuring it at the top and returning another
@@ -209,7 +210,7 @@ const WorkArticle = ({ data, ...rest }) => {
           >
             <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
               New artwork &nbsp;
-              <a href={`/blog`} onClick={handleClick}>
+              <a href={viewAllArtLink} target="_blank" rel="noreferrer">
                 view all &#x025B8;
               </a>
             </Typography>
