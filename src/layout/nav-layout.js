@@ -119,7 +119,7 @@ const Header = styled(Grid)`
 `}
 `;
 
-const IconColumn = styled(Grid)`
+const IconColumnWrapper = styled(Grid)`
   ${({ theme }) => `
     display: flex;
     justify-content: center;
@@ -137,7 +137,6 @@ const IconColumn = styled(Grid)`
 
 //
 // work page link is also the blog page link
-// TBD create a smaller blog page icon link above work page link
 const navLinks = [
   [
     {
@@ -196,7 +195,7 @@ const Icon = ({ handleNavClick, navIconData: { Icon, ...data }, ...rest }) => {
   );
 };
 
-const constructIconColumn = (onClick, navIconData, pathName) => {
+const IconColumn = ({ click, navIconData, path, ...rest }) => {
   const [transitionState] = useTransitionState();
 
   return (
@@ -205,18 +204,19 @@ const constructIconColumn = (onClick, navIconData, pathName) => {
       item
       order={
         transitionState.contentTransition === TRANSITION_CLASS.entered
-          ? navIconData.name == pathName
+          ? navIconData.name == path
             ? 2
             : 1
           : 1
       }
+      {...rest}
     >
       <Icon
-        handleNavClick={onClick}
+        handleNavClick={click}
         navIconData={navIconData}
         className={
           transitionState.contentTransition === TRANSITION_CLASS.entered
-            ? navIconData.name == pathName
+            ? navIconData.name == path
               ? `icon-${navIconData.name} active`
               : ""
             : `icon-${navIconData.name}`
@@ -233,11 +233,11 @@ const constructIconColumn = (onClick, navIconData, pathName) => {
   );
 };
 
-const constructNavIcons = (onClick, pathName) => {
+const Nav = ({ onClick, pathName, ...rest }) => {
   const [transitionState] = useTransitionState();
 
   return navLinks.map((iconArr, index) => (
-    <IconColumn
+    <IconColumnWrapper
       key={`nav-item-${index}`}
       container
       className={
@@ -247,11 +247,17 @@ const constructNavIcons = (onClick, pathName) => {
             : `icon icon-column-${index}`
           : `icon icon-column-${index}`
       }
+      {...rest}
     >
-      {iconArr.map((navIconData) =>
-        constructIconColumn(onClick, navIconData, pathName)
-      )}
-    </IconColumn>
+      {iconArr.map((navIconData) => (
+        <IconColumn
+          key={`nav-icon-${navIconData.name}`}
+          navIconData={navIconData}
+          click={onClick}
+          path={pathName}
+        />
+      ))}
+    </IconColumnWrapper>
   ));
 };
 
@@ -291,13 +297,14 @@ const NavLayout = ({ navigate, ...rest }) => {
         aria-label="Main Navigation."
         {...rest}
       >
-        {constructNavIcons(handleNavClick, pathName)}
-        <IconColumn className="icon">
+        <Nav onClick={handleNavClick} pathName={pathName} />
+        {/* github has just 1 icon- external link */}
+        <IconColumnWrapper className="icon">
           <Icon
             key={`nav-item-${githubLinkData.name}`}
             navIconData={githubLinkData}
           />
-        </IconColumn>
+        </IconColumnWrapper>
       </Header>
     </RenderThrottle>
   );
