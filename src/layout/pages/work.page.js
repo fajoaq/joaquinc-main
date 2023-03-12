@@ -12,6 +12,7 @@ import { PageLayout } from "./common/page-layout.component";
 const panelGap = 5;
 const lazyLoadCount = 2;
 const viewAllArtLink = "https://www.instagram.com/dominican.francster/";
+const aboutMeLink = "https://www.facebook.com/fajoaq/";
 
 //  We can pass a prop to the whole template literal
 // by destructuring it at the top and returning another
@@ -112,7 +113,7 @@ const WorkArticle = ({ data, ...rest }) => {
             </a>{" "}
             if you have any questions, want to learn more{" "}
             <a
-              href="https://github.com/fajoaq"
+              href={aboutMeLink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Learn more about Francis on his github page."
@@ -210,7 +211,12 @@ const WorkArticle = ({ data, ...rest }) => {
           >
             <Typography fontSize={{ xs: "1.1rem", md: "1.4rem" }}>
               New artwork &nbsp;
-              <a href={viewAllArtLink} target="_blank" rel="noreferrer">
+              <a
+                href={viewAllArtLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follo Francis on Facebook."
+              >
                 view all &#x025B8;
               </a>
             </Typography>
