@@ -13,7 +13,10 @@ function validate(schema, handler) {
             stripUnknown: true,
           });
       } catch (error) {
-        return res.status(400).json(error);
+        //changed return message from return res.status(400).json(error);
+        return res
+          .status(400)
+          .json({ error: "Message schema validation failed." });
       }
     }
     await handler(req, res);
