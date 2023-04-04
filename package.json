@@ -21,7 +21,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.11",
     "axios": "^0.27.2",
-    "contentful": "^9.2.9",
+    "contentful": "^9.3.4",
     "dotenv": "^16.0.1",
     "formik": "^2.2.9",
     "next": "^12.3.1",
