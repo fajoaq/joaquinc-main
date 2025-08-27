@@ -7,6 +7,7 @@
 </h1>
 
 <h4 align="center">My portfolio site. Created using React + NextJS + Material UI 5.</h4>
+<h5 align="center">(JOAQUINC and PAGEPRIMER redirect here)</h5>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
