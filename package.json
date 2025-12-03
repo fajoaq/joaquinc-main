@@ -32,7 +32,7 @@
     "react-tracked": "^1.7.9",
     "sharp": "^0.30.7",
     "uuidv4": "^6.2.13",
-    "validator": "^13.7.0",
+    "validator": "^13.15.22",
     "yup": "^0.32.11"
   },
   "devDependencies": {
